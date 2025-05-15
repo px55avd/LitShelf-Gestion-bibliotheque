@@ -28,7 +28,6 @@ D:\FIN2\TPI\TPI\LitShelf\LitShelf\bin\Debug\net6.0-windows\runtimes\win-x64\nati
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.csproj.AssemblyReference.cache
-D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.View.resources
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.csproj.GenerateResource.cache
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.GeneratedMSBuildEditorConfig.editorconfig
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.AssemblyInfoInputs.cache
@@ -40,3 +39,15 @@ D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\refint\LitShelf.dll
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.pdb
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.genruntimeconfig.cache
 D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\ref\LitShelf.dll
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.Viewauthor.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Viewbook.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.Viewclient.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.Viewloan.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewnewAuthor.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewnewBook.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewnewClient.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewnewLoan.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewoneAuthor.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewoneBook.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewoneClient.resources
+D:\FIN2\TPI\TPI\LitShelf\LitShelf\obj\Debug\net6.0-windows\LitShelf.Views.ViewoneLoan.resources
