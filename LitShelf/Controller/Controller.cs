@@ -180,6 +180,8 @@ namespace LitShelf.Controller
             }
         }
 
+
+
         /// <summary>
         /// Charge les données clients à partir du modèle et les stocke dans le tableau local `_clients`.
         /// </summary>
@@ -195,6 +197,45 @@ namespace LitShelf.Controller
         public string[,] GetclientData()
         {
             return _clients; // Fournit l’accès aux données client
+        }
+
+
+
+        /// <summary>
+        /// Charge les données auteurs à partir du modèle et les stocke dans le tableau local "_authors".
+        /// </summary>
+        public void SetauthorData()
+        {
+            _authors = _model.ReadauthorData(); // Appelle la méthode du modèle pour récupérer les données auteurs et les stocke dans une variable locale.
+        }
+
+        /// <summary>
+        /// Retourne les données auteurs chargées dans '_authors'.
+        /// </summary>
+        /// <returns>Un tableau 2D contenant les données auteurs.</returns>
+        public string[,] GetauthorData()
+        {
+            return _authors; // Fournit l’accès aux données des auteurs.
+        }
+
+        /// <summary>
+        /// Enregistre un nouvel auteur dans la base de données s'il n'existe pas déjà.
+        /// </summary>
+        /// <param name="firstname">Le prénom de l'auteur.</param>
+        /// <param name="name">Le nom de l'auteur.</param>
+        public void CreatenewAuthor(string firstname, string name)
+        { 
+            _model.CreatenewAuthor(firstname, name);
+        }
+
+        /// <summary>
+        /// Enregistre un nouveau client dans la base de données s'il n'existe pas déjà.
+        /// </summary>
+        /// <param name="firstname">Le prénom du client.</param>
+        /// <param name="name">Le nom du client.</param>
+        public void CreatenewClient(string firstname, string name)
+        {
+            _model.CreatenewClient(firstname, name);
         }
 
 
@@ -288,8 +329,10 @@ namespace LitShelf.Controller
         //    }
         //}
 
+
+
         /// <summary>
-        /// Affiche dynamiquement une grille de boutons représentant des entités (clients, auteurs, etc.).
+        /// Affiche dynamiquement une grille de boutons représentant des entités clients et auteurs.
         /// </summary>
         /// <param name="data">Matrice 2D contenant les données (id, nom, prénom...)</param>
         /// <param name="page">Numéro de la page à afficher.</param>
@@ -298,43 +341,56 @@ namespace LitShelf.Controller
         /// <param name="onClick">Action à exécuter lors du clic sur un bouton.</param>
         private void ShowEntityTable(string[,] data, int page, Form form, Panel pnl, Action<int> onClick)
         {
+            // Nettoie le panel pour retirer tous les boutons précédemment affichés
             pnl.Controls.Clear();
 
-            int total = data.GetLength(0);
-            int start = page * _elementBypage;
-            int end = Math.Min(start + _elementBypage, total);
+            int total = data.GetLength(0); // Nombre total d'éléments à afficher (lignes du tableau `data`)
+            int start = page * _elementBypage; // Index de départ pour la page actuelle
+            int end = Math.Min(start + _elementBypage, total); // Index de fin (ne pas dépasser le total d'éléments)
 
+            // Boucle sur chaque élément de la page actuelle
             for (int i = start; i < end; i++)
             {
-                if (data[i, 0] != null)
+                if (data[i, 0] != null) // Vérifie que la ligne contient bien des données (évite les entrées vides)
                 {
+                    // Construit le nom affiché : Prénom (colonne 2) + Nom (colonne 1)
                     string displayName = $"{data[i, 2]} {data[i, 1]}";
 
+                    // Crée un nouveau bouton avec le nom de l'élément
                     Button btn = new Button
                     {
                         Text = displayName,
                         Size = new Size(200, 40)
                     };
 
+                    // Calcule la position du bouton dans la grille (colonnes/espacement)
                     int col = (i - start) % _columns;
                     int row = (i - start) / _columns;
                     btn.Location = new Point(10 + col * _spaceX, 10 + row * _spaceY);
 
-                    int index = i;
+                    int index = i; // Capture l’index actuel pour l’utiliser dans le gestionnaire d’événements
+
+                    // Attache un gestionnaire d’événement : Montre la fiche client
                     btn.Click += (s, args) => onClick(index);
+
+                    // Cache le formulaire actuel une fois le bouton cliqué 
                     btn.Click += (s, args) => form.Hide();
 
+                    // Ajoute le bouton au panel
                     pnl.Controls.Add(btn);
                 }
             }
+
         }
 
+
+
         /// <summary>
-        /// 
+        /// Afficahge des clients.
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="form"></param>
-        /// <param name="pnl"></param>
+        /// <param name="page">Numéro de la page à afficher.</param>
+        /// <param name="form">Formulaire actuel.</param>
+        /// <param name="pnl">Panneau de destination pour les boutons</param>
         public void ShowClientTable(int page, Form form, Panel pnl)
         {
             ShowEntityTable(_clients, page, form, pnl, index =>
@@ -345,11 +401,11 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
-        /// 
+        /// Afficahge des clients. 
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="form"></param>
-        /// <param name="pnl"></param>
+        /// <param name="page">Numéro de la page à afficher.</param>
+        /// <param name="form">Formulaire actuel.</param>
+        /// <param name="pnl">Panneau de destination pour les boutons</param>
         public void ShowAuthorTable(int page, Form form, Panel pnl)
         {
             ShowEntityTable(_authors, page, form, pnl, index =>
@@ -358,6 +414,7 @@ namespace LitShelf.Controller
                 changeView("ViewoneAuthor", form);
             });
         }
+
 
 
         /// <summary>
@@ -377,6 +434,8 @@ namespace LitShelf.Controller
             _currentPage = 0;
         }
 
+
+
         /// <summary>
         /// Retourne le nombre de clients affichés par page.
         /// </summary>
@@ -395,6 +454,8 @@ namespace LitShelf.Controller
             return _authorsBypage;
         }
 
+
+
         /// <summary>
         /// Incrémente le numéro de la page actuelle.
         /// </summary>
@@ -410,6 +471,8 @@ namespace LitShelf.Controller
         {
             _currentPage--;
         }
+
+
 
         /// <summary>
         /// Définit les informations de l'auteur actuellement sélectionné.
@@ -437,6 +500,24 @@ namespace LitShelf.Controller
             _currentClient[2] = currrentClientfirstname;
         }
 
+
+        /// <summary>
+        /// Retourne les informations du client sélectionné
+        /// </summary>
+        /// <returns>Tableau de string des informations client</returns>
+        public string[] GetcurrentClient()
+        {
+            return _currentClient;
+        }
+
+        /// <summary>
+        /// Retourne les informations du client sélectionné
+        /// </summary>
+        /// <returns>Tableau de string des informations client</returns>
+        public string[] GetcurrentAuthor()
+        {
+            return _currentAuthor;
+        }
 
     }
 }

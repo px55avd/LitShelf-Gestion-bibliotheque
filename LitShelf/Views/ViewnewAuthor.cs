@@ -61,5 +61,52 @@ namespace LitShelf.Views
         {
             Controller.changeView("Viewclient", FindForm());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnValidnewAuthor_Click(object sender, EventArgs e)
+        {
+            // vérifie que les deux champs sont vides
+            if (txtboxFirstname.Text == string.Empty && txtboxName.Text == string.Empty)
+            {
+                MessageBox.Show("Les champs sont vides !!!"); // Message pour non respect des regex
+            }
+
+            // vérifie que l'un des deux champs est vides
+            if (txtboxFirstname.Text == string.Empty && txtboxName.Text != string.Empty)
+            {
+                Controller.CreatenewAuthor(null, txtboxName.Text); // Créer un nouvel auteur sans prénom
+                Controller.changeView("Viewauthor", FindForm());
+            }
+
+            // vérifie que l'un des deux champs est vides
+            if (txtboxFirstname.Text != string.Empty && txtboxName.Text == string.Empty)
+            {
+                Controller.CreatenewAuthor(txtboxFirstname.Text, null); // Créer un nouvel auteur sans nom
+                Controller.changeView("Viewauthor", FindForm());
+            }
+
+            // vérifie que lees deux champs sont remplies
+            if (txtboxFirstname.Text != string.Empty && txtboxName.Text != string.Empty)
+            {
+                Controller.CreatenewAuthor(txtboxFirstname.Text, txtboxName.Text); // Créer un nouvel auteur avec nom et prénom
+                Controller.changeView("Viewauthor", FindForm());
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewnewAuthor_Activated(object sender, EventArgs e)
+        {
+            // Réinitialise le label titre et les champs textes.
+            txtboxFirstname.Text = "";
+            txtboxName.Text = "";
+        }
     }
 }

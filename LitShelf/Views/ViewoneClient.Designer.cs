@@ -198,6 +198,7 @@
             this.Name = "ViewoneClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewoneClient_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

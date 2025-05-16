@@ -61,5 +61,39 @@ namespace LitShelf.Views
         {
             Controller.changeView("Viewclient", FindForm());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnValidnewClient_Click(object sender, EventArgs e)
+        {
+            // vérifie que les deux champs sont vides
+            if (txtboxFirstname.Text == string.Empty || txtboxName.Text == string.Empty)
+            {
+                MessageBox.Show("L'un des champs est vide !"); // Message pour non respect des regex
+            }
+
+            // vérifie que lees deux champs sont remplies
+            if (txtboxFirstname.Text != string.Empty && txtboxName.Text != string.Empty)
+            {
+                Controller.CreatenewClient(txtboxFirstname.Text, txtboxName.Text); // Créer un nouveau client avec nom et prénom
+
+                Controller.changeView("Viewclient", FindForm());
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewnewClient_Activated(object sender, EventArgs e)
+        {
+            // Réinitialise le label titre et les champs textes.
+            txtboxFirstname.Text = "";
+            txtboxName.Text = "";
+        }
     }
 }

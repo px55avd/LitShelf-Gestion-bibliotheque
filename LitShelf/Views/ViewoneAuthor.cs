@@ -61,5 +61,23 @@ namespace LitShelf.Views
         {
             Controller.changeView("Viewclient", FindForm());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewoneAuthor_Activated(object sender, EventArgs e)
+        {
+            // Réinitialise le label titre et les champs textes.
+            txtboxFirstname.Text = "";
+            txtboxName.Text = "";
+            lblNameauthor.Text = "";
+
+            // Intègre les informations auteurs dans le formulaire.
+            lblNameauthor.Text = $"{Controller.GetcurrentAuthor()[2]} {Controller.GetcurrentAuthor()[1]}";
+            txtboxFirstname.Text = Controller.GetcurrentAuthor()[2];
+            txtboxName.Text = Controller.GetcurrentAuthor()[1];
+        }
     }
 }

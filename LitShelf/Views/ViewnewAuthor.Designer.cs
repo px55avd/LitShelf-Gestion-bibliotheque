@@ -51,6 +51,7 @@
             this.btnValidnewAuthor.TabIndex = 147;
             this.btnValidnewAuthor.Text = "Valider";
             this.btnValidnewAuthor.UseVisualStyleBackColor = true;
+            this.btnValidnewAuthor.Click += new System.EventHandler(this.btnValidnewAuthor_Click);
             // 
             // lblFirstname
             // 
@@ -187,6 +188,7 @@
             this.Name = "ViewnewAuthor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewnewAuthor_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

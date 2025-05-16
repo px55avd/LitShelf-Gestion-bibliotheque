@@ -51,6 +51,7 @@
             this.btnValidnewClient.TabIndex = 161;
             this.btnValidnewClient.Text = "Valider";
             this.btnValidnewClient.UseVisualStyleBackColor = true;
+            this.btnValidnewClient.Click += new System.EventHandler(this.btnValidnewClient_Click);
             // 
             // lblFirstname
             // 
@@ -187,6 +188,7 @@
             this.Name = "ViewnewClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewnewClient_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

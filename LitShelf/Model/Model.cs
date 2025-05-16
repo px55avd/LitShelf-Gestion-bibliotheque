@@ -16,13 +16,15 @@ namespace LitShelf.Model
         /// </summary>
         public Controller.Controller Controller { get; set; }
 
-        // Prepare the connection
+        // Préparation de la connexion.
         private string myConnectionString = "datasource=localhost;port=6033;username=root;password=root;database=db_LitShelf;";
         private MySqlConnection myConnection;
 
         //variables privées
         private int _lineClient;
         private int _lineAuthor;
+        private int _lineBook;
+        private int _lineLoan;
 
         /// <summary>
         /// Constructeur par défaut
@@ -33,6 +35,8 @@ namespace LitShelf.Model
 
         }
 
+
+
         /// <summary>
         /// Vérifie si le prénom fourni est valide.
         /// des tirets, des apostrophes ou des espaces, et si sa longueur est comprise entre 2 et 50 caractères.
@@ -41,7 +45,14 @@ namespace LitShelf.Model
         /// <returns>True si le prénom est valide, sinon False.</returns>
         private bool IsValidFirstname(string firstname)
         {
-            return Regex.IsMatch(firstname, @"^[A-Za-zÀ-ÖØ-öø-ÿ\-\'\s]{2,50}$");
+            if (firstname != null)
+            {
+                return Regex.IsMatch(firstname, @"^[A-Za-zÀ-ÖØ-öø-ÿ\-\'\s]{2,50}$");
+            }
+            else
+            {
+                return true;
+            }
         }
 
         /// <summary>
@@ -52,8 +63,18 @@ namespace LitShelf.Model
         /// <returns>True si le nom est valide, sinon False.</returns>
         private bool IsvalidName(string name)
         {
-            return Regex.IsMatch(name, @"^[A-Za-zÀ-ÖØ-öø-ÿ\-\'\s]{2,50}$");
+            //Vérifie que le nom n'est pas null.
+            if(name != null)
+            {
+                return Regex.IsMatch(name, @"^[A-Za-zÀ-ÖØ-öø-ÿ\-\'\s]{2,50}$"); // Applique la regex.
+            }
+            else
+            {
+                return true; // Retourne vrai si null
+            }
         }
+
+
 
         /// <summary>
         /// Récupère le nombre de clients dans la base de données et le stocke dans _lineClient.
@@ -62,8 +83,10 @@ namespace LitShelf.Model
         {
             myConnection = new MySqlConnection(myConnectionString);
 
+            // Requête SQL
             string query = "SELECT COUNT(t_client.client_id) FROM t_client;";
 
+            // Prépare l'exécution de la requête
             MySqlCommand commandDatabase = new MySqlCommand(query, myConnection); ;
             MySqlDataReader reader;
 
@@ -72,35 +95,84 @@ namespace LitShelf.Model
 
             try
             {
-                // Open the database
+                // Ouvre la connexion avec la DB.
                 myConnection.Open();
 
-                // Execute la requète
+                // Exécute la requète
                 reader = commandDatabase.ExecuteReader();
 
+                // Vérifie si le lecteur trouve des colonnes.
                 if (reader.HasRows)
                 {
-
                     while (reader.Read())
                     {
-                        count = reader.GetInt32(0);
+                        count = reader.GetInt32(0); // Attribue la valeur de la requète au compteur
                     }
                 }
 
-                // Finally close the connection     
+                // Ferme le lecteur et la connexion avec la DB.     
                 reader.Close();
                 myConnection.Close();
 
             }
             catch (Exception ex)
             {
-                // Show any error message.
+                // Affiche Toutes erreurs éventuelles
                 MessageBox.Show($"Échec de la connexion : {ex.Message}");
             }
 
+            // Attribue le compte à la variable privée.
             _lineClient = count;
         }
 
+        /// <summary>
+        /// Récupère le nombre d'auteurs dans la base de données et le stocke dans _lineAuthor.
+        /// </summary>
+        private void GetauthorCount()
+        {
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL
+            string query = "SELECT COUNT(t_auteur.auteur_id) FROM t_auteur;";
+
+            // Prépare l'exécution de la requête
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection); ;
+            MySqlDataReader reader;
+
+            //Compteur
+            int count = 0;
+
+            try
+            {
+                // Ouvre la connexion avec la DB.
+                myConnection.Open();
+
+                // Exécute la requète
+                reader = commandDatabase.ExecuteReader();
+
+                // Vérifie si le lecteur trouve des colonnes.
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0); // Attribue la valeur de la requète au compteur
+                    }
+                }
+
+                // Ferme le lecteur et la connexion avec la DB.     
+                reader.Close();
+                myConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                // Affiche Toutes erreurs éventuelles
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+            }
+
+            // Attribue le compte à la variable privée.
+            _lineAuthor = count;
+        }
 
 
 
@@ -108,7 +180,7 @@ namespace LitShelf.Model
         /// Récupère toutes les données de la table t_client depuis la base de données,
         /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
         /// </summary>
-        /// <returns>Un tableau contenant les données utilisateur (id, nom, etc.).</returns>
+        /// <returns>Un tableau contenant les données utilisateur (ID, nom, prénom).</returns>
         public string[,] ReadclientData()
         {
             GetclientCount(); // Appelle une méthode externe pour définir la valeur de _lineClient
@@ -129,7 +201,59 @@ namespace LitShelf.Model
 
                 reader = commandDatabase.ExecuteReader(); // Exécute la requête et lit les résultats
 
-                data = new string[_lineClient, reader.FieldCount]; // Crée un tableau avec [_lineClient] lignes et autant de colonnes que de champs
+                data = new string[_lineClient, reader.FieldCount]; // Crée un tableau avec [_lineClient] de lignes et autant de colonnes que de champs
+
+                int count = 0; // Compteur de ligne
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[count, i] = reader.GetValue(i).ToString(); // Stocke chaque champ dans le tableau
+                        }
+                        count++; // Passe à la ligne suivante
+                    }
+                }
+
+                myConnection.Close(); // Ferme la connexion après la lecture
+            }
+            catch (Exception ex)
+            {
+                // Affiche un message en cas d'erreur
+                MessageBox.Show($"Échec de la connexion 2: {ex.Message}");
+            }
+
+            return data; // Retourne le tableau rempli (ou vide en cas d’échec)
+        }
+
+        /// <summary>
+        /// Récupère toutes les données de la table t_auteur depuis la base de données,
+        /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
+        /// </summary>
+        /// <returns>Un tableau contenant les données auteurs (ID, nom, prénom).</returns>
+        public string[,] ReadauthorData()
+        {
+            GetauthorCount(); // Appelle une méthode externe pour définir la valeur de _lineAuthor
+
+            myConnection = new MySqlConnection(myConnectionString);
+
+            string query = "SELECT t_auteur.auteur_id, t_auteur.nom, t_auteur.prénom FROM t_auteur;"; // Requête SQL pour récupérer tous les auteurs
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection);
+
+            MySqlDataReader reader;
+
+            string[,] data = new string[0, 0]; // Initialisation par défaut (sera remplacée si requête réussie)
+
+            try
+            {
+                myConnection.Open(); // Ouvre la connexion à la base
+
+                reader = commandDatabase.ExecuteReader(); // Exécute la requête et lit les résultats
+
+                data = new string[_lineAuthor, reader.FieldCount]; // Crée un tableau avec [_lineAuthor]  de lignes et autant de colonnes que de champs
 
                 int count = 0; // Compteur de ligne
 
@@ -188,9 +312,16 @@ namespace LitShelf.Model
                 try
                 {
                     databaseConnection.Open();
-                    commandDatabase.ExecuteReader(); // Exécute la commande
+                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
 
-                    MessageBox.Show("Client enregistré avec succès !");
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Client enregistré avec succès !");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Client déjà existant.");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -228,7 +359,7 @@ namespace LitShelf.Model
                     SELECT @Firstname, @Name
                     WHERE NOT EXISTS (
                     SELECT 1 FROM t_auteur
-                    WHERE prénom = @Firstname AND nom = @Name
+                    WHERE prénom = @Firstname OR nom = @Name
                     );";
 
                 // Préparation de la commande avec les paramètres
@@ -239,14 +370,23 @@ namespace LitShelf.Model
                 try
                 {
                     databaseConnection.Open();
-                    commandDatabase.ExecuteReader(); // Exécute la commande
+                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
 
-                    MessageBox.Show("Client enregistré avec succès !");
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Auteur enregistré avec succès !");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Auteur déjà existant.");
+                    }
+
+                    
                 }
                 catch (Exception ex)
                 {
                     // Affiche une erreur en cas de problème
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Erreur : " + ex.Message);
                 }
                 finally
                 {
@@ -255,7 +395,7 @@ namespace LitShelf.Model
             }
             else
             {
-                MessageBox.Show("L'un des deux champs n'est pas au bon format.");
+                MessageBox.Show("L'un des deux champs n'est pas au bon format."); // Message pour non respect des regex
             }
         }
     }
