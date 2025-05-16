@@ -71,7 +71,7 @@
             this.lblNumberpages.Name = "lblNumberpages";
             this.lblNumberpages.Size = new System.Drawing.Size(13, 15);
             this.lblNumberpages.TabIndex = 63;
-            this.lblNumberpages.Text = "0";
+            this.lblNumberpages.Text = "1";
             // 
             // btnMinus
             // 
@@ -213,6 +213,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Viewbook";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
             this.ResumeLayout(false);
             this.PerformLayout();

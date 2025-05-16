@@ -103,6 +103,7 @@
             this.btnBack.TabIndex = 141;
             this.btnBack.Text = "Retour";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnLoanmenu
             // 
@@ -113,6 +114,7 @@
             this.btnLoanmenu.TabIndex = 140;
             this.btnLoanmenu.Text = "Emprunt";
             this.btnLoanmenu.UseVisualStyleBackColor = true;
+            this.btnLoanmenu.Click += new System.EventHandler(this.btnLoanmenu_Click);
             // 
             // btnAuthormenu
             // 
@@ -123,6 +125,7 @@
             this.btnAuthormenu.TabIndex = 139;
             this.btnAuthormenu.Text = "Auteur";
             this.btnAuthormenu.UseVisualStyleBackColor = true;
+            this.btnAuthormenu.Click += new System.EventHandler(this.btnAuthormenu_Click);
             // 
             // btnBookmenu
             // 
@@ -133,6 +136,7 @@
             this.btnBookmenu.TabIndex = 138;
             this.btnBookmenu.Text = "Livre";
             this.btnBookmenu.UseVisualStyleBackColor = true;
+            this.btnBookmenu.Click += new System.EventHandler(this.btnBookmenu_Click);
             // 
             // lblNameClient
             // 
@@ -192,6 +196,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ViewoneClient";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
             this.ResumeLayout(false);
             this.PerformLayout();
