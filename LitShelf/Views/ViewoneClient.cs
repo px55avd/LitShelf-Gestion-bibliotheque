@@ -61,5 +61,23 @@ namespace LitShelf.Views
         {
             Controller.changeView("Viewclient", FindForm());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewoneClient_Activated(object sender, EventArgs e)
+        {
+            // Réinitialise le label titre et les champs textes.
+            txtboxFirstname.Text = "";
+            txtboxName.Text = "";
+            lblNameClient.Text = "";
+
+            // Intègre les informations clients dans le formulaire.
+            lblNameClient.Text = $"{ Controller.GetcurrentClient()[2]} {Controller.GetcurrentClient()[1]}";
+            txtboxFirstname.Text = Controller.GetcurrentClient()[2];
+            txtboxName.Text = Controller.GetcurrentClient()[1];
+        }
     }
 }

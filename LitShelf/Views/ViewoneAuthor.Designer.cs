@@ -198,6 +198,7 @@
             this.Name = "ViewoneAuthor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewoneAuthor_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

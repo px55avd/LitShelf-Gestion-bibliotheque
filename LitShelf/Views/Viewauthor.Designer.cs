@@ -73,6 +73,7 @@
             this.btnMinus.TabIndex = 77;
             this.btnMinus.Text = "-";
             this.btnMinus.UseVisualStyleBackColor = true;
+            this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
             // 
             // btnUp
             // 
@@ -83,6 +84,7 @@
             this.btnUp.TabIndex = 76;
             this.btnUp.Text = "+";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnNewauthor
             // 
@@ -214,6 +216,7 @@
             this.Name = "Viewauthor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.Viewauthor_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
