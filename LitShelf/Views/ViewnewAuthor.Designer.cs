@@ -93,6 +93,7 @@
             this.btnClientmenu.TabIndex = 141;
             this.btnClientmenu.Text = "Client";
             this.btnClientmenu.UseVisualStyleBackColor = true;
+            this.btnClientmenu.Click += new System.EventHandler(this.btnClientmenu_Click);
             // 
             // btnLoanmenu
             // 
@@ -103,6 +104,7 @@
             this.btnLoanmenu.TabIndex = 140;
             this.btnLoanmenu.Text = "Emprunt";
             this.btnLoanmenu.UseVisualStyleBackColor = true;
+            this.btnLoanmenu.Click += new System.EventHandler(this.btnLoanmenu_Click);
             // 
             // btnBack
             // 
@@ -113,6 +115,7 @@
             this.btnBack.TabIndex = 139;
             this.btnBack.Text = "Retour";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnBookmenu
             // 
@@ -123,6 +126,7 @@
             this.btnBookmenu.TabIndex = 138;
             this.btnBookmenu.Text = "Livre";
             this.btnBookmenu.UseVisualStyleBackColor = true;
+            this.btnBookmenu.Click += new System.EventHandler(this.btnBookmenu_Click);
             // 
             // lblNewauthor
             // 
@@ -130,9 +134,9 @@
             this.lblNewauthor.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblNewauthor.Location = new System.Drawing.Point(416, 7);
             this.lblNewauthor.Name = "lblNewauthor";
-            this.lblNewauthor.Size = new System.Drawing.Size(117, 28);
+            this.lblNewauthor.Size = new System.Drawing.Size(136, 28);
             this.lblNewauthor.TabIndex = 137;
-            this.lblNewauthor.Text = "Nom auteur";
+            this.lblNewauthor.Text = "Nouvel auteur";
             // 
             // lblMenu
             // 
@@ -181,6 +185,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ViewnewAuthor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
             this.ResumeLayout(false);
             this.PerformLayout();

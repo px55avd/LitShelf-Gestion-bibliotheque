@@ -19,7 +19,6 @@ namespace LitShelf
             Viewbook viewbook = new Viewbook();
             Viewclient viewclient = new Viewclient();
             Viewloan viewloan = new Viewloan();
-            
            
             ViewoneAuthor viewoneauthor = new ViewoneAuthor();
             ViewoneBook viewonebook = new ViewoneBook();

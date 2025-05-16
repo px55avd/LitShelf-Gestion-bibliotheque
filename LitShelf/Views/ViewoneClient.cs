@@ -21,5 +21,45 @@ namespace LitShelf.Views
         /// Controller associé à la vue.
         /// </summary>
         public Controller.Controller Controller { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBookmenu_Click(object sender, EventArgs e)
+        {
+            Controller.changeView("Viewbook", FindForm());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAuthormenu_Click(object sender, EventArgs e)
+        {
+            Controller.changeView("Viewauthor", FindForm());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoanmenu_Click(object sender, EventArgs e)
+        {
+            Controller.changeView("Viewloan", FindForm());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Controller.changeView("Viewclient", FindForm());
+        }
     }
 }

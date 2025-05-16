@@ -71,7 +71,7 @@
             this.lblNumberpages.Name = "lblNumberpages";
             this.lblNumberpages.Size = new System.Drawing.Size(13, 15);
             this.lblNumberpages.TabIndex = 93;
-            this.lblNumberpages.Text = "0";
+            this.lblNumberpages.Text = "1";
             // 
             // btnMinus
             // 
@@ -101,6 +101,7 @@
             this.btnNewloan.TabIndex = 90;
             this.btnNewloan.Text = "Nouvel emprunt";
             this.btnNewloan.UseVisualStyleBackColor = true;
+            this.btnNewloan.Click += new System.EventHandler(this.btnNewloan_Click);
             // 
             // pnlArticlebutton
             // 
@@ -118,9 +119,11 @@
             this.btnClientmenu.TabIndex = 88;
             this.btnClientmenu.Text = "Client";
             this.btnClientmenu.UseVisualStyleBackColor = true;
+            this.btnClientmenu.Click += new System.EventHandler(this.btnClientmenu_Click);
             // 
             // btnLoanmenu
             // 
+            this.btnLoanmenu.Enabled = false;
             this.btnLoanmenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnLoanmenu.Location = new System.Drawing.Point(26, 266);
             this.btnLoanmenu.Name = "btnLoanmenu";
@@ -131,7 +134,6 @@
             // 
             // btnAuthormenu
             // 
-            this.btnAuthormenu.Enabled = false;
             this.btnAuthormenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAuthormenu.Location = new System.Drawing.Point(26, 165);
             this.btnAuthormenu.Name = "btnAuthormenu";
@@ -139,6 +141,7 @@
             this.btnAuthormenu.TabIndex = 86;
             this.btnAuthormenu.Text = "Auteur";
             this.btnAuthormenu.UseVisualStyleBackColor = true;
+            this.btnAuthormenu.Click += new System.EventHandler(this.btnAuthormenu_Click);
             // 
             // btnBookmenu
             // 
@@ -149,6 +152,7 @@
             this.btnBookmenu.TabIndex = 85;
             this.btnBookmenu.Text = "Livre";
             this.btnBookmenu.UseVisualStyleBackColor = true;
+            this.btnBookmenu.Click += new System.EventHandler(this.btnBookmenu_Click);
             // 
             // lblLoan
             // 
@@ -209,6 +213,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Viewloan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
             this.ResumeLayout(false);
             this.PerformLayout();

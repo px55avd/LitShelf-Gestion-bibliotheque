@@ -70,7 +70,7 @@
             this.lblNumberpages.Name = "lblNumberpages";
             this.lblNumberpages.Size = new System.Drawing.Size(13, 15);
             this.lblNumberpages.TabIndex = 93;
-            this.lblNumberpages.Text = "0";
+            this.lblNumberpages.Text = "1";
             // 
             // btnMinus
             // 
@@ -81,6 +81,7 @@
             this.btnMinus.TabIndex = 92;
             this.btnMinus.Text = "-";
             this.btnMinus.UseVisualStyleBackColor = true;
+            this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
             // 
             // btnUp
             // 
@@ -91,6 +92,7 @@
             this.btnUp.TabIndex = 91;
             this.btnUp.Text = "+";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnNewclient
             // 
@@ -100,6 +102,7 @@
             this.btnNewclient.TabIndex = 90;
             this.btnNewclient.Text = "Nouveau client";
             this.btnNewclient.UseVisualStyleBackColor = true;
+            this.btnNewclient.Click += new System.EventHandler(this.btnNewclient_Click);
             // 
             // pnlClientbutton
             // 
@@ -110,6 +113,7 @@
             // 
             // btnClientmenu
             // 
+            this.btnClientmenu.Enabled = false;
             this.btnClientmenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnClientmenu.Location = new System.Drawing.Point(26, 368);
             this.btnClientmenu.Name = "btnClientmenu";
@@ -127,10 +131,10 @@
             this.btnLoanmenu.TabIndex = 87;
             this.btnLoanmenu.Text = "Emprunt";
             this.btnLoanmenu.UseVisualStyleBackColor = true;
+            this.btnLoanmenu.Click += new System.EventHandler(this.btnLoanmenu_Click);
             // 
             // btnAuthormenu
             // 
-            this.btnAuthormenu.Enabled = false;
             this.btnAuthormenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAuthormenu.Location = new System.Drawing.Point(26, 165);
             this.btnAuthormenu.Name = "btnAuthormenu";
@@ -138,6 +142,7 @@
             this.btnAuthormenu.TabIndex = 86;
             this.btnAuthormenu.Text = "Auteur";
             this.btnAuthormenu.UseVisualStyleBackColor = true;
+            this.btnAuthormenu.Click += new System.EventHandler(this.btnAuthormenu_Click);
             // 
             // btnBookmenu
             // 
@@ -148,6 +153,7 @@
             this.btnBookmenu.TabIndex = 85;
             this.btnBookmenu.Text = "Livre";
             this.btnBookmenu.UseVisualStyleBackColor = true;
+            this.btnBookmenu.Click += new System.EventHandler(this.btnBookmenu_Click);
             // 
             // lblClient
             // 
@@ -155,9 +161,9 @@
             this.lblClient.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblClient.Location = new System.Drawing.Point(416, 7);
             this.lblClient.Name = "lblClient";
-            this.lblClient.Size = new System.Drawing.Size(71, 28);
+            this.lblClient.Size = new System.Drawing.Size(62, 28);
             this.lblClient.TabIndex = 84;
-            this.lblClient.Text = "Auteur";
+            this.lblClient.Text = "Client";
             // 
             // lblMenu
             // 
@@ -208,7 +214,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Viewclient";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.Viewclient_Activated);
+            this.Load += new System.EventHandler(this.Viewclient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

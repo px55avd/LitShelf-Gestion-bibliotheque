@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LitShelf.Views;
-using LitShelf.Model;
+﻿using LitShelf.Views;
 
 namespace LitShelf.Controller
 {
@@ -23,7 +17,29 @@ namespace LitShelf.Controller
         private ViewnewBook _viewnewbook;
         private ViewnewClient _viewnewclient;
         private ViewnewLoan _viewnewloan;
+
+        // Variables globales pour la pagination
+        private const int _elementBypage = 10; // Nombre total d’éléments par page
+        private const int _columns = 2; // Nombres de colonnes
+        private const int _spaceX = 210, _spaceY = 50; // Espacement des boutons
+
+        private int _currentPage = 0;
+        private int _clientsBypage = 10;
+        private int _authorsBypage = 10;
+
+
+        private string[,] _clients; // Stocke les clients
+        private string[,] _authors; // Stocke les auteurs
+        private string[,] _books; // Stocke les livres
+        private string[,] _loans; // Stocke les emprunts
+
         
+        private string[] _currentClient = new string[3]; // Stocke le client sélectionné
+        private string[] _currentAuthor = new string[3]; //Stocke le auteur sélectionné
+        private string[] _currentBook = new string[4]; // Stocke le livres sélectionné
+
+
+
         // Référence au modèle utilisé par le contrôleur.
         private Model.Model _model;
 
@@ -98,8 +114,8 @@ namespace LitShelf.Controller
         /// <summary>
         /// Méthode pour changer de vue selon 
         /// </summary>
-        /// <param name="nameview"></param>
-        /// <param name="form"></param>
+        /// <param name="nameview">Nom de la vue</param>
+        /// <param name="form">Formulaire en cours d'utilisation</param>
         public void changeView(string nameview, Form form)
         {
             if (nameview == "Viewauthor")
@@ -163,5 +179,264 @@ namespace LitShelf.Controller
                 _viewoneloan.Show();
             }
         }
+
+        /// <summary>
+        /// Charge les données clients à partir du modèle et les stocke dans le tableau local `_clients`.
+        /// </summary>
+        public void SetclientData()
+        {
+            _clients = _model.ReadclientData(); // Appelle la méthode du modèle pour récupérer les données client et les stocke dans une variable locale
+        }
+
+        /// <summary>
+        /// Retourne les données clients chargées dans `_clients`.
+        /// </summary>
+        /// <returns>Un tableau 2D contenant les données clients.</returns>
+        public string[,] GetclientData()
+        {
+            return _clients; // Fournit l’accès aux données client
+        }
+
+
+        ///// <summary>
+        ///// Affiche une grille de boutons représentant les clients, correspondant à la page demandée.
+        ///// Chaque bouton permet d'afficher les détails du client sélectionné.
+        ///// </summary>
+        ///// <param name="page">Le numéro de la page à afficher (index 0-based).</param>
+        ///// <param name="form">Le formulaire actuel, qui sera masqué après sélection d'un client.</param>
+        ///// <param name="pnl">Le panneau dans lequel les boutons seront affichés.</param>
+        //public void ShowClientTable(int page, Form form, Panel pnl)
+        //{
+        //    pnl.Controls.Clear(); // Efface les anciens boutons du panneau
+
+        //    int nbClients = _clients.GetLength(0); // Nombre total de clients
+        //    int debut = page * _elementBypage; // Index de départ des éléments pour cette page
+        //    int fin = Math.Min(debut + _elementBypage, nbClients); // Ne pas dépasser le nombre total de clients
+
+        //    for (int i = debut; i < fin; i++)
+        //    {
+        //        string clientName = $"{_clients[i, 2]} {_clients[i, 1]}"; // Prénom + Nom
+
+        //        if (_clients[i, 0] != null) // Vérifie que le client est valide (champ ID ou autre non null)
+        //        {
+        //            Button btn = new Button
+        //            {
+        //                Text = clientName,
+        //                Size = new Size(200, 40)
+        //            };
+
+        //            // Position du bouton dans la grille
+        //            int colonne = (i - debut) % _columns;
+        //            int ligne = (i - debut) / _columns;
+        //            btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
+
+        //            int index = i; // Nécessaire pour capturer l'index correct dans l'événement
+
+        //            // Ajoute les actions sur clic du bouton : sélectionne le client, masque le formulaire, change de vue
+        //            btn.Click += (s, args) => SetcurrentClient(_clients[index, 0], _clients[index, 1], _clients[index, 2]);
+        //            btn.Click += (s, args) => form.Hide();
+        //            btn.Click += (s, args) => changeView("ViewoneClient", form);
+
+        //            pnl.Controls.Add(btn); // Ajoute le bouton au panneau
+        //        }
+        //    }
+        //}
+
+
+
+        ///// <summary>
+        ///// Affiche un tableau de boutons représentant les auteurs sur une page donnée.
+        ///// Chaque bouton correspond à un auteur et permet d’afficher ses détails lors d’un clic.
+        ///// </summary>
+        ///// <param name="page">Le numéro de la page actuelle à afficher.</param>
+        ///// <param name="form">Le formulaire actif, qui sera masqué après le clic sur un auteur.</param>
+        ///// <param name="pnl">Le panneau dans lequel les boutons des auteurs seront affichés.</param>
+        //public void ShowAuthorTable(int page, Form form, Panel pnl)
+        //{
+        //    pnl.Controls.Clear(); // Efface les anciens contrôles du panneau (boutons d'auteurs précédents)
+
+        //    int nbAuthor = _authors.GetLength(0); // Nombre total d’auteurs
+        //    int debut = page * _elementBypage; // Index de départ en fonction de la pagination
+        //    int fin = Math.Min(debut + _elementBypage, nbAuthor); // Index de fin (ne dépasse pas le total)
+
+        //    for (int i = debut; i < fin; i++)
+        //    {
+        //        string authorName = $"{_authors[i, 2]} {_authors[i, 1]}"; // Prénom + Nom
+
+        //        if (_clients[i, 0] != null) // Vérifie que l'auteur est lié à un client (ou existe ?)
+        //        {
+        //            Button btn = new Button
+        //            {
+        //                Text = authorName,
+        //                Size = new Size(200, 40)
+        //            };
+
+        //            // Calcul de la position du bouton dans la grille
+        //            int colonne = (i - debut) % _columns;
+        //            int ligne = (i - debut) / _columns;
+        //            btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
+
+        //            int index = i; // Capture de l'index dans la boucle pour l'utiliser dans les événements
+
+        //            // Événements au clic : sélectionne l’auteur, cache le formulaire et change la vue
+        //            btn.Click += (s, args) => SetcurrentAuthor(_authors[index, 0], _authors[index, 1], _authors[index, 2]);
+        //            btn.Click += (s, args) => form.Hide();
+        //            btn.Click += (s, args) => changeView("ViewoneAuthor", form);
+
+        //            pnl.Controls.Add(btn); // Ajoute le bouton au panneau
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// Affiche dynamiquement une grille de boutons représentant des entités (clients, auteurs, etc.).
+        /// </summary>
+        /// <param name="data">Matrice 2D contenant les données (id, nom, prénom...)</param>
+        /// <param name="page">Numéro de la page à afficher.</param>
+        /// <param name="form">Formulaire actuel (sera masqué au clic).</param>
+        /// <param name="pnl">Panneau de destination pour les boutons.</param>
+        /// <param name="onClick">Action à exécuter lors du clic sur un bouton.</param>
+        private void ShowEntityTable(string[,] data, int page, Form form, Panel pnl, Action<int> onClick)
+        {
+            pnl.Controls.Clear();
+
+            int total = data.GetLength(0);
+            int start = page * _elementBypage;
+            int end = Math.Min(start + _elementBypage, total);
+
+            for (int i = start; i < end; i++)
+            {
+                if (data[i, 0] != null)
+                {
+                    string displayName = $"{data[i, 2]} {data[i, 1]}";
+
+                    Button btn = new Button
+                    {
+                        Text = displayName,
+                        Size = new Size(200, 40)
+                    };
+
+                    int col = (i - start) % _columns;
+                    int row = (i - start) / _columns;
+                    btn.Location = new Point(10 + col * _spaceX, 10 + row * _spaceY);
+
+                    int index = i;
+                    btn.Click += (s, args) => onClick(index);
+                    btn.Click += (s, args) => form.Hide();
+
+                    pnl.Controls.Add(btn);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="form"></param>
+        /// <param name="pnl"></param>
+        public void ShowClientTable(int page, Form form, Panel pnl)
+        {
+            ShowEntityTable(_clients, page, form, pnl, index =>
+            {
+                SetcurrentClient(_clients[index, 0], _clients[index, 1], _clients[index, 2]);
+                changeView("ViewoneClient", form);
+            });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="form"></param>
+        /// <param name="pnl"></param>
+        public void ShowAuthorTable(int page, Form form, Panel pnl)
+        {
+            ShowEntityTable(_authors, page, form, pnl, index =>
+            {
+                SetcurrentAuthor(_authors[index, 0], _authors[index, 1], _authors[index, 2]);
+                changeView("ViewoneAuthor", form);
+            });
+        }
+
+
+        /// <summary>
+        /// Retourne le numéro actuel de la page en cours d'affichage.
+        /// </summary>
+        /// <returns>Le numéro de la page actuelle.</returns>
+        public int GetNumberOfPage()
+        {
+            return _currentPage;
+        }
+
+        /// <summary>
+        /// Réinitialise la page actuelle à 1
+        /// </summary>
+        public void Resetnumberofpage()
+        {
+            _currentPage = 0;
+        }
+
+        /// <summary>
+        /// Retourne le nombre de clients affichés par page.
+        /// </summary>
+        /// <returns>Le nombre de clients par page.</returns>
+        public int GetNumberOfClientsByPage()
+        {
+            return _clientsBypage;
+        }
+
+        /// <summary>
+        /// Retourne le nombre d'auteurs affichés par page.
+        /// </summary>
+        /// <returns>Le nombre d'auteurs par page.</returns>
+        public int GetNumberOfAuthorsByPage()
+        {
+            return _authorsBypage;
+        }
+
+        /// <summary>
+        /// Incrémente le numéro de la page actuelle.
+        /// </summary>
+        public void IncrementPageNumber()
+        {
+            _currentPage++;
+        }
+
+        /// <summary>
+        /// Décrémente le numéro de la page actuelle.
+        /// </summary>
+        public void DecrementPageNumber()
+        {
+            _currentPage--;
+        }
+
+        /// <summary>
+        /// Définit les informations de l'auteur actuellement sélectionné.
+        /// </summary>
+        /// <param name="currrentAuthorindex">Identifiant ou index de l'auteur.</param>
+        /// <param name="currrentAuthorname">Nom de famille de l'auteur.</param>
+        /// <param name="currrentArticlefirstname">Prénom de l'auteur lié à l'article.</param>
+        public void SetcurrentAuthor(string currrentAuthorindex, string currrentAuthorname, string currrentArticlefirstname)
+        {
+            _currentAuthor[0] = currrentAuthorindex;
+            _currentAuthor[1] = currrentAuthorname;
+            _currentAuthor[2] = currrentArticlefirstname;
+        }
+
+        /// <summary>
+        /// Définit les informations du client actuellement sélectionné.
+        /// </summary>
+        /// <param name="currrentClientindex">Identifiant ou index du client.</param>
+        /// <param name="currrentClientname">Nom de famille du client.</param>
+        /// <param name="currrentClientfirstname">Prénom du client.</param>
+        public void SetcurrentClient(string currrentClientindex, string currrentClientname, string currrentClientfirstname)
+        {
+            _currentClient[0] = currrentClientindex;
+            _currentClient[1] = currrentClientname;
+            _currentClient[2] = currrentClientfirstname;
+        }
+
+
     }
 }
