@@ -32,13 +32,21 @@
             this.btnDeletebook = new System.Windows.Forms.Button();
             this.cmboxAuthor = new System.Windows.Forms.ComboBox();
             this.lblQuantity = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.txtboxQuantity = new System.Windows.Forms.TextBox();
+=======
+            this.txtboxDescription = new System.Windows.Forms.TextBox();
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             this.LblISBN = new System.Windows.Forms.Label();
             this.txtboxISBN = new System.Windows.Forms.TextBox();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblYearpost = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.txtboxYearofPublication = new System.Windows.Forms.TextBox();
+=======
+            this.txtboxPrice = new System.Windows.Forms.TextBox();
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             this.txtboxTitle = new System.Windows.Forms.TextBox();
             this.btnAuthormenu = new System.Windows.Forms.Button();
             this.lblNamebook = new System.Windows.Forms.Label();
@@ -85,12 +93,21 @@
             this.lblQuantity.TabIndex = 110;
             this.lblQuantity.Text = "Quantité";
             // 
+<<<<<<< HEAD
             // txtboxQuantity
             // 
             this.txtboxQuantity.Location = new System.Drawing.Point(333, 321);
             this.txtboxQuantity.Name = "txtboxQuantity";
             this.txtboxQuantity.Size = new System.Drawing.Size(274, 23);
             this.txtboxQuantity.TabIndex = 109;
+=======
+            // txtboxDescription
+            // 
+            this.txtboxDescription.Location = new System.Drawing.Point(333, 321);
+            this.txtboxDescription.Name = "txtboxDescription";
+            this.txtboxDescription.Size = new System.Drawing.Size(274, 23);
+            this.txtboxDescription.TabIndex = 109;
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // 
             // LblISBN
             // 
@@ -135,12 +152,21 @@
             this.lblTitle.TabIndex = 104;
             this.lblTitle.Text = "Titre";
             // 
+<<<<<<< HEAD
             // txtboxYearofPublication
             // 
             this.txtboxYearofPublication.Location = new System.Drawing.Point(333, 204);
             this.txtboxYearofPublication.Name = "txtboxYearofPublication";
             this.txtboxYearofPublication.Size = new System.Drawing.Size(274, 23);
             this.txtboxYearofPublication.TabIndex = 103;
+=======
+            // txtboxPrice
+            // 
+            this.txtboxPrice.Location = new System.Drawing.Point(333, 204);
+            this.txtboxPrice.Name = "txtboxPrice";
+            this.txtboxPrice.Size = new System.Drawing.Size(274, 23);
+            this.txtboxPrice.TabIndex = 103;
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // 
             // txtboxTitle
             // 
@@ -240,13 +266,21 @@
             this.Controls.Add(this.btnDeletebook);
             this.Controls.Add(this.cmboxAuthor);
             this.Controls.Add(this.lblQuantity);
+<<<<<<< HEAD
             this.Controls.Add(this.txtboxQuantity);
+=======
+            this.Controls.Add(this.txtboxDescription);
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             this.Controls.Add(this.LblISBN);
             this.Controls.Add(this.txtboxISBN);
             this.Controls.Add(this.lblAuthor);
             this.Controls.Add(this.lblYearpost);
             this.Controls.Add(this.lblTitle);
+<<<<<<< HEAD
             this.Controls.Add(this.txtboxYearofPublication);
+=======
+            this.Controls.Add(this.txtboxPrice);
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             this.Controls.Add(this.txtboxTitle);
             this.Controls.Add(this.btnClientmenu);
             this.Controls.Add(this.btnLoanmenu);
@@ -259,7 +293,10 @@
             this.Name = "ViewoneBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+<<<<<<< HEAD
             this.Activated += new System.EventHandler(this.ViewoneBook_Activated);
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,13 +308,21 @@
         private Button btnDeletebook;
         private ComboBox cmboxAuthor;
         private Label lblQuantity;
+<<<<<<< HEAD
         private TextBox txtboxQuantity;
+=======
+        private TextBox txtboxDescription;
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         private Label LblISBN;
         private TextBox txtboxISBN;
         private Label lblAuthor;
         private Label lblYearpost;
         private Label lblTitle;
+<<<<<<< HEAD
         private TextBox txtboxYearofPublication;
+=======
+        private TextBox txtboxPrice;
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         private TextBox txtboxTitle;
         private Button btnAuthormenu;
         private Label lblNamebook;

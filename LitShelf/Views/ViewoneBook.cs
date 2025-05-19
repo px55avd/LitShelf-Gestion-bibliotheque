@@ -61,6 +61,7 @@ namespace LitShelf.Views
         {
             Controller.changeView("Viewclient", FindForm());
         }
+<<<<<<< HEAD
 
         private void ViewoneBook_Activated(object sender, EventArgs e)
         {
@@ -82,5 +83,7 @@ namespace LitShelf.Views
             cmboxAuthor.Text = $"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}";
             
         }
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
     }
 }

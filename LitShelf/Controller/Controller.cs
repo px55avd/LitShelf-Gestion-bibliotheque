@@ -26,8 +26,11 @@ namespace LitShelf.Controller
         private int _currentPage = 0;
         private int _clientsBypage = 10;
         private int _authorsBypage = 10;
+<<<<<<< HEAD
         private int _booksBypage = 10;
         private int _loansBypage = 10;
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         private string[,] _clients; // Stocke les clients
@@ -38,7 +41,11 @@ namespace LitShelf.Controller
         
         private string[] _currentClient = new string[3]; // Stocke le client sélectionné
         private string[] _currentAuthor = new string[3]; //Stocke le auteur sélectionné
+<<<<<<< HEAD
         private string[] _currentBook = new string[7]; // Stocke le livres sélectionné
+=======
+        private string[] _currentBook = new string[4]; // Stocke le livres sélectionné
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
 
@@ -193,6 +200,7 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Charge les données auteurs à partir du modèle et les stocke dans le tableau local "_authors".
         /// </summary>
         public void SetauthorData()
@@ -211,6 +219,8 @@ namespace LitShelf.Controller
 
 
         /// <summary>
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// Retourne les données clients chargées dans `_clients`.
         /// </summary>
         /// <returns>Un tableau 2D contenant les données clients.</returns>
@@ -219,6 +229,19 @@ namespace LitShelf.Controller
             return _clients; // Fournit l’accès aux données client
         }
 
+<<<<<<< HEAD
+=======
+
+
+        /// <summary>
+        /// Charge les données auteurs à partir du modèle et les stocke dans le tableau local "_authors".
+        /// </summary>
+        public void SetauthorData()
+        {
+            _authors = _model.ReadauthorData(); // Appelle la méthode du modèle pour récupérer les données auteurs et les stocke dans une variable locale.
+        }
+
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// <summary>
         /// Retourne les données auteurs chargées dans '_authors'.
         /// </summary>
@@ -229,6 +252,7 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Retourne les données livres chargées dans "_books".
         /// </summary>
         /// <returns>Un tableau 2D contenant les données lives.</returns>
@@ -240,6 +264,8 @@ namespace LitShelf.Controller
 
 
         /// <summary>
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// Enregistre un nouvel auteur dans la base de données s'il n'existe pas déjà.
         /// </summary>
         /// <param name="firstname">Le prénom de l'auteur.</param>
@@ -260,6 +286,7 @@ namespace LitShelf.Controller
         }
 
 
+<<<<<<< HEAD
 
         /// <summary>
         /// Modifie un client dans la base de données.
@@ -301,6 +328,51 @@ namespace LitShelf.Controller
         }
 
 
+=======
+        ///// <summary>
+        ///// Affiche une grille de boutons représentant les clients, correspondant à la page demandée.
+        ///// Chaque bouton permet d'afficher les détails du client sélectionné.
+        ///// </summary>
+        ///// <param name="page">Le numéro de la page à afficher (index 0-based).</param>
+        ///// <param name="form">Le formulaire actuel, qui sera masqué après sélection d'un client.</param>
+        ///// <param name="pnl">Le panneau dans lequel les boutons seront affichés.</param>
+        //public void ShowClientTable(int page, Form form, Panel pnl)
+        //{
+        //    pnl.Controls.Clear(); // Efface les anciens boutons du panneau
+
+        //    int nbClients = _clients.GetLength(0); // Nombre total de clients
+        //    int debut = page * _elementBypage; // Index de départ des éléments pour cette page
+        //    int fin = Math.Min(debut + _elementBypage, nbClients); // Ne pas dépasser le nombre total de clients
+
+        //    for (int i = debut; i < fin; i++)
+        //    {
+        //        string clientName = $"{_clients[i, 2]} {_clients[i, 1]}"; // Prénom + Nom
+
+        //        if (_clients[i, 0] != null) // Vérifie que le client est valide (champ ID ou autre non null)
+        //        {
+        //            Button btn = new Button
+        //            {
+        //                Text = clientName,
+        //                Size = new Size(200, 40)
+        //            };
+
+        //            // Position du bouton dans la grille
+        //            int colonne = (i - debut) % _columns;
+        //            int ligne = (i - debut) / _columns;
+        //            btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
+
+        //            int index = i; // Nécessaire pour capturer l'index correct dans l'événement
+
+        //            // Ajoute les actions sur clic du bouton : sélectionne le client, masque le formulaire, change de vue
+        //            btn.Click += (s, args) => SetcurrentClient(_clients[index, 0], _clients[index, 1], _clients[index, 2]);
+        //            btn.Click += (s, args) => form.Hide();
+        //            btn.Click += (s, args) => changeView("ViewoneClient", form);
+
+        //            pnl.Controls.Add(btn); // Ajoute le bouton au panneau
+        //        }
+        //    }
+        //}
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
 
@@ -434,6 +506,7 @@ namespace LitShelf.Controller
             });
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Affiche une grille de boutons représentant les livres, correspondant à la page demandée.
         /// Chaque bouton permet d'afficher les détails du livre sélectionné.
@@ -478,6 +551,8 @@ namespace LitShelf.Controller
                 }
             }
         }
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         /// <summary>
@@ -490,7 +565,11 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Réinitialise la page actuelle à 0
+=======
+        /// Réinitialise la page actuelle à 1
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// </summary>
         public void Resetnumberofpage()
         {
@@ -517,6 +596,7 @@ namespace LitShelf.Controller
             return _authorsBypage;
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Retourne le nombre de livres affichés par page.
         /// </summary>
@@ -526,6 +606,8 @@ namespace LitShelf.Controller
             return _booksBypage;
         }
 
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         /// <summary>
@@ -572,6 +654,7 @@ namespace LitShelf.Controller
             _currentClient[2] = currrentClientfirstname;
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Définit les informations du livre actuellement sélectionné.
         /// </summary>
@@ -595,6 +678,8 @@ namespace LitShelf.Controller
         }
 
 
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
         /// <summary>
         /// Retourne les informations du client sélectionné
@@ -614,6 +699,7 @@ namespace LitShelf.Controller
             return _currentAuthor;
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Retourne les informations du livre sélectionné
         /// </summary>
@@ -623,5 +709,7 @@ namespace LitShelf.Controller
             return _currentBook;
         }
 
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
     }
 }

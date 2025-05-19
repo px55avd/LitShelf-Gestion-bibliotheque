@@ -52,7 +52,10 @@
             this.btnUpdateclient.TabIndex = 147;
             this.btnUpdateclient.Text = "Modifier";
             this.btnUpdateclient.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             this.btnUpdateclient.Click += new System.EventHandler(this.btnUpdateclient_Click);
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // 
             // btnDeleteclient
             // 
@@ -62,7 +65,10 @@
             this.btnDeleteclient.TabIndex = 146;
             this.btnDeleteclient.Text = "Supprimer";
             this.btnDeleteclient.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             this.btnDeleteclient.Click += new System.EventHandler(this.btnDeleteclient_Click);
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // 
             // lblFirstname
             // 

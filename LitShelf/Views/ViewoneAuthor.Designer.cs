@@ -52,7 +52,10 @@
             this.btnUpdateauthor.TabIndex = 161;
             this.btnUpdateauthor.Text = "Modifier";
             this.btnUpdateauthor.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             this.btnUpdateauthor.Click += new System.EventHandler(this.btnUpdateauthor_Click);
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // 
             // btnDeleteauthor
             // 
@@ -62,7 +65,10 @@
             this.btnDeleteauthor.TabIndex = 160;
             this.btnDeleteauthor.Text = "Supprimer";
             this.btnDeleteauthor.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             this.btnDeleteauthor.Click += new System.EventHandler(this.btnDeleteauthor_Click);
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // 
             // lblFirstname
             // 

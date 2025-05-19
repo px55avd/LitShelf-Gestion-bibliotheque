@@ -107,9 +107,12 @@ namespace LitShelf.Views
             // Réinitialise le numéro de page à 0 dans le contrôleur (pour revenir à la première page)
             Controller.Resetnumberofpage();
 
+<<<<<<< HEAD
             // Affiche le numéro de page + 1
             lblNumberpages.Text = Convert.ToString(Controller.GetNumberOfPage() + 1);
 
+=======
+>>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
             // Affiche les clients de la page 0 dans le panneau prévu, en utilisant le formulaire actuel
             Controller.ShowClientTable(
                 Controller.GetNumberOfPage(),  // Doit être 0 juste après la réinitialisation
