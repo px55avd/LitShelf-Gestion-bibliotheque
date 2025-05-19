@@ -61,5 +61,26 @@ namespace LitShelf.Views
         {
             Controller.changeView("Viewclient", FindForm());
         }
+
+        private void ViewoneBook_Activated(object sender, EventArgs e)
+        {
+            lblNamebook.Text = "";
+
+            txtboxISBN.Text = "";
+            txtboxTitle.Text = "";
+            txtboxYearofPublication.Text = "";
+            txtboxQuantity.Text = "";
+            cmboxAuthor.Text = "";
+
+
+            lblNamebook.Text = $"{Controller.GetcurrentBook()[1]}";
+
+            txtboxISBN.Text = Controller.GetcurrentBook()[0];
+            txtboxTitle.Text = Controller.GetcurrentBook()[1];
+            txtboxYearofPublication.Text = Controller.GetcurrentBook()[2];
+            txtboxQuantity.Text = Controller.GetcurrentBook()[3];
+            cmboxAuthor.Text = $"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}";
+            
+        }
     }
 }
