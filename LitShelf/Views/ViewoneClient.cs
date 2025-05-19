@@ -79,5 +79,58 @@ namespace LitShelf.Views
             txtboxFirstname.Text = Controller.GetcurrentClient()[2];
             txtboxName.Text = Controller.GetcurrentClient()[1];
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUpdateclient_Click(object sender, EventArgs e)
+        {
+            // Récupère les saisies utilisateurs
+            string firstname = txtboxFirstname.Text;
+            string name = txtboxName.Text;
+
+            // les Affichent lors du clic
+            txtboxFirstname.Text = firstname;
+            txtboxName.Text = name;
+
+            // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier cet client ?", "Attention, Modification", MessageBoxButtons.YesNo);
+
+            // Vérifie si l'utilisateur a cliqué sur "Yes"
+            if (result == DialogResult.Yes)
+            {
+                // Appelle la méthode dans le contrôleur pour modifier le client
+                Controller.Updateclient(firstname, name);
+
+                // Affiche la vue client  
+                Controller.changeView("Viewclient", FindForm());
+            }
+        }
+
+        private void btnDeleteclient_Click(object sender, EventArgs e)
+        {
+            // Récupère les saisies utilisateurs
+            string firstname = txtboxFirstname.Text;
+            string name = txtboxName.Text;
+
+            // les Affichent lors du clic
+            txtboxFirstname.Text = firstname;
+            txtboxName.Text = name;
+
+            // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce client ?", "Attention, Suppréssion", MessageBoxButtons.YesNo);
+
+            // Vérifie si l'utilisateur a cliqué sur "Yes"
+            if (result == DialogResult.Yes)
+            {
+                // Appelle la méthode dans le contrôleur pour supprimer le client
+                Controller.Deleteclient();
+
+                // Affiche la vue client  
+                Controller.changeView("Viewclient", FindForm());
+            }
+        }
     }
 }

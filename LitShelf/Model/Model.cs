@@ -70,7 +70,7 @@ namespace LitShelf.Model
             }
             else
             {
-                return true; // Retourne vrai si null
+                return true;
             }
         }
 
@@ -281,6 +281,7 @@ namespace LitShelf.Model
         }
 
 
+
         /// <summary>
         /// Enregistre un nouveau client dans la base de données s'il n'existe pas déjà,
         /// après validation du prénom et du nom.
@@ -397,6 +398,230 @@ namespace LitShelf.Model
             {
                 MessageBox.Show("L'un des deux champs n'est pas au bon format."); // Message pour non respect des regex
             }
+        }
+
+
+
+        /// <summary>
+        /// Modifie un client dans la base de données,
+        /// après validation du prénom et du nom.
+        /// </summary>
+        /// <param name="id">La clé primaire lié au client</param>
+        /// <param name="firstname">Le prénom du client.</param>
+        /// <param name="name">Le nom du client</param>
+        public void Updateclient(string id, string firstname, string name)
+        {
+            // Vérifie que le prénom et le nom sont valides selon les règles définies
+            if (IsValidFirstname(firstname) && IsvalidName(name))
+            {
+                // Requête SQL : modifier le client seulement au bonne index si il n'existe pas déjâ.
+                string query = @"
+                UPDATE t_client
+                SET prénom = @Firstname, nom = @Name
+                WHERE client_id = @Id
+                AND NOT EXISTS(
+                    SELECT 1 FROM(
+                        SELECT 1 FROM t_client
+                        WHERE prénom = @Firstname
+                        AND nom = @Name
+                    ) AS sub
+                );";
+
+                // Création de la connexion à la base de données
+                MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+                // Préparation de la commande avec les paramètres
+                MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+                commandDatabase.Parameters.AddWithValue("@Firstname", firstname);
+                commandDatabase.Parameters.AddWithValue("@Name", name);
+                commandDatabase.Parameters.AddWithValue("@Id", id);
+
+                //MySqlDataReader reader;
+
+                try
+                {
+                    databaseConnection.Open();
+                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Client modifié avec succès !");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Client déja exitant ou informations identiques.");
+                    }
+
+                    // Ferme toujours la connexion, même en cas d'erreur
+                    databaseConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Affiche une erreur en cas de problème
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("L'un des deux champs n'est pas au bon format."); // Message pour non respect des regex
+            }
+        }
+
+        /// <summary>
+        /// Modifie un  auteur dans la base de données,
+        /// après validation du prénom et du nom.
+        /// </summary>
+        /// <param name="id">La clé primaire lié à l'auteur</param>
+        /// <param name="firstname">Le prénom de l'auteur.</param>
+        /// <param name="name">Le nom de l'auteur.</param>
+        public void Updateauthor(string id, string firstname, string name)
+        {
+            // Vérifie que le prénom et le nom sont valides selon les règles définies
+            if (IsValidFirstname(firstname) && IsvalidName(name))
+            {
+                // Requête SQL : modifier l'auteur seulement au bonne index
+                string query = @"
+                UPDATE t_auteur
+                SET prénom = @Firstname, nom = @Name
+                WHERE auteur_id = @Id
+                AND NOT EXISTS(
+                    SELECT 1 FROM(
+                        SELECT 1 FROM t_auteur
+                        WHERE prénom = @Firstname
+                        AND nom = @Name
+                    ) AS sub
+                );";
+
+                // Création de la connexion à la base de données
+                MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+                // Préparation de la commande avec les paramètres
+                MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+                commandDatabase.Parameters.AddWithValue("@Firstname", firstname);
+                commandDatabase.Parameters.AddWithValue("@Name", name);
+                commandDatabase.Parameters.AddWithValue("@Id", id);
+
+                //MySqlDataReader reader;
+
+                try
+                {
+                    databaseConnection.Open();
+                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Auteur modifié avec succès !");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Auteur déja exitant ou informations identiques.");
+                    }
+
+                    // Ferme toujours la connexion, même en cas d'erreur
+                    databaseConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    // Affiche une erreur en cas de problème
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("L'un des deux champs n'est pas au bon format."); // Message pour non respect des regex
+            }
+        }
+
+
+
+        /// <summary>
+        /// Supprime un client dans la base de données
+        /// </summary>
+        /// <param name="id">La clé primaire lié au client</param>
+        public void Deleteclient(string id)
+        {
+            // Requête SQL : supprime l'auteur seulement au bonne index.
+            string query = @"   
+                DELETE FROM t_client 
+                WHERE client_id = @Id;";
+
+            // Création de la connexion à la base de données
+            MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+            // Préparation de la commande avec les paramètres
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.Parameters.AddWithValue("@Id", id);
+
+            //MySqlDataReader reader;
+
+            try
+            {
+                databaseConnection.Open();
+                int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Client supprimé avec succès !");
+                }
+                else
+                {
+                    MessageBox.Show("Le client n'a pas pu être supprimé");
+                }
+
+                // Ferme toujours la connexion, même en cas d'erreur
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                // Affiche une erreur en cas de problème
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Supprime un auteur dans la base de données
+        /// </summary>
+        /// <param name="id">La clé primaire lié à l'auteur</param>
+        public void Deleteauthor(string id)
+        {
+            // Requête SQL : supprime le client seulement au bonne index.
+            string query = @"   
+                DELETE FROM t_auteur 
+                WHERE auteur_id = @Id;";
+
+            // Création de la connexion à la base de données
+            MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+            // Préparation de la commande avec les paramètres
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.Parameters.AddWithValue("@Id", id);
+
+            //MySqlDataReader reader;
+
+            try
+            {
+                databaseConnection.Open();
+                int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Auteur supprimé avec succès !");
+                }
+                else
+                {
+                    MessageBox.Show("L'auteur n'a pas pu être supprimé");
+                }
+
+                // Ferme toujours la connexion, même en cas d'erreur
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                // Affiche une erreur en cas de problème
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

@@ -52,6 +52,7 @@
             this.btnUpdateauthor.TabIndex = 161;
             this.btnUpdateauthor.Text = "Modifier";
             this.btnUpdateauthor.UseVisualStyleBackColor = true;
+            this.btnUpdateauthor.Click += new System.EventHandler(this.btnUpdateauthor_Click);
             // 
             // btnDeleteauthor
             // 
@@ -61,6 +62,7 @@
             this.btnDeleteauthor.TabIndex = 160;
             this.btnDeleteauthor.Text = "Supprimer";
             this.btnDeleteauthor.UseVisualStyleBackColor = true;
+            this.btnDeleteauthor.Click += new System.EventHandler(this.btnDeleteauthor_Click);
             // 
             // lblFirstname
             // 

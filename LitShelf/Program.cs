@@ -35,6 +35,7 @@ namespace LitShelf
             //Instanciation du model
             Model.Model model = new Model.Model();
 
+            //  //Instanciation du controller
             Controller.Controller controller = new Controller.Controller(viewbook, model, viewauthor, viewloan, viewclient, viewoneauthor, viewonebook, viewoneclient, viewoneloan,
                 viewnewauthor, viewnewbook, viewnewclient, viewnewloan);
 

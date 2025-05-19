@@ -218,6 +218,8 @@ namespace LitShelf.Controller
             return _authors; // Fournit l’accès aux données des auteurs.
         }
 
+
+
         /// <summary>
         /// Enregistre un nouvel auteur dans la base de données s'il n'existe pas déjà.
         /// </summary>
@@ -238,6 +240,46 @@ namespace LitShelf.Controller
             _model.CreatenewClient(firstname, name);
         }
 
+
+
+        /// <summary>
+        /// Modifie un client dans la base de données.
+        /// </summary>
+        /// <param name="firstname">Le prénom du client.</param>
+        /// <param name="name">Le nom du client</param>
+        public void Updateclient(string firstname, string name)
+        {
+            _model.Updateclient(_currentClient[0] ,firstname, name);
+        }
+
+        /// <summary>
+        /// Modifie un auteur dans la base de données.
+        /// </summary>
+        /// <param name="firstname">Le prénom d'un auteur.</param>
+        /// <param name="name">Le nom d'un auteur</param>
+        public void Updateauthor(string firstname, string name)
+        {
+            _model.Updateauthor(_currentAuthor[0], firstname, name);
+        }
+
+
+
+
+        /// <summary>
+        /// Supprime le client selectionné
+        /// </summary>
+        public void Deleteclient()
+        {
+            _model.Deleteclient(_currentClient[0]);
+        }
+
+        /// <summary>
+        /// Supprime l'auteur selectionné
+        /// </summary>
+        public void Deleteauthor()
+        {
+            _model.Deleteauthor(_currentAuthor[0]);
+        }
 
         ///// <summary>
         ///// Affiche une grille de boutons représentant les clients, correspondant à la page demandée.
@@ -427,7 +469,7 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
-        /// Réinitialise la page actuelle à 1
+        /// Réinitialise la page actuelle à 0
         /// </summary>
         public void Resetnumberofpage()
         {
