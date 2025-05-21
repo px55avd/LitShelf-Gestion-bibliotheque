@@ -79,7 +79,6 @@ namespace LitShelf.Views
             txtboxFirstname.Text = Controller.GetcurrentClient()[2];
             txtboxName.Text = Controller.GetcurrentClient()[1];
         }
-<<<<<<< HEAD
 
         /// <summary>
         /// 
@@ -133,7 +132,5 @@ namespace LitShelf.Views
                 Controller.changeView("Viewclient", FindForm());
             }
         }
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
     }
 }

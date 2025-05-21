@@ -26,11 +26,8 @@ namespace LitShelf.Controller
         private int _currentPage = 0;
         private int _clientsBypage = 10;
         private int _authorsBypage = 10;
-<<<<<<< HEAD
         private int _booksBypage = 10;
         private int _loansBypage = 10;
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         private string[,] _clients; // Stocke les clients
@@ -38,14 +35,11 @@ namespace LitShelf.Controller
         private string[,] _books; // Stocke les livres
         private string[,] _loans; // Stocke les emprunts
 
-        
+
         private string[] _currentClient = new string[3]; // Stocke le client sélectionné
         private string[] _currentAuthor = new string[3]; //Stocke le auteur sélectionné
-<<<<<<< HEAD
+
         private string[] _currentBook = new string[7]; // Stocke le livres sélectionné
-=======
-        private string[] _currentBook = new string[4]; // Stocke le livres sélectionné
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
 
@@ -103,7 +97,7 @@ namespace LitShelf.Controller
 
             _viewoneloan = viewoneloan;
             _viewoneloan.Controller = this;
-            
+
             // Vues spécifique pour les nouveaux éléments
             _viewnewauthor = viewnewauthor;
             _viewnewauthor.Controller = this;
@@ -200,7 +194,6 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Charge les données auteurs à partir du modèle et les stocke dans le tableau local "_authors".
         /// </summary>
         public void SetauthorData()
@@ -219,8 +212,6 @@ namespace LitShelf.Controller
 
 
         /// <summary>
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// Retourne les données clients chargées dans `_clients`.
         /// </summary>
         /// <returns>Un tableau 2D contenant les données clients.</returns>
@@ -229,19 +220,6 @@ namespace LitShelf.Controller
             return _clients; // Fournit l’accès aux données client
         }
 
-<<<<<<< HEAD
-=======
-
-
-        /// <summary>
-        /// Charge les données auteurs à partir du modèle et les stocke dans le tableau local "_authors".
-        /// </summary>
-        public void SetauthorData()
-        {
-            _authors = _model.ReadauthorData(); // Appelle la méthode du modèle pour récupérer les données auteurs et les stocke dans une variable locale.
-        }
-
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// <summary>
         /// Retourne les données auteurs chargées dans '_authors'.
         /// </summary>
@@ -252,7 +230,6 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Retourne les données livres chargées dans "_books".
         /// </summary>
         /// <returns>Un tableau 2D contenant les données lives.</returns>
@@ -264,14 +241,12 @@ namespace LitShelf.Controller
 
 
         /// <summary>
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// Enregistre un nouvel auteur dans la base de données s'il n'existe pas déjà.
         /// </summary>
         /// <param name="firstname">Le prénom de l'auteur.</param>
         /// <param name="name">Le nom de l'auteur.</param>
         public void CreatenewAuthor(string firstname, string name)
-        { 
+        {
             _model.CreatenewAuthor(firstname, name);
         }
 
@@ -286,7 +261,6 @@ namespace LitShelf.Controller
         }
 
 
-<<<<<<< HEAD
 
         /// <summary>
         /// Modifie un client dans la base de données.
@@ -295,7 +269,7 @@ namespace LitShelf.Controller
         /// <param name="name">Le nom du client</param>
         public void Updateclient(string firstname, string name)
         {
-            _model.Updateclient(_currentClient[0] ,firstname, name);
+            _model.Updateclient(_currentClient[0], firstname, name);
         }
 
         /// <summary>
@@ -328,7 +302,6 @@ namespace LitShelf.Controller
         }
 
 
-=======
         ///// <summary>
         ///// Affiche une grille de boutons représentant les clients, correspondant à la page demandée.
         ///// Chaque bouton permet d'afficher les détails du client sélectionné.
@@ -372,7 +345,6 @@ namespace LitShelf.Controller
         //        }
         //    }
         //}
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
 
@@ -506,7 +478,6 @@ namespace LitShelf.Controller
             });
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Affiche une grille de boutons représentant les livres, correspondant à la page demandée.
         /// Chaque bouton permet d'afficher les détails du livre sélectionné.
@@ -551,8 +522,6 @@ namespace LitShelf.Controller
                 }
             }
         }
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         /// <summary>
@@ -565,11 +534,7 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Réinitialise la page actuelle à 0
-=======
-        /// Réinitialise la page actuelle à 1
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// </summary>
         public void Resetnumberofpage()
         {
@@ -596,7 +561,6 @@ namespace LitShelf.Controller
             return _authorsBypage;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Retourne le nombre de livres affichés par page.
         /// </summary>
@@ -605,9 +569,6 @@ namespace LitShelf.Controller
         {
             return _booksBypage;
         }
-
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         /// <summary>
@@ -654,7 +615,6 @@ namespace LitShelf.Controller
             _currentClient[2] = currrentClientfirstname;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Définit les informations du livre actuellement sélectionné.
         /// </summary>
@@ -677,10 +637,6 @@ namespace LitShelf.Controller
             _currentBook[6] = currrentBookauthorName;
         }
 
-
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
-
         /// <summary>
         /// Retourne les informations du client sélectionné
         /// </summary>
@@ -699,7 +655,6 @@ namespace LitShelf.Controller
             return _currentAuthor;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Retourne les informations du livre sélectionné
         /// </summary>
@@ -709,7 +664,5 @@ namespace LitShelf.Controller
             return _currentBook;
         }
 
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
     }
 }

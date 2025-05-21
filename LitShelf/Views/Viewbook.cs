@@ -8,7 +8,6 @@ namespace LitShelf
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Logique des boutons de navigation.
         /// </summary>
         private void Btnnavigationlogic()
@@ -37,8 +36,6 @@ namespace LitShelf
         }
 
         /// <summary>
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
         /// Controller associé à la vue.
         /// </summary>
         public Controller.Controller Controller { get; set; }
@@ -62,7 +59,6 @@ namespace LitShelf
         {
             Controller.changeView("ViewnewBook", FindForm());
         }
-<<<<<<< HEAD
 
         private void Viewbook_Activated(object sender, EventArgs e)
         {
@@ -155,7 +151,5 @@ namespace LitShelf
             // Met à jour l’état des boutons de navigation.
             Btnnavigationlogic();
         }
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
     }
 }

@@ -70,7 +70,6 @@ namespace LitShelf.Model
             }
             else
             {
-<<<<<<< HEAD
                 return true;
             }
         }
@@ -125,12 +124,6 @@ namespace LitShelf.Model
             return Regex.IsMatch(quantity, @"^[d]{1,3}$"); // Applique la regex.    
         }
 
-=======
-                return true; // Retourne vrai si null
-            }
-        }
-
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         /// <summary>
@@ -231,7 +224,6 @@ namespace LitShelf.Model
             _lineAuthor = count;
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Récupère le nombre de livres dans la base de données et le stocke dans _lineAuthor.
         /// </summary>
@@ -285,8 +277,6 @@ namespace LitShelf.Model
             _lineBook = count;
         }
 
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
 
         /// <summary>
@@ -393,7 +383,6 @@ namespace LitShelf.Model
             return data; // Retourne le tableau rempli (ou vide en cas d’échec)
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Récupère toutes les données de la table t_livre avec les liaisons avec la table écrire et t_auteur depuis la base de données,
         /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
@@ -451,10 +440,6 @@ namespace LitShelf.Model
             return data; // Retourne le tableau rempli (ou vide en cas d’échec)
         }
 
-
-
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
 
         /// <summary>
         /// Enregistre un nouveau client dans la base de données s'il n'existe pas déjà,
@@ -573,7 +558,6 @@ namespace LitShelf.Model
                 MessageBox.Show("L'un des deux champs n'est pas au bon format."); // Message pour non respect des regex
             }
         }
-<<<<<<< HEAD
 
         /// <summary>
         /// Enregistre un nouveau livre dans la base de données s'il n'existe pas déjà,
@@ -858,7 +842,5 @@ namespace LitShelf.Model
             }
 
         }
-=======
->>>>>>> 94ee5fbb09a28a1a3fd652a4fe616578a6aa2a29
     }
 }
