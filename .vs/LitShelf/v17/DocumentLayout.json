@@ -3,64 +3,16 @@
   "WorkspaceRootPath": "E:\\FIN2\\TPI\\TPI\\LitShelf\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewoneclient.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewoneclient.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewoneclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewoneclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewonebook.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewonebook.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewonebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewonebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewoneauthor.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewoneauthor.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewoneauthor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewoneauthor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewbook.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewbook.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\views\\viewauthor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewauthor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\controller\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\controller\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|E:\\FIN2\\TPI\\TPI\\LitShelf\\litshelf\\views\\viewonebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewonebook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|E:\\FIN2\\TPI\\TPI\\LitShelf\\litshelf\\views\\viewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\views\\viewbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,205 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ViewoneClient.Designer.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneClient.Designer.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneClient.Designer.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneClient.Designer.cs",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneClient.Designer.cs",
-              "ViewState": "AQIAADIAAAAAAAAAAAAkwEAAAABeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:25:22.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ViewoneBook.Designer.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneBook.Designer.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneBook.Designer.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneBook.Designer.cs",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneBook.Designer.cs",
-              "ViewState": "AQIAAAIBAAAAAAAAAAAkwBABAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:22:31.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ViewoneAuthor.Designer.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneAuthor.Designer.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneAuthor.Designer.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneAuthor.Designer.cs",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneAuthor.Designer.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAkwEAAAABeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:22:01.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ViewoneAuthor.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneAuthor.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneAuthor.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneAuthor.cs",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneAuthor.cs",
-              "ViewState": "AQIAAJAAAAAAAAAAAAAvwJ8AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:21:48.201Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Viewclient.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewclient.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\Viewclient.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewclient.cs",
-              "RelativeToolTip": "LitShelf\\Views\\Viewclient.cs",
-              "ViewState": "AQIAAIQAAAAAAAAAAAAEwG8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:21:37.171Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Viewbook.Designer.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewbook.Designer.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\Viewbook.Designer.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewbook.Designer.cs",
-              "RelativeToolTip": "LitShelf\\Views\\Viewbook.Designer.cs",
-              "ViewState": "AQIAAMwAAAAAAAAAAAAAANoAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:20:59.727Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Viewbook.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewbook.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\Viewbook.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewbook.cs",
-              "RelativeToolTip": "LitShelf\\Views\\Viewbook.cs",
-              "ViewState": "AQIAAI8AAAAAAAAAAAAUwJgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:20:31.849Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Viewauthor.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewauthor.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\Viewauthor.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewauthor.cs",
-              "RelativeToolTip": "LitShelf\\Views\\Viewauthor.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAIA+wFgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T15:20:17.819Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ViewoneClient.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneClient.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneClient.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneClient.cs",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneClient.cs",
-              "ViewState": "AQIAAHcAAAAAAAAAAAAkwIUAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T14:37:17.325Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ViewoneBook.cs [Conception]",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneBook.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneBook.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneBook.cs [Conception]",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneBook.cs [Conception]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T14:37:17.558Z",
-              "EditorCaption": " [Conception]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ViewoneBook.cs",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneBook.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\ViewoneBook.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\ViewoneBook.cs",
-              "RelativeToolTip": "LitShelf\\Views\\ViewoneBook.cs",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAkwFMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T14:37:17.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Viewbook.cs [Conception]",
-              "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewbook.cs",
-              "RelativeDocumentMoniker": "LitShelf\\Views\\Viewbook.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Views\\Viewbook.cs [Conception]",
-              "RelativeToolTip": "LitShelf\\Views\\Viewbook.cs [Conception]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T14:37:17.57Z",
-              "EditorCaption": " [Conception]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Program.cs",
               "RelativeDocumentMoniker": "LitShelf\\Program.cs",
               "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Program.cs",
               "RelativeToolTip": "LitShelf\\Program.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAvwCQAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T14:37:17.571Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-21T14:37:17.571Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 0,
               "Title": "Controller.cs",
               "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Controller\\Controller.cs",
               "RelativeDocumentMoniker": "LitShelf\\Controller\\Controller.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Controller\\Controller.cs",
-              "RelativeToolTip": "LitShelf\\Controller\\Controller.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAiwNwAAAAJAAAA",
+              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Controller\\Controller.cs*",
+              "RelativeToolTip": "LitShelf\\Controller\\Controller.cs*",
+              "ViewState": "AQIAAJgBAAAAAAAAAAAQwK8BAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T14:37:17.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Model.cs",
               "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Model\\Model.cs",
               "RelativeDocumentMoniker": "LitShelf\\Model\\Model.cs",
               "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Model\\Model.cs",
               "RelativeToolTip": "LitShelf\\Model\\Model.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAH0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAB4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T14:37:17.576Z",
               "EditorCaption": ""

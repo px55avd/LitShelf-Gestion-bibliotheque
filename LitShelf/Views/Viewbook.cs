@@ -60,16 +60,23 @@ namespace LitShelf
             Controller.changeView("ViewnewBook", FindForm());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Viewbook_Activated(object sender, EventArgs e)
         {
             // Charge les données des clients depuis le modèle via le contrôleur
             Controller.SetbookData();
 
-            // Met à jour la logique de navigation (activer/désactiver les boutons selon le nombre de pages)
-            Btnnavigationlogic();
 
             // Réinitialise le numéro de page à 0 dans le contrôleur (pour revenir à la première page)
             Controller.Resetnumberofpage();
+
+            // Met à jour la logique de navigation (activer/désactiver les boutons selon le nombre de pages)
+            Btnnavigationlogic();
+
 
             // Affiche le numéro de page + 1
             lblNumberpages.Text = Convert.ToString(Controller.GetNumberOfPage() + 1);
@@ -80,6 +87,21 @@ namespace LitShelf
                 FindForm(),                    // Référence au formulaire courant
                 pnlBookbutton                // Panel où les boutons clients sont affichés
             );
+
+            Controller.SetauthorData();
+
+            cmboxAuthor.Items.Clear();
+
+            cmboxAuthor.Text = "Toutes les auteurs";
+
+
+            for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
+            {
+                cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
+            }
+
+            cmboxAuthor.Items.Add("Toutes les auteurs");
+
         }
 
         /// <summary>
@@ -150,6 +172,46 @@ namespace LitShelf
 
             // Met à jour l’état des boutons de navigation.
             Btnnavigationlogic();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            //Vérifie que le champs selectionné ne soit pas "Tous les auteurs"
+            if (cmboxAuthor.Text != "Toutes les auteurs")
+            {
+                //Parcours les auteurs
+                for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
+                {
+                    //Si le nom et prénom de l'auteur sont correct
+                    if (Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1] == cmboxAuthor.Text)
+                    {
+                        //Appelle la méthode pour filtrer les données des livre.
+                        Controller.SetbookDataFilter(Controller.GetauthorData()[i, 0]);
+                        break;
+                    }
+                }
+            }
+
+            //Vérifie que le champs 
+            if (cmboxAuthor.Text == "Toutes les auteurs")
+            {
+                //Appelle tous les livre
+                Controller.SetbookData();
+            }
+
+            //Réinitialise le numéro de page
+            Controller.Resetnumberofpage();
+
+            // Ajout dans le label
+            lblNumberpages.Text = Convert.ToString(Controller.GetNumberOfPage() +1);
+
+            //Affichage de la liste de livres filtrés ou non 
+            Controller.ShowBookTable(Controller.GetNumberOfPage(), this, pnlBookbutton);
         }
     }
 }

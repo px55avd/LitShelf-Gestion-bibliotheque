@@ -209,6 +209,15 @@ namespace LitShelf.Controller
             _books = _model.ReadbookData(); // Appelle la méthode du modèle pour récupérer les données auteurs et les stocke dans une variable locale.
         }
 
+        /// <summary>
+        /// Charge les données livres filtrés à partir du modèle et les stocke dans le tableau local "_books".
+        /// </summary>
+        /// <param name="idAuthor">Clé étrangère de l'auteur</param>
+        public void SetbookDataFilter(string idAuthor)
+        {
+            _books = _model.ReadbookDataFiler(idAuthor); // Appelle la méthode du modèle pour récupérer les données auteurs et les stocke dans une variable locale.
+        }
+
 
 
         /// <summary>
@@ -240,6 +249,8 @@ namespace LitShelf.Controller
 
 
 
+
+
         /// <summary>
         /// Enregistre un nouvel auteur dans la base de données s'il n'existe pas déjà.
         /// </summary>
@@ -258,6 +269,19 @@ namespace LitShelf.Controller
         public void CreatenewClient(string firstname, string name)
         {
             _model.CreatenewClient(firstname, name);
+        }
+
+        /// <summary>
+        /// Enregistre un nouveau liuvre dans la base de données.
+        /// </summary>
+        /// <param name="ISBN">N° ISBN du livre</param>
+        /// <param name="title">Titre du livre</param>
+        /// <param name="date">Date de publication du livre </param>
+        /// <param name="quantity">Quantité du livre</param>
+        /// <param name="id_auteur">Clé étranger de l'auteur</param>
+        public void CreatenewBook(string ISBN, string title, string date, string quantity, int id_auteur)
+        {
+            _model.CreatenewBook(ISBN, title, date, quantity, id_auteur);
         }
 
 
@@ -282,6 +306,19 @@ namespace LitShelf.Controller
             _model.Updateauthor(_currentAuthor[0], firstname, name);
         }
 
+        /// <summary>
+        /// modifie un nouveau liuvre dans la base de données.
+        /// </summary>
+        /// <param name="ISBN">N° ISBN du livre</param>
+        /// <param name="title">Titre du livre</param>
+        /// <param name="date">Date de publication du livre </param>
+        /// <param name="quantity">Quantité du livre</param>
+        /// <param name="id_auteur">Clé étranger de l'auteur</param>
+        public void Updatebook(string ISBN, string title, string date, string quantity, int id_auteur)
+        {
+            _model.Updatebook(ISBN, title, date, quantity, id_auteur);
+        }
+
 
 
 
@@ -299,6 +336,14 @@ namespace LitShelf.Controller
         public void Deleteauthor()
         {
             _model.Deleteauthor(_currentAuthor[0]);
+        }
+
+        /// <summary>
+        /// Supprime le livre selectionné
+        /// </summary>
+        public void Deletebook()
+        {
+            _model.Deletebook(_currentBook[0]);
         }
 
 
@@ -663,6 +708,8 @@ namespace LitShelf.Controller
         {
             return _currentBook;
         }
+
+
 
     }
 }

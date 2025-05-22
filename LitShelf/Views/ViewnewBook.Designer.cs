@@ -31,13 +31,13 @@
             this.btnValidnewBook = new System.Windows.Forms.Button();
             this.cmboxAuthor = new System.Windows.Forms.ComboBox();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.txtboxDescription = new System.Windows.Forms.TextBox();
+            this.txtboxQuantity = new System.Windows.Forms.TextBox();
             this.LblISBN = new System.Windows.Forms.Label();
             this.txtboxISBN = new System.Windows.Forms.TextBox();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblYearpost = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.txtboxPrice = new System.Windows.Forms.TextBox();
+            this.txtboxYearofpublication = new System.Windows.Forms.TextBox();
             this.txtboxTitle = new System.Windows.Forms.TextBox();
             this.btnClientmenu = new System.Windows.Forms.Button();
             this.btnLoanmenu = new System.Windows.Forms.Button();
@@ -57,6 +57,7 @@
             this.btnValidnewBook.TabIndex = 133;
             this.btnValidnewBook.Text = "Valider";
             this.btnValidnewBook.UseVisualStyleBackColor = true;
+            this.btnValidnewBook.Click += new System.EventHandler(this.btnValidnewBook_Click);
             // 
             // cmboxAuthor
             // 
@@ -75,12 +76,12 @@
             this.lblQuantity.TabIndex = 130;
             this.lblQuantity.Text = "Quantité";
             // 
-            // txtboxDescription
+            // txtboxQuantity
             // 
-            this.txtboxDescription.Location = new System.Drawing.Point(333, 321);
-            this.txtboxDescription.Name = "txtboxDescription";
-            this.txtboxDescription.Size = new System.Drawing.Size(274, 23);
-            this.txtboxDescription.TabIndex = 129;
+            this.txtboxQuantity.Location = new System.Drawing.Point(333, 321);
+            this.txtboxQuantity.Name = "txtboxQuantity";
+            this.txtboxQuantity.Size = new System.Drawing.Size(274, 23);
+            this.txtboxQuantity.TabIndex = 129;
             // 
             // LblISBN
             // 
@@ -125,12 +126,12 @@
             this.lblTitle.TabIndex = 124;
             this.lblTitle.Text = "Titre";
             // 
-            // txtboxPrice
+            // txtboxYearofpublication
             // 
-            this.txtboxPrice.Location = new System.Drawing.Point(333, 204);
-            this.txtboxPrice.Name = "txtboxPrice";
-            this.txtboxPrice.Size = new System.Drawing.Size(274, 23);
-            this.txtboxPrice.TabIndex = 123;
+            this.txtboxYearofpublication.Location = new System.Drawing.Point(333, 204);
+            this.txtboxYearofpublication.Name = "txtboxYearofpublication";
+            this.txtboxYearofpublication.Size = new System.Drawing.Size(274, 23);
+            this.txtboxYearofpublication.TabIndex = 123;
             // 
             // txtboxTitle
             // 
@@ -229,13 +230,13 @@
             this.Controls.Add(this.btnValidnewBook);
             this.Controls.Add(this.cmboxAuthor);
             this.Controls.Add(this.lblQuantity);
-            this.Controls.Add(this.txtboxDescription);
+            this.Controls.Add(this.txtboxQuantity);
             this.Controls.Add(this.LblISBN);
             this.Controls.Add(this.txtboxISBN);
             this.Controls.Add(this.lblAuthor);
             this.Controls.Add(this.lblYearpost);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.txtboxPrice);
+            this.Controls.Add(this.txtboxYearofpublication);
             this.Controls.Add(this.txtboxTitle);
             this.Controls.Add(this.btnClientmenu);
             this.Controls.Add(this.btnLoanmenu);
@@ -248,6 +249,7 @@
             this.Name = "ViewnewBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewnewBook_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,13 +260,13 @@
         private Button btnValidnewBook;
         private ComboBox cmboxAuthor;
         private Label lblQuantity;
-        private TextBox txtboxDescription;
+        private TextBox txtboxQuantity;
         private Label LblISBN;
         private TextBox txtboxISBN;
         private Label lblAuthor;
         private Label lblYearpost;
         private Label lblTitle;
-        private TextBox txtboxPrice;
+        private TextBox txtboxYearofpublication;
         private TextBox txtboxTitle;
         private Button btnClientmenu;
         private Button btnLoanmenu;

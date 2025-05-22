@@ -82,13 +82,13 @@ namespace LitShelf.Model
         /// <returns>True si la date est valide, sinon False.</returns>
         private bool IsvalidDate(string date)
         {
-            if (Regex.IsMatch(date, @"^[d]{4}$") is false)
+            if (Regex.IsMatch(date, @"^[\d]{4}$") is false)
             {
                 MessageBox.Show("Le champs date n'est pas au bon format. (ex: 1435"); // Message pour non respect des regex
             }
 
             //Vérifie que le nom n'est pas null.
-            return Regex.IsMatch(date, @"^[d]{4}$"); // Applique la regex.    
+            return Regex.IsMatch(date, @"^[\d]{4}$"); // Applique la regex.    
         }
 
         /// <summary>
@@ -99,13 +99,13 @@ namespace LitShelf.Model
         /// <returns>True si l'ISBN est valide, sinon False.</returns>
         private bool IsvalidISBN(string ISBN)
         {
-            if (Regex.IsMatch(ISBN, @"^[d]{10}$") is false)
+            if (Regex.IsMatch(ISBN, @"^[\d]{10}$") is false)
             {
                 MessageBox.Show("Le champs ISBN n'est pas au bon format. (ex: 1234567891"); // Message pour non respect des regex
             }
 
             //Vérifie que le nom n'est pas null.
-            return Regex.IsMatch(ISBN, @"^[d]{10}$"); // Applique la regex.    
+            return Regex.IsMatch(ISBN, @"^[\d]{10}$"); // Applique la regex.    
         }
 
         /// <summary>
@@ -116,12 +116,12 @@ namespace LitShelf.Model
         /// <returns>True si La quantité est valide, sinon False.</returns>
         private bool IsvalidQuantity(string quantity)
         {
-            if (Regex.IsMatch(quantity, @"^[d]{1,3}$") is false)
+            if (Regex.IsMatch(quantity, @"^[\d]{1,3}$") is false)
             {
                 MessageBox.Show("Le champs quantité n'est pas au bon format. (ex: 124"); // Message pour non respect des regex
             }
             //Vérifie que le nom n'est pas null.
-            return Regex.IsMatch(quantity, @"^[d]{1,3}$"); // Applique la regex.    
+            return Regex.IsMatch(quantity, @"^[\d]{1,3}$"); // Applique la regex.    
         }
 
 
@@ -441,6 +441,67 @@ namespace LitShelf.Model
         }
 
 
+
+        /// <summary>
+        /// Récupère toutes les données de la table t_livre avec les liaisons avec la table écrire et t_auteur depuis la base de données,
+        /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
+        /// </summary>
+        /// <returns>Un tableau contenant les données livres (ISBN, Titre, quantité, ect).</returns>
+        public string[,] ReadbookDataFiler(string idAuthor)
+        {
+            GetbookCount(); // Appelle une méthode externe pour définir la valeur de _linebook
+
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL pour récupérer tous les auteurs
+            string query = @"
+            SELECT t_livre.ISBN, t_livre.titre, t_livre.année_de_publication, t_livre.quantité, écrire.auteur_id, t_auteur.prénom, t_auteur.nom
+            FROM t_livre
+            INNER JOIN écrire ON t_livre.ISBN = écrire.ISBN
+            INNER JOIN t_auteur ON écrire.auteur_id = t_auteur.auteur_id
+            WHERE (@IDauthor IS NULL OR t_auteur.auteur_id = @Idauthor);";
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection);
+            commandDatabase.Parameters.AddWithValue("@Idauthor", idAuthor);
+
+            MySqlDataReader reader;
+
+            string[,] data = new string[0, 0]; // Initialisation par défaut (sera remplacée si requête réussie)
+
+            try
+            {
+                myConnection.Open(); // Ouvre la connexion à la base
+
+                reader = commandDatabase.ExecuteReader(); // Exécute la requête et lit les résultats
+
+                data = new string[_lineBook, reader.FieldCount]; // Crée un tableau avec [_lineBook]  de lignes et autant de colonnes que de champs
+
+                int count = 0; // Compteur de ligne
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[count, i] = reader.GetValue(i).ToString(); // Stocke chaque champ dans le tableau
+                        }
+                        count++; // Passe à la ligne suivante
+                    }
+                }
+
+                myConnection.Close(); // Ferme la connexion après la lecture
+            }
+            catch (Exception ex)
+            {
+                // Affiche un message en cas d'erreur
+                MessageBox.Show($"Échec de la connexion 2: {ex.Message}");
+            }
+
+            return data; // Retourne le tableau rempli (ou vide en cas d’échec)
+        }
+
+
         /// <summary>
         /// Enregistre un nouveau client dans la base de données s'il n'existe pas déjà,
         /// après validation du prénom et du nom.
@@ -560,48 +621,51 @@ namespace LitShelf.Model
         }
 
         /// <summary>
-        /// Enregistre un nouveau livre dans la base de données s'il n'existe pas déjà,
-        /// après validation du ISBN et de la date.
+        ///  Enregistre un nouveau livre dans la base de données s'il n'existe pas déjà,
+        /// après validation des paramètres avec des regex.
         /// </summary>
-        public void CreatenewBook(string ISBN, string title, string date, string quantity)
+        /// <param name="ISBN">N° ISBN du livre</param>
+        /// <param name="title">Titre du livre</param>
+        /// <param name="date">Date de publication du livre </param>
+        /// <param name="quantity">Quantité du livre</param>
+        /// <param name="id_auteur">Clé étranger de l'auteur</param>
+        public void CreatenewBook(string ISBN, string title, string date, string quantity, int id_auteur)
         {
             // Vérifie que le prénom et le nom sont valides selon les règles définies
-            if (IsvalidISBN(ISBN) && IsvalidDate(date))
+            if (IsvalidISBN(ISBN) && IsvalidDate(date) && IsvalidDate(Convert.ToString(date)) && IsvalidQuantity(quantity))
             {
                 // Création de la connexion à la base de données
                 MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
 
-                // Requête SQL : insère l'auteur seulement s'il n'existe pas déjà
-                string query = @"
-                    INSERT INTO t_livre (ISBN, titre, année de publication, quantité)
-                    SELECT @Firstname, @Name
-                    WHERE NOT EXISTS (
-                    SELECT 1 FROM t_auteur
-                    WHERE prénom = @Firstname OR nom = @Name
-                    );";
-
-                // Préparation de la commande avec les paramètres
-                MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
-                commandDatabase.Parameters.AddWithValue("@ISBN", ISBN);
-                commandDatabase.Parameters.AddWithValue("@Title", title);
-                commandDatabase.Parameters.AddWithValue("@Date", date);
-                commandDatabase.Parameters.AddWithValue("@Quantity", quantity);
-
                 try
                 {
-                    databaseConnection.Open();
-                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
 
-                    if (rowsAffected > 0)
+                    // Préparation de la commande avec les paramètres
+                    using (MySqlCommand commandDatabase = new MySqlCommand("AjouterLivreAvecExemplaires", databaseConnection))
                     {
-                        MessageBox.Show("Livre enregistré avec succès !");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Livre déjà existant.");
-                    }
+                        commandDatabase.CommandType = System.Data.CommandType.StoredProcedure;
 
+                        // // Ajout des paramètres IN
+                        commandDatabase.Parameters.AddWithValue("p_ISBN", ISBN);
+                        commandDatabase.Parameters.AddWithValue("p_titre", title);
+                        commandDatabase.Parameters.AddWithValue("p_annee", date);
+                        commandDatabase.Parameters.AddWithValue("p_quantite", Convert.ToInt32(quantity));
+                        commandDatabase.Parameters.AddWithValue("p_auteur_id", id_auteur);
 
+                        databaseConnection.Open();
+
+                        int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Livre enregistré avec succès !");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Livre déjà existant.");
+                        }
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -612,10 +676,6 @@ namespace LitShelf.Model
                 {
                     databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
                 }
-            }
-            else
-            {
-                MessageBox.Show("L'un des deux champs n'est pas au bon format."); // Message pour non respect des regex
             }
         }
 
@@ -654,8 +714,6 @@ namespace LitShelf.Model
                 commandDatabase.Parameters.AddWithValue("@Firstname", firstname);
                 commandDatabase.Parameters.AddWithValue("@Name", name);
                 commandDatabase.Parameters.AddWithValue("@Id", id);
-
-                //MySqlDataReader reader;
 
                 try
                 {
@@ -720,8 +778,6 @@ namespace LitShelf.Model
                 commandDatabase.Parameters.AddWithValue("@Name", name);
                 commandDatabase.Parameters.AddWithValue("@Id", id);
 
-                //MySqlDataReader reader;
-
                 try
                 {
                     databaseConnection.Open();
@@ -751,6 +807,71 @@ namespace LitShelf.Model
             }
         }
 
+        /// <summary>
+        /// Modifie un livre dans la base de données et ajoute le nombre n'exemplaire supplémentaire si la quantité augmente
+        /// après validation des champs avec des regex.
+        /// </summary>
+        /// <param name="ISBN">N° ISBN du livre</param>
+        /// <param name="title">Titre du livre</param>
+        /// <param name="date">Date de publication du livre </param>
+        /// <param name="quantity">Quantité du livre</param>
+        /// <param name="id_auteur">Clé étranger de l'auteur</param>
+        public void Updatebook(string ISBN, string title, string date, string quantity, int id_auteur)
+        {
+            // Vérifie que le prénom et le nom sont valides selon les règles définies
+            if (IsvalidISBN(ISBN) && IsvalidDate(date) && IsvalidDate(Convert.ToString(date)) && IsvalidQuantity(quantity))
+            {
+                // Création de la connexion à la base de données
+                MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+                try
+                {
+
+                    // Préparation de la commande avec les paramètres
+                    using (MySqlCommand commandDatabase = new MySqlCommand("ModifierLivreEtExemplaires", databaseConnection))
+                    {
+                        commandDatabase.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        // Ajout des paramètres IN
+                        commandDatabase.Parameters.AddWithValue("p_ISBN", ISBN);
+                        commandDatabase.Parameters.AddWithValue("p_titre", title);
+                        commandDatabase.Parameters.AddWithValue("p_annee", date);
+                        commandDatabase.Parameters.AddWithValue("p_nouvelle_quantite", Convert.ToInt32(quantity));
+                        commandDatabase.Parameters.AddWithValue("p_auteur_id", id_auteur);
+
+                        // Paramètre OUT
+                        MySqlParameter outputParam = new MySqlParameter("@p_message", MySqlDbType.VarChar);
+                        outputParam.Direction = System.Data.ParameterDirection.Output;
+                        outputParam.Size = 255;
+                        commandDatabase.Parameters.Add(outputParam);
+
+                        databaseConnection.Open();
+
+                        int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                        // Récupérer le message
+                        string message = outputParam.Value.ToString();
+                        MessageBox.Show(message);
+
+                        if (rowsAffected == 0)
+                        {
+                            MessageBox.Show("Aucune modification n'a été apportée au livre.");
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Affiche une erreur en cas de problème
+                    MessageBox.Show("Erreur : " + ex.Message);
+                }
+                finally
+                {
+                    databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
+                }
+            }
+        }
+
 
 
         /// <summary>
@@ -770,8 +891,6 @@ namespace LitShelf.Model
             // Préparation de la commande avec les paramètres
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
             commandDatabase.Parameters.AddWithValue("@Id", id);
-
-            //MySqlDataReader reader;
 
             try
             {
@@ -839,6 +958,55 @@ namespace LitShelf.Model
             {
                 // Affiche une erreur en cas de problème
                 MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Supprime un auteur dans la base de données
+        /// </summary>
+        /// <param name="ISBN">La clé primaire lié au livre. /param>
+        public void Deletebook(string ISBN)
+        {
+            // Création de la connexion à la base de données
+            MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+            try
+            {
+
+                // Préparation de la commande avec les paramètres
+                using (MySqlCommand commandDatabase = new MySqlCommand("SupprimerLivre", databaseConnection))
+                {
+                    commandDatabase.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Ajout des paramètres IN
+                    commandDatabase.Parameters.AddWithValue("p_ISBN", ISBN);
+
+
+                    // Paramètre OUT
+                    MySqlParameter outputParam = new MySqlParameter("@p_message", MySqlDbType.VarChar);
+                    outputParam.Direction = System.Data.ParameterDirection.Output;
+                    outputParam.Size = 255;
+                    commandDatabase.Parameters.Add(outputParam);
+
+                    databaseConnection.Open();
+
+                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                    // Récupérer le message
+                    string message = outputParam.Value.ToString();
+                    MessageBox.Show(message);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Affiche une erreur en cas de problème
+                MessageBox.Show("Erreur : " + ex.Message);
+            }
+            finally
+            {
+                databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
             }
 
         }

@@ -58,6 +58,7 @@
             this.btnUpdatebook.TabIndex = 113;
             this.btnUpdatebook.Text = "Modifier";
             this.btnUpdatebook.UseVisualStyleBackColor = true;
+            this.btnUpdatebook.Click += new System.EventHandler(this.btnUpdatebook_Click);
             // 
             // btnDeletebook
             // 
@@ -67,6 +68,7 @@
             this.btnDeletebook.TabIndex = 112;
             this.btnDeletebook.Text = "Supprimer";
             this.btnDeletebook.UseVisualStyleBackColor = true;
+            this.btnDeletebook.Click += new System.EventHandler(this.btnDeletebook_Click);
             // 
             // cmboxAuthor
             // 

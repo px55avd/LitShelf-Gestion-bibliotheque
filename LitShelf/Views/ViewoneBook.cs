@@ -80,7 +80,63 @@ namespace LitShelf.Views
             txtboxYearofPublication.Text = Controller.GetcurrentBook()[2];
             txtboxQuantity.Text = Controller.GetcurrentBook()[3];
             cmboxAuthor.Text = $"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}";
-            
+
+            Controller.SetauthorData();
+
+            cmboxAuthor.Items.Clear();
+
+
+            for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
+            {
+                cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
+            }
+
+        }
+
+        private void btnUpdatebook_Click(object sender, EventArgs e)
+        {
+            // vérifie que les deux champs sont vides
+            if (txtboxQuantity.Text == string.Empty || txtboxISBN.Text == string.Empty || txtboxYearofPublication.Text == string.Empty || txtboxTitle.Text == string.Empty)
+            {
+                MessageBox.Show("L'un des champs est vide !"); // Message pour non respect des regex
+            }
+            else
+            {
+                for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
+                {
+                    if (Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1] == cmboxAuthor.Text)
+                    {
+                        // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+                        DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier ce livre ?", "Attention, Modification", MessageBoxButtons.YesNo);
+
+                        // Vérifie si l'utilisateur a cliqué sur "Yes"
+                        if (result == DialogResult.Yes)
+                        {
+                            // Modifie un nouveau livre avec les information nécessaire
+                            Controller.Updatebook(txtboxISBN.Text, txtboxTitle.Text, txtboxYearofPublication.Text, txtboxQuantity.Text, Convert.ToInt32(Controller.GetauthorData()[i, 0]));
+
+                            Controller.changeView("Viewbook", FindForm());
+                        }
+
+                    }
+                }
+            }
+        }
+
+        private void btnDeletebook_Click(object sender, EventArgs e)
+        {
+            // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer ce livre ?", "Attention, Suppréssion", MessageBoxButtons.YesNo);
+
+            // Vérifie si l'utilisateur a cliqué sur "Yes"
+            if (result == DialogResult.Yes)
+            {
+                // Appelle la méthode dans le contrôleur pour supprimer le livre.
+                Controller.Deletebook();
+
+                // Affiche la vue client  
+                Controller.changeView("Viewbook", FindForm());
+            }
         }
     }
 }

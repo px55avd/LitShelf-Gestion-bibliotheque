@@ -31,7 +31,7 @@ CREATE TABLE `t_auteur` (
   `auteur_id` int NOT NULL,
   `nom` varchar(50) DEFAULT NULL,
   `prénom` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `t_auteur`
@@ -82,7 +82,7 @@ CREATE TABLE `t_client` (
   `client_id` int NOT NULL,
   `nom` varchar(50) DEFAULT NULL,
   `prénom` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `t_client`
@@ -137,7 +137,7 @@ CREATE TABLE `t_emprunt` (
   `date_retour` date DEFAULT NULL,
   `client_id` int NOT NULL,
   `exemplaire_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,7 @@ CREATE TABLE `t_exemplaire` (
   `exemplaire_id` int NOT NULL,
   `commentaire` text,
   `ISBN` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -162,7 +162,7 @@ CREATE TABLE `t_livre` (
   `titre` varchar(255) DEFAULT NULL,
   `année_de_publication` date DEFAULT NULL,
   `quantité` smallint DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,7 @@ CREATE TABLE `t_livre` (
 CREATE TABLE `écrire` (
   `ISBN` varchar(10) NOT NULL,
   `auteur_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Index pour les tables déchargées

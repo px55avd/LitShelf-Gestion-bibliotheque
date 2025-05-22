@@ -81,11 +81,11 @@ namespace LitShelf.Views
             // Charge les données des clients depuis le modèle via le contrôleur
             Controller.SetauthorData();
 
-            // Met à jour la logique de navigation (activer/désactiver les boutons selon le nombre de pages)
-            Btnnavigationlogic();
-
             // Réinitialise le numéro de page à 0 dans le contrôleur (pour revenir à la première page)
             Controller.Resetnumberofpage();
+
+            // Met à jour la logique de navigation (activer/désactiver les boutons selon le nombre de pages)
+            Btnnavigationlogic();
 
             // Affiche le numéro de page + 1
             lblNumberpages.Text = Convert.ToString(Controller.GetNumberOfPage() + 1);
