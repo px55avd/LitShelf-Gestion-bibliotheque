@@ -75,24 +75,38 @@ namespace LitShelf.Views
                 {
                     if (Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1] == cmboxAuthor.Text)
                     {
-                        // Créer un nouveau livre avec les information nécessaire
 
-                        Controller.CreatenewBook(txtboxISBN.Text, txtboxTitle.Text, txtboxYearofpublication.Text, txtboxQuantity.Text, Convert.ToInt32(Controller.GetauthorData()[i, 0])); 
+                        // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+                        DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier ce livre ?", "Attention, Modification", MessageBoxButtons.YesNo);
 
-                        Controller.changeView("Viewbook", FindForm());
+                        // Vérifie si l'utilisateur a cliqué sur "Yes"
+                        if (result == DialogResult.Yes)
+                        {
+                            // Créer un nouveau livre avec les information nécessaire
 
+                            Controller.CreatenewBook(txtboxISBN.Text, txtboxTitle.Text, txtboxYearofpublication.Text, txtboxQuantity.Text, Convert.ToInt32(Controller.GetauthorData()[i, 0]));
+
+                            Controller.changeView("Viewbook", FindForm());
+                        }
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewnewBook_Activated(object sender, EventArgs e)
         {
+            //Récupère les données auteur
             Controller.SetauthorData();
 
+            // Nettoye le combobox
             cmboxAuthor.Items.Clear();
 
-
+            // Attribue les auteurs au combobox
             for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
             {
                 cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);

@@ -64,28 +64,29 @@ namespace LitShelf.Views
 
         private void ViewoneBook_Activated(object sender, EventArgs e)
         {
+            //Réinitialise les champs
             lblNamebook.Text = "";
-
             txtboxISBN.Text = "";
             txtboxTitle.Text = "";
             txtboxYearofPublication.Text = "";
             txtboxQuantity.Text = "";
             cmboxAuthor.Text = "";
 
-
+            // Remplie le formulaire selon le livre sélectionné
             lblNamebook.Text = $"{Controller.GetcurrentBook()[1]}";
-
             txtboxISBN.Text = Controller.GetcurrentBook()[0];
             txtboxTitle.Text = Controller.GetcurrentBook()[1];
             txtboxYearofPublication.Text = Controller.GetcurrentBook()[2];
             txtboxQuantity.Text = Controller.GetcurrentBook()[3];
             cmboxAuthor.Text = $"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}";
 
+            // Récupère les données auteur
             Controller.SetauthorData();
 
+            //Nettoye le combobox
             cmboxAuthor.Items.Clear();
 
-
+            //Charge le combo box avec les données auteur
             for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
             {
                 cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);

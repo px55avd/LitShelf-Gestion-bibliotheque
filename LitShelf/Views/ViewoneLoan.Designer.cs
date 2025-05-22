@@ -56,6 +56,7 @@
             this.btnUpdateloan.TabIndex = 133;
             this.btnUpdateloan.Text = "Modifier";
             this.btnUpdateloan.UseVisualStyleBackColor = true;
+            this.btnUpdateloan.Click += new System.EventHandler(this.btnUpdateloan_Click);
             // 
             // btnDeleteloan
             // 
@@ -63,8 +64,9 @@
             this.btnDeleteloan.Name = "btnDeleteloan";
             this.btnDeleteloan.Size = new System.Drawing.Size(128, 41);
             this.btnDeleteloan.TabIndex = 132;
-            this.btnDeleteloan.Text = "Supprimer";
+            this.btnDeleteloan.Text = "Retouner";
             this.btnDeleteloan.UseVisualStyleBackColor = true;
+            this.btnDeleteloan.Click += new System.EventHandler(this.btnDeleteloan_Click);
             // 
             // LblLoandate
             // 
@@ -240,6 +242,7 @@
             this.Name = "ViewoneLoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewoneLoan_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -29,14 +29,10 @@
         private void InitializeComponent()
         {
             this.cmboxClient = new System.Windows.Forms.ComboBox();
-            this.dtmpBackdate = new System.Windows.Forms.DateTimePicker();
-            this.dtmpLoandate = new System.Windows.Forms.DateTimePicker();
             this.btnValidnewLoan = new System.Windows.Forms.Button();
             this.cmboxBook = new System.Windows.Forms.ComboBox();
-            this.LblLoandate = new System.Windows.Forms.Label();
             this.lblBook = new System.Windows.Forms.Label();
             this.lblClient = new System.Windows.Forms.Label();
-            this.lblbackdate = new System.Windows.Forms.Label();
             this.btnClientmenu = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnAuhormenu = new System.Windows.Forms.Button();
@@ -50,55 +46,33 @@
             // cmboxClient
             // 
             this.cmboxClient.FormattingEnabled = true;
-            this.cmboxClient.Location = new System.Drawing.Point(333, 199);
+            this.cmboxClient.Location = new System.Drawing.Point(321, 91);
             this.cmboxClient.Name = "cmboxClient";
             this.cmboxClient.Size = new System.Drawing.Size(274, 23);
             this.cmboxClient.TabIndex = 154;
             // 
-            // dtmpBackdate
-            // 
-            this.dtmpBackdate.Location = new System.Drawing.Point(333, 144);
-            this.dtmpBackdate.Name = "dtmpBackdate";
-            this.dtmpBackdate.Size = new System.Drawing.Size(274, 23);
-            this.dtmpBackdate.TabIndex = 153;
-            // 
-            // dtmpLoandate
-            // 
-            this.dtmpLoandate.Location = new System.Drawing.Point(333, 91);
-            this.dtmpLoandate.Name = "dtmpLoandate";
-            this.dtmpLoandate.Size = new System.Drawing.Size(274, 23);
-            this.dtmpLoandate.TabIndex = 152;
-            // 
             // btnValidnewLoan
             // 
-            this.btnValidnewLoan.Location = new System.Drawing.Point(479, 301);
+            this.btnValidnewLoan.Location = new System.Drawing.Point(467, 193);
             this.btnValidnewLoan.Name = "btnValidnewLoan";
             this.btnValidnewLoan.Size = new System.Drawing.Size(128, 41);
             this.btnValidnewLoan.TabIndex = 151;
             this.btnValidnewLoan.Text = "Valider";
             this.btnValidnewLoan.UseVisualStyleBackColor = true;
+            this.btnValidnewLoan.Click += new System.EventHandler(this.btnValidnewLoan_Click);
             // 
             // cmboxBook
             // 
             this.cmboxBook.FormattingEnabled = true;
-            this.cmboxBook.Location = new System.Drawing.Point(333, 253);
+            this.cmboxBook.Location = new System.Drawing.Point(321, 145);
             this.cmboxBook.Name = "cmboxBook";
             this.cmboxBook.Size = new System.Drawing.Size(274, 23);
             this.cmboxBook.TabIndex = 149;
             // 
-            // LblLoandate
-            // 
-            this.LblLoandate.AutoSize = true;
-            this.LblLoandate.Location = new System.Drawing.Point(333, 73);
-            this.LblLoandate.Name = "LblLoandate";
-            this.LblLoandate.Size = new System.Drawing.Size(90, 15);
-            this.LblLoandate.TabIndex = 148;
-            this.LblLoandate.Text = "Date d\'emprunt";
-            // 
             // lblBook
             // 
             this.lblBook.AutoSize = true;
-            this.lblBook.Location = new System.Drawing.Point(333, 235);
+            this.lblBook.Location = new System.Drawing.Point(321, 127);
             this.lblBook.Name = "lblBook";
             this.lblBook.Size = new System.Drawing.Size(32, 15);
             this.lblBook.TabIndex = 147;
@@ -107,20 +81,11 @@
             // lblClient
             // 
             this.lblClient.AutoSize = true;
-            this.lblClient.Location = new System.Drawing.Point(333, 181);
+            this.lblClient.Location = new System.Drawing.Point(321, 73);
             this.lblClient.Name = "lblClient";
             this.lblClient.Size = new System.Drawing.Size(38, 15);
             this.lblClient.TabIndex = 146;
             this.lblClient.Text = "Client";
-            // 
-            // lblbackdate
-            // 
-            this.lblbackdate.AutoSize = true;
-            this.lblbackdate.Location = new System.Drawing.Point(333, 126);
-            this.lblbackdate.Name = "lblbackdate";
-            this.lblbackdate.Size = new System.Drawing.Size(66, 15);
-            this.lblbackdate.TabIndex = 145;
-            this.lblbackdate.Text = "Date retour";
             // 
             // btnClientmenu
             // 
@@ -210,14 +175,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.cmboxClient);
-            this.Controls.Add(this.dtmpBackdate);
-            this.Controls.Add(this.dtmpLoandate);
             this.Controls.Add(this.btnValidnewLoan);
             this.Controls.Add(this.cmboxBook);
-            this.Controls.Add(this.LblLoandate);
             this.Controls.Add(this.lblBook);
             this.Controls.Add(this.lblClient);
-            this.Controls.Add(this.lblbackdate);
             this.Controls.Add(this.btnClientmenu);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAuhormenu);
@@ -229,6 +190,7 @@
             this.Name = "ViewnewLoan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.ViewnewLoan_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,14 +199,10 @@
         #endregion
 
         private ComboBox cmboxClient;
-        private DateTimePicker dtmpBackdate;
-        private DateTimePicker dtmpLoandate;
         private Button btnValidnewLoan;
         private ComboBox cmboxBook;
-        private Label LblLoandate;
         private Label lblBook;
         private Label lblClient;
-        private Label lblbackdate;
         private Button btnClientmenu;
         private Button btnBack;
         private Button btnAuhormenu;

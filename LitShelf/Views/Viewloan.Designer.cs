@@ -34,7 +34,7 @@
             this.btnMinus = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnNewloan = new System.Windows.Forms.Button();
-            this.pnlArticlebutton = new System.Windows.Forms.Panel();
+            this.pnlLoanbutton = new System.Windows.Forms.Panel();
             this.btnClientmenu = new System.Windows.Forms.Button();
             this.btnLoanmenu = new System.Windows.Forms.Button();
             this.btnAuthormenu = new System.Windows.Forms.Button();
@@ -63,6 +63,7 @@
             this.btnSearch.TabIndex = 94;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblNumberpages
             // 
@@ -82,6 +83,7 @@
             this.btnMinus.TabIndex = 92;
             this.btnMinus.Text = "-";
             this.btnMinus.UseVisualStyleBackColor = true;
+            this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
             // 
             // btnUp
             // 
@@ -92,6 +94,7 @@
             this.btnUp.TabIndex = 91;
             this.btnUp.Text = "+";
             this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnNewloan
             // 
@@ -103,12 +106,12 @@
             this.btnNewloan.UseVisualStyleBackColor = true;
             this.btnNewloan.Click += new System.EventHandler(this.btnNewloan_Click);
             // 
-            // pnlArticlebutton
+            // pnlLoanbutton
             // 
-            this.pnlArticlebutton.Location = new System.Drawing.Point(220, 106);
-            this.pnlArticlebutton.Name = "pnlArticlebutton";
-            this.pnlArticlebutton.Size = new System.Drawing.Size(507, 299);
-            this.pnlArticlebutton.TabIndex = 89;
+            this.pnlLoanbutton.Location = new System.Drawing.Point(220, 106);
+            this.pnlLoanbutton.Name = "pnlLoanbutton";
+            this.pnlLoanbutton.Size = new System.Drawing.Size(507, 299);
+            this.pnlLoanbutton.TabIndex = 89;
             // 
             // btnClientmenu
             // 
@@ -203,7 +206,7 @@
             this.Controls.Add(this.btnMinus);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnNewloan);
-            this.Controls.Add(this.pnlArticlebutton);
+            this.Controls.Add(this.pnlLoanbutton);
             this.Controls.Add(this.btnClientmenu);
             this.Controls.Add(this.btnLoanmenu);
             this.Controls.Add(this.btnAuthormenu);
@@ -215,6 +218,7 @@
             this.Name = "Viewloan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
+            this.Activated += new System.EventHandler(this.Viewloan_Activated);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,7 +232,7 @@
         private Button btnMinus;
         private Button btnUp;
         private Button btnNewloan;
-        private Panel pnlArticlebutton;
+        private Panel pnlLoanbutton;
         private Button btnClientmenu;
         private Button btnLoanmenu;
         private Button btnAuthormenu;

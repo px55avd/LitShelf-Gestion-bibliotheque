@@ -34,12 +34,13 @@ namespace LitShelf.Controller
         private string[,] _authors; // Stocke les auteurs
         private string[,] _books; // Stocke les livres
         private string[,] _loans; // Stocke les emprunts
+        private string[,] _booksBorrowable; // Stocke les livre empruntable
 
 
         private string[] _currentClient = new string[3]; // Stocke le client sélectionné
         private string[] _currentAuthor = new string[3]; //Stocke le auteur sélectionné
-
         private string[] _currentBook = new string[7]; // Stocke le livres sélectionné
+        private string[] _currentLoan = new string[8]; // Strocke l'emprunt sélectioné
 
 
 
@@ -210,15 +211,42 @@ namespace LitShelf.Controller
         }
 
         /// <summary>
+        /// Charge les données livres à partir du modèle et les stocke dans le tableau local "_loans".
+        /// </summary>
+        public void SetloanData()
+        {
+            _loans = _model.ReadloanData(); // Appelle la méthode du modèle pour récupérer les données emprunts et les stocke dans une variable locale.
+        }
+
+
+
+        /// <summary>
+        /// Charge les données livres empruntable à partir du modèle et les stocke dans le tableau local "_booksBorrowable".
+        /// </summary>
+        public void SetbookBorrowabledata()
+        {
+            _booksBorrowable = _model.ReadbookDataBorrowable(); // Appelle la méthode du modèle pour récupérer les données emprunts et les stocke dans une variable locale.
+        }
+
+
+
+        /// <summary>
         /// Charge les données livres filtrés à partir du modèle et les stocke dans le tableau local "_books".
         /// </summary>
         /// <param name="idAuthor">Clé étrangère de l'auteur</param>
         public void SetbookDataFilter(string idAuthor)
         {
-            _books = _model.ReadbookDataFiler(idAuthor); // Appelle la méthode du modèle pour récupérer les données auteurs et les stocke dans une variable locale.
+            _books = _model.ReadbookDataFiler(idAuthor); // Appelle la méthode du modèle pour récupérer les données livres filtrés et les stocke dans une variable locale.
         }
 
-
+        /// <summary>
+        /// Charge les données emprunts filtrés à partir du modèle et les stocke dans le tableau local "_loans".
+        /// </summary>
+        /// <param name="idClient">Clé étrangère du client</param>
+        public void SetloanDataFiler(string idClient)
+        {
+            _loans = _model.ReadloanDataFiler(idClient); // Appelle la méthode du modèle pour récupérer les données emprunt filtrer et les stocke dans une variable locale.
+        }
 
         /// <summary>
         /// Retourne les données clients chargées dans `_clients`.
@@ -246,6 +274,27 @@ namespace LitShelf.Controller
         {
             return _books;
         }
+
+        /// <summary>
+        /// Retourne les données livres chargées dans "_loans".
+        /// </summary>
+        /// <returns>Un tableau 2D contenant les données lives.</returns>
+        public string[,] GetloanData()
+        {
+            return _loans;
+        }
+
+
+
+        /// <summary>
+        /// Retourne les données livres empruntables chargées dans "_booksBorrowable".
+        /// </summary>
+        /// <returns>Un tableau 2D contenant les données lives.</returns>
+        public string[,] GetbookBorrowabledata()
+        {
+            return _booksBorrowable;
+        }
+
 
 
 
@@ -284,6 +333,16 @@ namespace LitShelf.Controller
             _model.CreatenewBook(ISBN, title, date, quantity, id_auteur);
         }
 
+        /// <summary>
+        /// Enregistre un nouvel emprunt dans la base de données.
+        /// </summary>
+        /// <param name="idClient">La clé étangère du client.</param>
+        /// <param name="idBook">La clé étangère de l'exemplaire</param>
+        public void CreatenewLoan(string idClient, string idBook)
+        {
+            _model.CreatenewLoan(idClient, idBook);
+        }
+
 
 
         /// <summary>
@@ -319,7 +378,17 @@ namespace LitShelf.Controller
             _model.Updatebook(ISBN, title, date, quantity, id_auteur);
         }
 
-
+        /// <summary>
+        /// Modifie un emprunt dans la base de données.
+        /// </summary>
+        /// <param name="idLoan">Clé primaire de l'emprunt</param>
+        /// <param name="backDate">Date retour de l'emprunt</param>
+        /// <param name="idClient">La clé étangère du client.</param>
+        /// <param name="idBook">La clé étangère de l'exemplaire</param>
+        public void Updateloan(string idLoan, string backDate, string idClient, string idBook)
+        {
+            _model.Updateloan(idLoan, backDate, idClient, idBook);
+        }
 
 
         /// <summary>
@@ -346,96 +415,13 @@ namespace LitShelf.Controller
             _model.Deletebook(_currentBook[0]);
         }
 
-
-        ///// <summary>
-        ///// Affiche une grille de boutons représentant les clients, correspondant à la page demandée.
-        ///// Chaque bouton permet d'afficher les détails du client sélectionné.
-        ///// </summary>
-        ///// <param name="page">Le numéro de la page à afficher (index 0-based).</param>
-        ///// <param name="form">Le formulaire actuel, qui sera masqué après sélection d'un client.</param>
-        ///// <param name="pnl">Le panneau dans lequel les boutons seront affichés.</param>
-        //public void ShowClientTable(int page, Form form, Panel pnl)
-        //{
-        //    pnl.Controls.Clear(); // Efface les anciens boutons du panneau
-
-        //    int nbClients = _clients.GetLength(0); // Nombre total de clients
-        //    int debut = page * _elementBypage; // Index de départ des éléments pour cette page
-        //    int fin = Math.Min(debut + _elementBypage, nbClients); // Ne pas dépasser le nombre total de clients
-
-        //    for (int i = debut; i < fin; i++)
-        //    {
-        //        string clientName = $"{_clients[i, 2]} {_clients[i, 1]}"; // Prénom + Nom
-
-        //        if (_clients[i, 0] != null) // Vérifie que le client est valide (champ ID ou autre non null)
-        //        {
-        //            Button btn = new Button
-        //            {
-        //                Text = clientName,
-        //                Size = new Size(200, 40)
-        //            };
-
-        //            // Position du bouton dans la grille
-        //            int colonne = (i - debut) % _columns;
-        //            int ligne = (i - debut) / _columns;
-        //            btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
-
-        //            int index = i; // Nécessaire pour capturer l'index correct dans l'événement
-
-        //            // Ajoute les actions sur clic du bouton : sélectionne le client, masque le formulaire, change de vue
-        //            btn.Click += (s, args) => SetcurrentClient(_clients[index, 0], _clients[index, 1], _clients[index, 2]);
-        //            btn.Click += (s, args) => form.Hide();
-        //            btn.Click += (s, args) => changeView("ViewoneClient", form);
-
-        //            pnl.Controls.Add(btn); // Ajoute le bouton au panneau
-        //        }
-        //    }
-        //}
-
-
-
-        ///// <summary>
-        ///// Affiche un tableau de boutons représentant les auteurs sur une page donnée.
-        ///// Chaque bouton correspond à un auteur et permet d’afficher ses détails lors d’un clic.
-        ///// </summary>
-        ///// <param name="page">Le numéro de la page actuelle à afficher.</param>
-        ///// <param name="form">Le formulaire actif, qui sera masqué après le clic sur un auteur.</param>
-        ///// <param name="pnl">Le panneau dans lequel les boutons des auteurs seront affichés.</param>
-        //public void ShowAuthorTable(int page, Form form, Panel pnl)
-        //{
-        //    pnl.Controls.Clear(); // Efface les anciens contrôles du panneau (boutons d'auteurs précédents)
-
-        //    int nbAuthor = _authors.GetLength(0); // Nombre total d’auteurs
-        //    int debut = page * _elementBypage; // Index de départ en fonction de la pagination
-        //    int fin = Math.Min(debut + _elementBypage, nbAuthor); // Index de fin (ne dépasse pas le total)
-
-        //    for (int i = debut; i < fin; i++)
-        //    {
-        //        string authorName = $"{_authors[i, 2]} {_authors[i, 1]}"; // Prénom + Nom
-
-        //        if (_clients[i, 0] != null) // Vérifie que l'auteur est lié à un client (ou existe ?)
-        //        {
-        //            Button btn = new Button
-        //            {
-        //                Text = authorName,
-        //                Size = new Size(200, 40)
-        //            };
-
-        //            // Calcul de la position du bouton dans la grille
-        //            int colonne = (i - debut) % _columns;
-        //            int ligne = (i - debut) / _columns;
-        //            btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
-
-        //            int index = i; // Capture de l'index dans la boucle pour l'utiliser dans les événements
-
-        //            // Événements au clic : sélectionne l’auteur, cache le formulaire et change la vue
-        //            btn.Click += (s, args) => SetcurrentAuthor(_authors[index, 0], _authors[index, 1], _authors[index, 2]);
-        //            btn.Click += (s, args) => form.Hide();
-        //            btn.Click += (s, args) => changeView("ViewoneAuthor", form);
-
-        //            pnl.Controls.Add(btn); // Ajoute le bouton au panneau
-        //        }
-        //    }
-        //}
+        /// <summary>
+        /// Supprime l'emprunt selectionné
+        /// </summary>
+        public void Deleteloan()
+        {
+            _model.Deleteloan(_currentLoan[0]);
+        }
 
 
 
@@ -490,8 +476,6 @@ namespace LitShelf.Controller
             }
 
         }
-
-
 
         /// <summary>
         /// Afficahge des clients.
@@ -568,6 +552,51 @@ namespace LitShelf.Controller
             }
         }
 
+        /// <summary>
+        /// Affiche une grille de boutons représentant les emprunts, correspondant à la page demandée.
+        /// Chaque bouton permet d'afficher les détails de l'emprunt sélectionné.
+        /// </summary>
+        /// <param name="page">Le numéro de la page à afficher.</param>
+        /// <param name="form">Le formulaire actuel, qui sera masqué après sélection d'un emrunt.</param>
+        /// <param name="pnl">Le panneau dans lequel les boutons seront affichés.</param>
+        public void ShowLoanTable(int page, Form form, Panel pnl)
+        {
+            pnl.Controls.Clear(); // Efface les anciens boutons du panneau
+
+            int nbLoans = _loans.GetLength(0); // Nombre total de clients
+            int debut = page * _elementBypage; // Index de départ des éléments pour cette page
+            int fin = Math.Min(debut + _elementBypage, nbLoans); // Ne pas dépasser le nombre total de clients
+
+            for (int i = debut; i < fin; i++)
+            {
+                string loanName = $"{_loans[i, 7]} {_loans[i, 6]} - {_loans[i, 5]} \nRetour: {Convert.ToDateTime(_loans[i, 2]).ToString("dd.MM.yyyy")}"; // Prénom + Nom de l'auteur et titre du livre  date de retour
+
+                if (_loans[i, 0] != null) // Vérifie que l'emprunt est valide (champ ID ou autre non null)
+                {
+                    Button btn = new Button
+                    {
+                        Text = loanName,
+                        Size = new Size(200, 40)
+                    };
+
+                    // Position du bouton dans la grille
+                    int colonne = (i - debut) % _columns;
+                    int ligne = (i - debut) / _columns;
+                    btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
+
+                    int index = i; // Nécessaire pour capturer l'index correct dans l'événement
+
+                    // Ajoute les actions sur clic du bouton : sélectionne le client, masque le formulaire, change de vue
+                    btn.Click += (s, args) => SetcurrentLoan(_loans[index, 0], _loans[index, 1], _loans[index, 2], _loans[index, 3], _loans[index, 4], _loans[index, 5], _loans[index, 6], _loans[index, 7]);
+                    btn.Click += (s, args) => form.Hide();
+                    btn.Click += (s, args) => changeView("ViewoneLoan", form);
+
+                    pnl.Controls.Add(btn); // Ajoute le bouton au panneau
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// Retourne le numéro actuel de la page en cours d'affichage.
@@ -613,6 +642,15 @@ namespace LitShelf.Controller
         public int GetNumberOfBooksByPage()
         {
             return _booksBypage;
+        }
+
+        /// <summary>
+        /// Retourne le nombre d'emprunt affichés par page.
+        /// </summary>
+        /// <returns>Le nombre d'emprunt par page.</returns>
+        public int GetNumberOfLoansByPage()
+        {
+            return _loansBypage;
         }
 
 
@@ -682,6 +720,24 @@ namespace LitShelf.Controller
             _currentBook[6] = currrentBookauthorName;
         }
 
+        public void SetcurrentLoan(string currrentloanindex, string currrentLoanDate, string currrentLoanbackDate, string currrentLoanbookID,
+            string currrentLoanclientID, string cuurentLoantitleBook, string cuurentLoannameClient, string cuurentLoanfisrtnameClient)
+        {
+            _currentLoan[0] = currrentloanindex;
+            _currentLoan[1] = currrentLoanDate;
+            _currentLoan[2] = currrentLoanbackDate;
+            _currentLoan[3] = currrentLoanclientID;
+            _currentLoan[4] = currrentLoanbookID;
+            _currentLoan[5] = cuurentLoantitleBook;
+            _currentLoan[6] = cuurentLoannameClient;
+            _currentLoan[7] = cuurentLoanfisrtnameClient;
+
+
+
+        }
+
+
+
         /// <summary>
         /// Retourne les informations du client sélectionné
         /// </summary>
@@ -709,6 +765,14 @@ namespace LitShelf.Controller
             return _currentBook;
         }
 
+        /// <summary>
+        /// Retourne les informations du l'emprunt sélectionné
+        /// </summary>
+        /// <returns>Tableau de string des informations emprunt</returns>
+        public string[] GetcurrentLoan()
+        {
+            return _currentLoan;
+        }
 
 
     }

@@ -88,19 +88,23 @@ namespace LitShelf
                 pnlBookbutton                // Panel où les boutons clients sont affichés
             );
 
+            // Récupère tous les auteur
             Controller.SetauthorData();
 
+            //Nettoye le combobox
             cmboxAuthor.Items.Clear();
 
+            //Afffiche le texte
             cmboxAuthor.Text = "Toutes les auteurs";
 
+            // Ajout en item
+            cmboxAuthor.Items.Add("Toutes les auteurs");
 
+            //Intergre tous les auteurs en items du combobox
             for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
             {
                 cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
             }
-
-            cmboxAuthor.Items.Add("Toutes les auteurs");
 
         }
 

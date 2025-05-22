@@ -25,6 +25,7 @@ namespace LitShelf.Model
         private int _lineAuthor;
         private int _lineBook;
         private int _lineLoan;
+        private int _lineBookborrowable;
 
         /// <summary>
         /// Constructeur par défaut
@@ -277,6 +278,123 @@ namespace LitShelf.Model
             _lineBook = count;
         }
 
+        /// <summary>
+        /// Récupère le nombre d'emprunt dans la base de données et le stocke dans _lineLoan.
+        /// </summary>
+        private void GetloanCount()
+        {
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL
+            string query = @"SELECT COUNT(t_emprunt.emprunt_id)
+                            FROM t_emprunt
+                            INNER JOIN t_client ON t_emprunt.client_id = t_client.client_id
+                            INNER JOIN t_exemplaire ON t_emprunt.exemplaire_id = t_exemplaire.exemplaire_id
+                            INNER JOIN t_livre ON t_exemplaire.ISBN = t_livre.ISBN;";
+
+            // Prépare l'exécution de la requête
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection); ;
+            MySqlDataReader reader;
+
+            //Compteur
+            int count = 0;
+
+            try
+            {
+                // Ouvre la connexion avec la DB.
+                myConnection.Open();
+
+                // Exécute la requète
+                reader = commandDatabase.ExecuteReader();
+
+                // Vérifie si le lecteur trouve des colonnes.
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0); // Attribue la valeur de la requète au compteur
+                    }
+                }
+
+                // Ferme le lecteur et la connexion avec la DB.     
+                reader.Close();
+                myConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                // Affiche Toutes erreurs éventuelles
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+            }
+
+            // Attribue le compte à la variable privée.
+            _lineLoan = count;
+        }
+
+        /// <summary>
+        /// Récupère le nombre d'emprunt dans la base de données et le stocke dans _lineLoan.
+        /// </summary>
+        private void GetbookBorrowablecount()
+        {
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL
+            string query = @"SELECT COUNT(*) AS nb_livres_disponibles
+                            FROM (
+                                SELECT     
+                                    t_livre.ISBN,
+                                    t_livre.titre,
+                                    COUNT(t_exemplaire.exemplaire_id) AS nb_exemplaires_disponibles,
+                                    MIN(t_exemplaire.exemplaire_id) AS un_exemplaire_disponible_id
+                                FROM t_livre
+                                JOIN t_exemplaire ON t_livre.ISBN = t_exemplaire.ISBN
+                                LEFT JOIN t_emprunt 
+                                    ON t_exemplaire.exemplaire_id = t_emprunt.exemplaire_id 
+                                    AND t_emprunt.date_retour > CURDATE()
+                                WHERE t_emprunt.emprunt_id IS NULL
+                                GROUP BY t_livre.ISBN, t_livre.titre
+                                HAVING nb_exemplaires_disponibles > 0
+                            ) AS livres_disponibles;;";
+
+            // Prépare l'exécution de la requête
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection); ;
+            MySqlDataReader reader;
+
+            //Compteur
+            int count = 0;
+
+            try
+            {
+                // Ouvre la connexion avec la DB.
+                myConnection.Open();
+
+                // Exécute la requète
+                reader = commandDatabase.ExecuteReader();
+
+                // Vérifie si le lecteur trouve des colonnes.
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        count = reader.GetInt32(0); // Attribue la valeur de la requète au compteur
+                    }
+                }
+
+                // Ferme le lecteur et la connexion avec la DB.     
+                reader.Close();
+                myConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+                // Affiche Toutes erreurs éventuelles
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+            }
+
+            // Attribue le compte à la variable privée.
+            _lineBookborrowable = count;
+        }
+
 
 
         /// <summary>
@@ -440,6 +558,131 @@ namespace LitShelf.Model
             return data; // Retourne le tableau rempli (ou vide en cas d’échec)
         }
 
+        /// <summary>
+        /// Récupère toutes les données de la table t_emprunt avec les liaisons,
+        /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
+        /// </summary>
+        /// <returns>Un tableau contenant les données emprunt (date emprunt, date retour, ID client, ID exemplaire).</returns>
+        public string[,] ReadloanData()
+        {
+            GetloanCount(); // Appelle une méthode externe pour définir la valeur de _lineLoan
+
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL pour récupérer tous les auteurs
+            string query = @"
+            SELECT t_emprunt.emprunt_id, t_emprunt.date_emprunt, t_emprunt.date_retour, t_emprunt.client_id, t_emprunt.exemplaire_id, t_livre.titre, t_client.nom, t_client.prénom
+            FROM t_emprunt
+            INNER JOIN t_client ON t_emprunt.client_id = t_client.client_id
+            INNER JOIN t_exemplaire ON t_emprunt.exemplaire_id = t_exemplaire.exemplaire_id
+            INNER JOIN t_livre ON t_exemplaire.ISBN = t_livre.ISBN;";
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection);
+
+            MySqlDataReader reader;
+
+            string[,] data = new string[0, 0]; // Initialisation par défaut (sera remplacée si requête réussie)
+
+            try
+            {
+                myConnection.Open(); // Ouvre la connexion à la base
+
+                reader = commandDatabase.ExecuteReader(); // Exécute la requête et lit les résultats
+
+                data = new string[_lineLoan, reader.FieldCount]; // Crée un tableau avec [_lineLoan]  de lignes et autant de colonnes que de champs
+
+                int count = 0; // Compteur de ligne
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[count, i] = reader.GetValue(i).ToString(); // Stocke chaque champ dans le tableau
+                        }
+                        count++; // Passe à la ligne suivante
+                    }
+                }
+
+                myConnection.Close(); // Ferme la connexion après la lecture
+            }
+            catch (Exception ex)
+            {
+                // Affiche un message en cas d'erreur
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+            }
+
+            return data; // Retourne le tableau rempli (ou vide en cas d’échec)
+        }
+
+
+        /// <summary>
+        /// Récupère toutes les données des livres pouvant être emprunté,
+        /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
+        /// </summary>
+        /// <returns>Un tableau contenant les données emprunt (, date retour, ID client, ID exemplaire).</returns>
+        public string[,] ReadbookDataBorrowable()
+        {
+            GetbookBorrowablecount(); // Appelle une méthode externe pour définir la valeur de _lineBookborrowable
+
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL pour récupérer tous les auteurs
+            string query = @"
+            SELECT     
+                t_livre.ISBN,
+                t_livre.titre,
+            COUNT(t_exemplaire.exemplaire_id) AS nb_exemplaires_disponibles,
+            MIN(t_exemplaire.exemplaire_id) AS un_exemplaire_disponible_id
+            FROM t_livre
+            JOIN t_exemplaire ON t_livre.ISBN = t_exemplaire.ISBN
+            LEFT JOIN t_emprunt 
+                ON t_exemplaire.exemplaire_id = t_emprunt.exemplaire_id 
+                AND t_emprunt.date_retour > CURDATE()
+            WHERE t_emprunt.emprunt_id IS NULL
+            GROUP BY t_livre.ISBN, t_livre.titre
+            HAVING nb_exemplaires_disponibles > 0;";
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection);
+
+            MySqlDataReader reader;
+
+            string[,] data = new string[0, 0]; // Initialisation par défaut (sera remplacée si requête réussie)
+
+            try
+            {
+                myConnection.Open(); // Ouvre la connexion à la base
+
+                reader = commandDatabase.ExecuteReader(); // Exécute la requête et lit les résultats
+
+                data = new string[_lineBookborrowable, reader.FieldCount]; // Crée un tableau avec [_lineBookborrowable]  de lignes et autant de colonnes que de champs
+
+                int count = 0; // Compteur de ligne
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[count, i] = reader.GetValue(i).ToString(); // Stocke chaque champ dans le tableau
+                        }
+                        count++; // Passe à la ligne suivante
+                    }
+                }
+
+                myConnection.Close(); // Ferme la connexion après la lecture
+            }
+            catch (Exception ex)
+            {
+                // Affiche un message en cas d'erreur
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+            }
+
+            return data; // Retourne le tableau rempli (ou vide en cas d’échec)
+        }
+
 
 
         /// <summary>
@@ -495,11 +738,72 @@ namespace LitShelf.Model
             catch (Exception ex)
             {
                 // Affiche un message en cas d'erreur
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+            }
+
+            return data; // Retourne le tableau rempli (ou vide en cas d’échec)
+        }
+
+        /// <summary>
+        /// Récupère toutes les données de la table t_emprunt avec les liaisons avec la table t_exemplaire et t_client et t_livre depuis la base de données,
+        /// et les retourne sous forme d’un tableau à deux dimensions (string[,]).
+        /// </summary>
+        /// <returns>Un tableau contenant les données livres (ISBN, Titre, prénom du clienzt ect).</returns>
+        public string[,] ReadloanDataFiler(string idClient)
+        {
+            GetloanCount(); // Appelle une méthode externe pour définir la valeur de _lineLoan
+
+            myConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL pour récupérer tous les auteurs
+            string query = @"
+            SELECT t_emprunt.emprunt_id, t_emprunt.date_emprunt, t_emprunt.date_retour, t_emprunt.client_id, t_emprunt.exemplaire_id, t_livre.titre, t_client.nom, t_client.prénom
+            FROM t_emprunt
+            INNER JOIN t_client ON t_emprunt.client_id = t_client.client_id
+            INNER JOIN t_exemplaire ON t_emprunt.exemplaire_id = t_exemplaire.exemplaire_id
+            INNER JOIN t_livre ON t_exemplaire.ISBN = t_livre.ISBN
+            WHERE (@Idclient IS NULL OR t_client.client_id = @Idclient);";
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, myConnection);
+            commandDatabase.Parameters.AddWithValue("@Idclient", idClient);
+
+            MySqlDataReader reader;
+
+            string[,] data = new string[0, 0]; // Initialisation par défaut (sera remplacée si requête réussie)
+
+            try
+            {
+                myConnection.Open(); // Ouvre la connexion à la base
+
+                reader = commandDatabase.ExecuteReader(); // Exécute la requête et lit les résultats
+
+                data = new string[_lineLoan, reader.FieldCount]; // Crée un tableau avec [_lineLoan]  de lignes et autant de colonnes que de champs
+
+                int count = 0; // Compteur de ligne
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            data[count, i] = reader.GetValue(i).ToString(); // Stocke chaque champ dans le tableau
+                        }
+                        count++; // Passe à la ligne suivante
+                    }
+                }
+
+                myConnection.Close(); // Ferme la connexion après la lecture
+            }
+            catch (Exception ex)
+            {
+                // Affiche un message en cas d'erreur
                 MessageBox.Show($"Échec de la connexion 2: {ex.Message}");
             }
 
             return data; // Retourne le tableau rempli (ou vide en cas d’échec)
         }
+
 
 
         /// <summary>
@@ -677,6 +981,49 @@ namespace LitShelf.Model
                     databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
                 }
             }
+        }
+
+        /// <summary>
+        /// Enregistre un nouvel emprunt dans la base de données.
+        /// </summary>
+        /// <param name="idClient">La clé étangère du client.</param>
+        /// <param name="idBook">La clé étangère de l'exemplaire</param>
+        public void CreatenewLoan(string idClient, string idBook)
+        {
+
+                // Création de la connexion à la base de données
+                MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+                // Requête SQL : insère l'auteur seulement s'il n'existe pas déjà
+                string query = @"
+                    INSERT INTO t_emprunt (date_emprunt, date_retour, client_id, exemplaire_id)
+                    VALUES (CURDATE(), DATE_ADD(CURDATE(), INTERVAL 14 DAY), @Idclient, @Idexemplaire);";
+
+                // Préparation de la commande avec les paramètres
+                MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+                commandDatabase.Parameters.AddWithValue("@Idclient", idClient);
+                commandDatabase.Parameters.AddWithValue("@Idexemplaire", idBook);
+
+                try
+                {
+                    databaseConnection.Open();
+                    int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Emprunt enregistré avec succès !");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    // Affiche une erreur en cas de problème
+                    MessageBox.Show("Erreur : " + ex.Message);
+                }
+                finally
+                {
+                    databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
+                }
         }
 
 
@@ -872,6 +1219,53 @@ namespace LitShelf.Model
             }
         }
 
+        /// <summary>
+        /// Modifie un emprunt dans la base de données.
+        /// </summary>
+        /// <param name="idLoan">Clé primaire de l'emprunt</param>
+        /// <param name="backDate">Date retour de l'emprunt</param>
+        /// <param name="idClient">La clé étangère du client.</param>
+        /// <param name="idBook">La clé étangère de l'exemplaire</param>
+        public void Updateloan(string idLoan, string backDate, string idClient, string idBook)
+        {
+
+            // Création de la connexion à la base de données
+            MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+            // Requête SQL : insère l'auteur seulement s'il n'existe pas déjà
+            string query = @"UPDATE `t_emprunt` 
+                            SET `date_retour` = @date_retour, `client_id` = @Idclient, `exemplaire_id` = @Idexemplaire 
+                            WHERE `t_emprunt`.`emprunt_id` = @Idloan ;";
+
+
+            // Préparation de la commande avec les paramètres
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.Parameters.AddWithValue("@Idclient", idClient);
+            commandDatabase.Parameters.AddWithValue("@Idexemplaire", idBook);
+            commandDatabase.Parameters.AddWithValue("@Idloan", idLoan);
+            commandDatabase.Parameters.AddWithValue("@date_retour", backDate);
+
+            try
+            {
+                databaseConnection.Open();
+                int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Emprunt modifié avec succès !");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Affiche une erreur en cas de problème
+                MessageBox.Show("Erreur : " + ex.Message);
+            }
+            finally
+            {
+                databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
+            }
+        }
 
 
         /// <summary>
@@ -1007,6 +1401,49 @@ namespace LitShelf.Model
             finally
             {
                 databaseConnection.Close(); // Ferme toujours la connexion, même en cas d'erreur
+            }
+
+        }
+
+        /// <summary>
+        /// Supprime un emprunt dans la base de données
+        /// </summary>
+        /// <param name="id">La clé primaire lié à l'emprunt. /param>
+        public void Deleteloan(string id)
+        {
+            // Requête SQL : supprime l'auteur seulement au bonne index.
+            string query = @"   
+                DELETE FROM t_emprunt 
+                WHERE emprunt_id = @Id;";
+
+            // Création de la connexion à la base de données
+            MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
+
+            // Préparation de la commande avec les paramètres
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.Parameters.AddWithValue("@Id", id);
+
+            try
+            {
+                databaseConnection.Open();
+                int rowsAffected = commandDatabase.ExecuteNonQuery(); // Exécute la commande et récupère les lignes affectées
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Emprunt retourné avec succès !");
+                }
+                else
+                {
+                    MessageBox.Show("L'emprunt n'a pas pu être retourné.");
+                }
+
+                // Ferme toujours la connexion, même en cas d'erreur
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                // Affiche une erreur en cas de problème
+                MessageBox.Show(ex.Message);
             }
 
         }
