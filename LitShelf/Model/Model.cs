@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 using System.Text.RegularExpressions;
 
 namespace LitShelf.Model
@@ -1303,6 +1304,20 @@ namespace LitShelf.Model
                 // Ferme toujours la connexion, même en cas d'erreur
                 databaseConnection.Close();
             }
+            catch (MySqlException ex)
+            {
+                // contrainte de clé étrangère
+                if (ex.Number == 1451)
+                {
+                    MessageBox.Show("Erreur : Ce client est lié à un livre en cours d'emprunt.");
+                }
+                else
+                {
+                    // Affichage par défaut
+                    MessageBox.Show($"Erreur SQL ({ex.Code}) : {ex.Message}");
+                }
+
+            }
             catch (Exception ex)
             {
                 // Affiche une erreur en cas de problème
@@ -1329,8 +1344,6 @@ namespace LitShelf.Model
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
             commandDatabase.Parameters.AddWithValue("@Id", id);
 
-            //MySqlDataReader reader;
-
             try
             {
                 databaseConnection.Open();
@@ -1347,13 +1360,27 @@ namespace LitShelf.Model
 
                 // Ferme toujours la connexion, même en cas d'erreur
                 databaseConnection.Close();
+
+            }
+            catch (MySqlException ex)
+            {
+                // contrainte de clé étrangère
+                if (ex.Number == 1451) 
+                {
+                    MessageBox.Show("Erreur : Cet auteur est lié à un livre en cours d'emprunt.");
+                }
+                else
+                {
+                    // Affichage par défaut
+                    MessageBox.Show($"Erreur SQL ({ex.Code}) : {ex.Message}");
+                }
+                
             }
             catch (Exception ex)
             {
                 // Affiche une erreur en cas de problème
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         /// <summary>
