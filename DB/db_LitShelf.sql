@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : jeu. 22 mai 2025 à 14:01
+-- Généré le : ven. 23 mai 2025 à 12:38
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.0.27
 
@@ -46,40 +46,50 @@ CREATE DEFINER=`root`@`%` PROCEDURE `AjouterLivreAvecExemplaires` (IN `p_ISBN` V
     END WHILE;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `ModifierLivreEtExemplaires` (IN `p_ISBN` VARCHAR(10), IN `p_titre` VARCHAR(255), IN `p_annee` VARCHAR(4), IN `p_nouvelle_quantite` INT, OUT `p_message` VARCHAR(255))   BEGIN
+CREATE DEFINER=`root`@`%` PROCEDURE `ModifierLivreEtExemplaires` (IN `p_ISBN` VARCHAR(10), IN `p_titre` VARCHAR(255), IN `p_annee` VARCHAR(4), IN `p_nouvelle_quantite` INT, OUT `p_message` VARCHAR(255), IN `p_auteur_id` INT, IN `p_ISBN_original` VARCHAR(10), IN `p_auteur_id_old` INT)   BEGIN
     DECLARE qte_actuelle INT DEFAULT 0;
     DECLARE diff INT DEFAULT 0;
     DECLARE i INT;
 
+    -- Vérifier si le nouvel ISBN existe déjà (pour éviter conflit)
+    IF EXISTS (SELECT 1 FROM t_livre WHERE ISBN = p_ISBN AND ISBN <> p_ISBN_original) THEN
+        SET p_message = 'Erreur : le nouvel ISBN existe déjà.';
+    END IF;
+
     -- Récupérer la quantité actuelle
-    SELECT quantité INTO qte_actuelle FROM t_livre WHERE ISBN = p_ISBN;
+    SELECT quantité INTO qte_actuelle FROM t_livre WHERE ISBN = p_ISBN_original;
 
-    -- Mettre à jour titre et année
-    UPDATE t_livre
-    SET titre = p_titre,
-        année_de_publication = p_annee
-    WHERE ISBN = p_ISBN;
+    -- Insérer le nouveau livre
+    INSERT INTO t_livre (ISBN, titre, année_de_publication, quantité)
+    VALUES (p_ISBN, p_titre, p_annee, qte_actuelle);
 
-    -- Vérifier si la quantité doit être augmentée
+    -- Mettre à jour la table écrire
+    UPDATE écrire
+    SET ISBN = p_ISBN, auteur_id = p_auteur_id
+    WHERE ISBN = p_ISBN_original AND auteur_id = p_auteur_id_old;
+
+    -- Mettre à jour les exemplaires
+    UPDATE t_exemplaire
+    SET ISBN = p_ISBN
+    WHERE ISBN = p_ISBN_original;
+
+    -- Supprimer l'ancien livre
+    DELETE FROM t_livre WHERE ISBN = p_ISBN_original;
+
+    -- Ajouter les exemplaires supplémentaires si besoin
     IF p_nouvelle_quantite > qte_actuelle THEN
         SET diff = p_nouvelle_quantite - qte_actuelle;
-
-        -- Mettre à jour la quantité
-        UPDATE t_livre
-        SET quantité = p_nouvelle_quantite
-        WHERE ISBN = p_ISBN;
-
-        -- Insérer les exemplaires supplémentaires
         SET i = 1;
         WHILE i <= diff DO
             INSERT INTO t_exemplaire (commentaire, ISBN)
             VALUES (CONCAT('Exemplaire ajouté ', qte_actuelle + i), p_ISBN);
             SET i = i + 1;
         END WHILE;
-
+        -- Mettre à jour la nouvelle quantité
+        UPDATE t_livre SET quantité = p_nouvelle_quantite WHERE ISBN = p_ISBN;
         SET p_message = CONCAT('Quantité mise à jour à ', p_nouvelle_quantite, ' et ', diff, ' exemplaires ajoutés.');
     ELSE
-        SET p_message = 'Quantité inchangée. Aucun exemplaire ajouté. La quantité ne peut diminuer';
+        SET p_message = 'Quantité inchangée. Aucun exemplaire ajouté. La quantité ne peut diminuer.';
     END IF;
 END$$
 
@@ -151,7 +161,6 @@ INSERT INTO `t_auteur` (`auteur_id`, `nom`, `prénom`) VALUES
 (29, 'Sarrazin', 'Lucie'),
 (30, 'Delacroix', 'Émile'),
 (31, 'Villon', 'François'),
-(32, 'Egal Ahmed', 'Omar'),
 (34, 'Oda', 'Echiro');
 
 -- --------------------------------------------------------
@@ -225,7 +234,8 @@ CREATE TABLE `t_emprunt` (
 
 INSERT INTO `t_emprunt` (`emprunt_id`, `date_emprunt`, `date_retour`, `client_id`, `exemplaire_id`) VALUES
 (1, '2025-05-22', '2025-05-05', 5, 9),
-(7, '2025-05-22', '2025-06-05', 7, 10);
+(7, '2025-05-22', '2025-06-19', 5, 10),
+(8, '2025-05-23', '2025-06-06', 3, 29);
 
 -- --------------------------------------------------------
 
@@ -244,8 +254,8 @@ CREATE TABLE `t_exemplaire` (
 --
 
 INSERT INTO `t_exemplaire` (`exemplaire_id`, `commentaire`, `ISBN`) VALUES
-(1, 'Première édition, couverture rigide', '9780140449'),
-(2, 'Edition poche', '9780140449'),
+(1, 'Première édition, couverture rigide', '9780140451'),
+(2, 'Edition poche', '9780140451'),
 (3, 'Réimpression 2010', '9782070368'),
 (4, 'Edition collector, signée par l’auteur', '9782264056'),
 (5, 'Exemplaire annoté', '9782070409'),
@@ -254,8 +264,8 @@ INSERT INTO `t_exemplaire` (`exemplaire_id`, `commentaire`, `ISBN`) VALUES
 (9, 'Exemplaire réservé pour bibliothèque', '9782070361'),
 (10, 'Couverture souple', '9782070382'),
 (12, 'Réédition 2023', '9782070412'),
-(25, 'Exemplaire 1', '1234567890'),
-(26, 'Exemplaire ajouté 2', '1234567890');
+(29, 'Exemplaire 1', '7483938373'),
+(30, 'Exemplaire ajouté 2', '9780140451');
 
 -- --------------------------------------------------------
 
@@ -275,9 +285,9 @@ CREATE TABLE `t_livre` (
 --
 
 INSERT INTO `t_livre` (`ISBN`, `titre`, `année_de_publication`, `quantité`) VALUES
-('1234567890', 'la Bête Humaie', '1912', 2),
 ('6436745576', 'Les Misérables', '1884', 1),
-('9780140449', 'Les Misérables', '1862', 1),
+('7483938373', 'One piece - Volume 1', '1998', 1),
+('9780140451', 'Les Misérables - Édition augmentée Deluxe', '1865', 2),
 ('9782070360', 'Madame Bovary', '1857', 1),
 ('9782070361', 'Les Fleurs du mal', '1857', 1),
 ('9782070368', 'Le Petit Prince', '1943', 1),
@@ -304,16 +314,16 @@ CREATE TABLE `écrire` (
 
 INSERT INTO `écrire` (`ISBN`, `auteur_id`) VALUES
 ('6436745576', 1),
-('9780140449', 1),
+('9780140451', 1),
 ('9782070368', 2),
 ('9782070382', 3),
 ('9782264056', 3),
 ('9782070409', 4),
 ('9782757843', 5),
 ('9782070360', 6),
-('1234567890', 7),
 ('9782070361', 8),
-('9782070412', 9);
+('9782070412', 9),
+('7483938373', 34);
 
 --
 -- Index pour les tables déchargées
@@ -379,13 +389,13 @@ ALTER TABLE `t_client`
 -- AUTO_INCREMENT pour la table `t_emprunt`
 --
 ALTER TABLE `t_emprunt`
-  MODIFY `emprunt_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `emprunt_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `t_exemplaire`
 --
 ALTER TABLE `t_exemplaire`
-  MODIFY `exemplaire_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `exemplaire_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Contraintes pour les tables déchargées
