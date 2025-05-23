@@ -64,6 +64,8 @@ namespace LitShelf.Views
 
         private void ViewoneBook_Activated(object sender, EventArgs e)
         {
+
+
             //Réinitialise les champs
             lblNamebook.Text = "";
             txtboxISBN.Text = "";
@@ -72,30 +74,49 @@ namespace LitShelf.Views
             txtboxQuantity.Text = "";
             cmboxAuthor.Text = "";
 
+            //Nettoye le combobox
+            cmboxAuthor.Items.Clear();
+
             // Remplie le formulaire selon le livre sélectionné
             lblNamebook.Text = $"{Controller.GetcurrentBook()[1]}";
             txtboxISBN.Text = Controller.GetcurrentBook()[0];
             txtboxTitle.Text = Controller.GetcurrentBook()[1];
             txtboxYearofPublication.Text = Controller.GetcurrentBook()[2];
             txtboxQuantity.Text = Controller.GetcurrentBook()[3];
-            cmboxAuthor.Text = $"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}";
+            cmboxAuthor.Items.Insert(0, $"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}");
 
             // Récupère les données auteur
             Controller.SetauthorData();
 
-            //Nettoye le combobox
-            cmboxAuthor.Items.Clear();
+            //Empeche la saisie de texte
+            cmboxAuthor.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //Charge le combo box avec les données auteur
             for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
             {
-                cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
+                //Vérifie si le auteur à ajouter est déja dans le combobox
+                if ($"{Controller.GetcurrentBook()[5]} {Controller.GetcurrentBook()[6]}" != Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1])
+                {
+                    cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
+                } 
             }
 
+            cmboxAuthor.SelectedIndex = 0;
+            cmboxAuthor.DropDownHeight = 150; // Hauteur en pixels
         }
 
         private void btnUpdatebook_Click(object sender, EventArgs e)
         {
+            //Variable pour récupérer les valeur
+            int idAuthor = 0;
+            string oldISBN = Controller.GetcurrentBook()[0];
+            int id_auteur_old = Convert.ToInt32(Controller.GetcurrentBook()[4]);
+            string ISBN = txtboxISBN.Text;
+            string title = txtboxTitle.Text;
+            string yearOfpublication =txtboxYearofPublication.Text;
+            string quantity = txtboxQuantity.Text;
+            string  nameAuthor = cmboxAuthor.Text;
+
             // vérifie que les deux champs sont vides
             if (txtboxQuantity.Text == string.Empty || txtboxISBN.Text == string.Empty || txtboxYearofPublication.Text == string.Empty || txtboxTitle.Text == string.Empty)
             {
@@ -105,21 +126,22 @@ namespace LitShelf.Views
             {
                 for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
                 {
-                    if (Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1] == cmboxAuthor.Text)
+                    if (Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1] == nameAuthor)
                     {
-                        // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
-                        DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier ce livre ?", "Attention, Modification", MessageBoxButtons.YesNo);
-
-                        // Vérifie si l'utilisateur a cliqué sur "Yes"
-                        if (result == DialogResult.Yes)
-                        {
-                            // Modifie un nouveau livre avec les information nécessaire
-                            Controller.Updatebook(txtboxISBN.Text, txtboxTitle.Text, txtboxYearofPublication.Text, txtboxQuantity.Text, Convert.ToInt32(Controller.GetauthorData()[i, 0]));
-
-                            Controller.changeView("Viewbook", FindForm());
-                        }
-
+                        idAuthor = Convert.ToInt32(Controller.GetauthorData()[i, 0]);
                     }
+                }
+
+                // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+                DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier ce livre ?", "Attention, Modification", MessageBoxButtons.YesNo);
+
+                // Vérifie si l'utilisateur a cliqué sur "Yes"
+                if (result == DialogResult.Yes)
+                {
+                    // Modifie un nouveau livre avec les information nécessaire
+                    Controller.Updatebook(ISBN, title, yearOfpublication, quantity, idAuthor, oldISBN, id_auteur_old);
+
+                    Controller.changeView("Viewbook", FindForm());
                 }
             }
         }

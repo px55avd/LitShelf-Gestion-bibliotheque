@@ -100,17 +100,22 @@ namespace LitShelf.Views
         /// <param name="e"></param>
         private void ViewnewBook_Activated(object sender, EventArgs e)
         {
+            // Nettoye le combobox
+            cmboxAuthor.Items.Clear();
+
             //Récupère les données auteur
             Controller.SetauthorData();
 
-            // Nettoye le combobox
-            cmboxAuthor.Items.Clear();
+            //Empeche la saisie de texte
+            cmboxAuthor.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Attribue les auteurs au combobox
             for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
             {
                 cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
             }
+ 
+            cmboxAuthor.DropDownHeight = 200; // Hauteur en pixels
         }
     }
 }

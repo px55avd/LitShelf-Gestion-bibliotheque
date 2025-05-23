@@ -100,11 +100,17 @@ namespace LitShelf
             // Ajout en item
             cmboxAuthor.Items.Add("Toutes les auteurs");
 
+            //Empeche la saisie de texte
+            cmboxAuthor.DropDownStyle = ComboBoxStyle.DropDownList;
+
             //Intergre tous les auteurs en items du combobox
             for (int i = 0; i < Controller.GetauthorData().GetLength(0); i++)
             {
                 cmboxAuthor.Items.Add(Controller.GetauthorData()[i, 2] + " " + Controller.GetauthorData()[i, 1]);
             }
+
+            cmboxAuthor.SelectedIndex = 0; // Selectionne le premier index 
+            cmboxAuthor.DropDownHeight = 200; // Hauteur en pixels
 
         }
 

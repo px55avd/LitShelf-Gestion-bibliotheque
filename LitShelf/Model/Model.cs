@@ -1164,7 +1164,9 @@ namespace LitShelf.Model
         /// <param name="date">Date de publication du livre </param>
         /// <param name="quantity">Quantité du livre</param>
         /// <param name="id_auteur">Clé étranger de l'auteur</param>
-        public void Updatebook(string ISBN, string title, string date, string quantity, int id_auteur)
+        /// <param name="oldISBN">Ancien ISBN du livre</param>
+        /// <param name="id_auteur_old">Ancienne clé étrangère de l'auteur</param>
+        public void Updatebook(string ISBN, string title, string date, string quantity, int id_auteur, string oldISBN, int id_auteur_old)
         {
             // Vérifie que le prénom et le nom sont valides selon les règles définies
             if (IsvalidISBN(ISBN) && IsvalidDate(date) && IsvalidDate(Convert.ToString(date)) && IsvalidQuantity(quantity))
@@ -1186,6 +1188,8 @@ namespace LitShelf.Model
                         commandDatabase.Parameters.AddWithValue("p_annee", date);
                         commandDatabase.Parameters.AddWithValue("p_nouvelle_quantite", Convert.ToInt32(quantity));
                         commandDatabase.Parameters.AddWithValue("p_auteur_id", id_auteur);
+                        commandDatabase.Parameters.AddWithValue("p_ISBN_original", oldISBN);
+                        commandDatabase.Parameters.AddWithValue("p_auteur_id_old", id_auteur_old);
 
                         // Paramètre OUT
                         MySqlParameter outputParam = new MySqlParameter("@p_message", MySqlDbType.VarChar);
@@ -1207,6 +1211,20 @@ namespace LitShelf.Model
                         }
 
                     }
+                }
+                catch (MySqlException ex)
+                {
+                    // contrainte de clé étrangère
+                    if (ex.Number == 1062)
+                    {
+                        MessageBox.Show("Erreur : ISBN en double.");
+                    }
+                    else
+                    {
+                        // Affichage par défaut
+                        MessageBox.Show($"Erreur SQL ({ex.Code}) : {ex.Message}");
+                    }
+
                 }
                 catch (Exception ex)
                 {

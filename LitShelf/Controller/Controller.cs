@@ -297,9 +297,6 @@ namespace LitShelf.Controller
 
 
 
-
-
-
         /// <summary>
         /// Enregistre un nouvel auteur dans la base de données s'il n'existe pas déjà.
         /// </summary>
@@ -373,9 +370,11 @@ namespace LitShelf.Controller
         /// <param name="date">Date de publication du livre </param>
         /// <param name="quantity">Quantité du livre</param>
         /// <param name="id_auteur">Clé étranger de l'auteur</param>
-        public void Updatebook(string ISBN, string title, string date, string quantity, int id_auteur)
+        /// <param name="oldISBN">Ancien ISBN du livre</param>
+        /// <param name="id_auteur_old">Ancienne clé étrangère de l'auteur</param>
+        public void Updatebook(string ISBN, string title, string date, string quantity, int id_auteur, string oldISBN, int id_auteur_old)
         {
-            _model.Updatebook(ISBN, title, date, quantity, id_auteur);
+            _model.Updatebook(ISBN, title, date, quantity, id_auteur, oldISBN, id_auteur_old);
         }
 
         /// <summary>

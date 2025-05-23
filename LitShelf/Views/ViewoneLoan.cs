@@ -70,6 +70,10 @@ namespace LitShelf.Views
             cmboxBook.Text = "";
             cmboxClient.Text = "";
 
+            //Nettoye les combobox
+            cmboxClient.Items.Clear();
+            cmboxBook.Items.Clear();
+
             // Attribue les bonne valeurs aux datetimepickers.
             dtmpLoandate.Value = Convert.ToDateTime(Controller.GetcurrentLoan()[1]);
             dtmpBackdate.Value = Convert.ToDateTime(Controller.GetcurrentLoan()[2]);
@@ -78,8 +82,8 @@ namespace LitShelf.Views
             dtmpLoandate.Enabled = false;
 
             // Remplie les champs texte avec les bonnes information
-            cmboxClient.Text = $"{Controller.GetcurrentLoan()[7]} {Controller.GetcurrentLoan()[6]}";
-            cmboxBook.Text = $"{Controller.GetcurrentLoan()[5]}";
+            cmboxClient.Items.Insert(0, $"{Controller.GetcurrentLoan()[7]} {Controller.GetcurrentLoan()[6]}") ;
+            cmboxBook.Items.Insert(0, $"{Controller.GetcurrentLoan()[5]}");
 
             // Récupère les données auteur
             Controller.SetclientData();
@@ -87,21 +91,41 @@ namespace LitShelf.Views
             // Récupère les livre empruntable
             Controller.SetbookBorrowabledata();
 
-            //Nettoye les combobox
-            cmboxClient.Items.Clear();
-            cmboxBook.Items.Clear();
+            // Empeche la saisie de texte
+            cmboxClient.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmboxBook.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            //Charge le combobox avec les données auteur
+            
             for (int i = 0; i < Controller.GetclientData().GetLength(0); i++)
             {
-                cmboxClient.Items.Add(Controller.GetclientData()[i, 2] + " " + Controller.GetclientData()[i, 1]);
+                //Vérifie si le client à ajouter est déja dans le combobox
+                if ($"{Controller.GetcurrentLoan()[7]} {Controller.GetcurrentLoan()[6]}" != Controller.GetclientData()[i, 2] + " " + Controller.GetclientData()[i, 1])
+                {
+                    //Charge le combobox avec les données auteur
+                    cmboxClient.Items.Add(Controller.GetclientData()[i, 2] + " " + Controller.GetclientData()[i, 1]);
+                }
+               
             }
 
-            //Charge le combobox avec les données livre empruntable
+            
             for (int i = 0; i < Controller.GetbookBorrowabledata().GetLength(0); i++)
             {
-                cmboxBook.Items.Add(Controller.GetbookBorrowabledata()[i, 1]);
+                //Vérifie si le livre à ajouter est déja dans le combobox
+                if ($"{Controller.GetcurrentLoan()[5]}" != Controller.GetbookBorrowabledata()[i, 1])
+                {
+                    //Charge le combobox avec les données livre empruntable
+                    cmboxBook.Items.Add(Controller.GetbookBorrowabledata()[i, 1]);
+                }
+                
             }
+
+            // Hauteur en pixels
+            cmboxClient.DropDownHeight = 200;
+            cmboxBook.DropDownHeight = 200;
+
+            //Affiche le premier index des combobox
+            cmboxClient.SelectedIndex = 0;
+            cmboxBook.SelectedIndex = 0;
         }
 
         /// <summary>

@@ -82,6 +82,10 @@ namespace LitShelf.Views
             cmboxClient.Items.Clear();
             cmboxBook.Items.Clear();
 
+            // Empeche la saisie de texte
+            cmboxClient.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmboxBook.DropDownStyle = ComboBoxStyle.DropDownList;
+
             //Charge le combobox avec les données auteur
             for (int i = 0; i < Controller.GetclientData().GetLength(0); i++)
             {
@@ -93,6 +97,10 @@ namespace LitShelf.Views
             {
                 cmboxBook.Items.Add(Controller.GetbookBorrowabledata()[i, 1]);
             }
+
+            // Hauteur en pixels
+            cmboxClient.DropDownHeight = 200; 
+            cmboxBook.DropDownHeight = 200; 
         }
         
         /// <summary>

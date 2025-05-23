@@ -104,18 +104,20 @@ namespace LitShelf.Views
             // nettoye le combobox
             cmboxClient.Items.Clear();
 
-            // Affiche le texte 
-            cmboxClient.Text = "Toutes les clients";
-
             // Ajout come item
             cmboxClient.Items.Add("Toutes les clients");
 
+            //Empeche la saisie de texte
+            cmboxClient.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //Ajout de tous les clients comme item
             for (int i = 0; i < Controller.GetclientData().GetLength(0); i++)
             {
                 cmboxClient.Items.Add(Controller.GetclientData()[i, 2] + " " + Controller.GetclientData()[i, 1]);
             }
+
+            cmboxClient.SelectedIndex = 0; // Selectionne le premier index
+            cmboxClient.DropDownHeight = 200; // Hauteur en pixels
         }
 
         /// <summary>
