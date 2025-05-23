@@ -50,21 +50,49 @@ namespace LitShelf.Views
         /// </summary>
         public Controller.Controller Controller { get; set; }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Livre".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewbook" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBookmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewbook", FindForm());
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Emprunt".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewloan" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnLoanmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewloan", FindForm());
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Client".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewclient" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewclient", FindForm());
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Nouvel auteur".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "ViewnewAuthor" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnNewauthor_Click(object sender, EventArgs e)
         {
             Controller.changeView("ViewnewAuthor", FindForm());
@@ -72,7 +100,7 @@ namespace LitShelf.Views
 
         /// <summary>
         /// Événement déclenché lorsque le formulaire "Viewauthor" devient actif (fenêtre ouverte ou remise au premier plan).
-        /// Réinitialise la pagination et met à jour l'affichage des auteur.
+        /// Réinitialise la pagination et met à jour l'affichage des auteurs.
         /// </summary>
         /// <param name="sender">Objet source de l'événement (le formulaire).</param>
         /// <param name="e">Arguments vides.</param>

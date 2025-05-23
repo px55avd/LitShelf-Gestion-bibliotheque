@@ -23,45 +23,59 @@ namespace LitShelf.Views
         public Controller.Controller Controller { get; set; }
 
         /// <summary>
-        /// 
+        /// Gère l'événement de clic sur le bouton "Retour".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewbook" en appelant la méthode `changeView` du contrôleur.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewbook", FindForm());
         }
 
         /// <summary>
-        /// 
+        /// Gère l'événement de clic sur le bouton "Auteur".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewauthor" en appelant la méthode `changeView` du contrôleur.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnAuthormenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewauthor", FindForm());
         }
 
         /// <summary>
-        /// 
+        /// Gère l'événement de clic sur le bouton "Emprunt".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewloan" en appelant la méthode `changeView` du contrôleur.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnLoanmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewloan", FindForm());
         }
 
         /// <summary>
-        /// 
+        /// Gère l'événement de clic sur le bouton "¨Client".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewclient" en appelant la méthode `changeView` du contrôleur.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewclient", FindForm());
         }
 
+        /// <summary>
+        /// Événement déclenché lorsque le formulaire `ViewoneBook` devient actif.
+        /// Réinitialise les champs du formaulaire et les remplie avec les informations du livre sélectionné.
+        /// </summary>
+        /// <param name="sender">Objet source de l’événement (le bouton lui-même).</param>
+        /// <param name="e">Arguments de l’événement (clique souris ici).</param>
         private void ViewoneBook_Activated(object sender, EventArgs e)
         {
 
@@ -105,6 +119,12 @@ namespace LitShelf.Views
             cmboxAuthor.DropDownHeight = 150; // Hauteur en pixels
         }
 
+        /// <summary>
+        /// Gère le clic sur le bouton de "Modifier".
+        /// Modifie un livre.
+        /// </summary>
+        /// <param name="sender">Objet source de l’événement (le bouton lui-même).</param>
+        /// <param name="e">Arguments de l’événement (clique souris ici).</param>
         private void btnUpdatebook_Click(object sender, EventArgs e)
         {
             //Variable pour récupérer les valeur
@@ -146,6 +166,12 @@ namespace LitShelf.Views
             }
         }
 
+        /// <summary>
+        /// Gère le clic sur le bouton de "Supprimer".
+        /// Supprime un livre.
+        /// </summary>
+        /// <param name="sender">Objet source de l’événement (le bouton lui-même).</param>
+        /// <param name="e">Arguments de l’événement (clique souris ici).</param>
         private void btnDeletebook_Click(object sender, EventArgs e)
         {
             // Affiche un message d'avertissement et récupère la réponse de l'utilisateur

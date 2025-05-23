@@ -23,7 +23,10 @@ namespace LitShelf.Controller
         private const int _columns = 2; // Nombres de colonnes
         private const int _spaceX = 210, _spaceY = 50; // Espacement des boutons
 
-        private int _currentPage = 0;
+        
+        private int _currentPage = 0; // numéro de page
+
+        //Nobre d'élement par page
         private int _clientsBypage = 10;
         private int _authorsBypage = 10;
         private int _booksBypage = 10;
@@ -48,21 +51,23 @@ namespace LitShelf.Controller
         private Model.Model _model;
 
         /// <summary>
-        /// 
+        /// Constructeur de la classe Controller.
+        /// Initialise le contrôleur avec toutes les vues nécessaires (livres, auteurs, prêts, clients, etc.)
+        /// ainsi que le modèle, et établit les liens entre le contrôleur et chaque vue.
         /// </summary>
-        /// <param name="viewbook"></param>
-        /// <param name="model"></param>
-        /// <param name="viewauthor"></param>
-        /// <param name="viewloan"></param>
-        /// <param name="viewclient"></param>
-        /// <param name="viewoneauthor"></param>
-        /// <param name="viewonebook"></param>
-        /// <param name="viewoneclient"></param>
-        /// <param name="viewoneloan"></param>
-        /// <param name="viewnewauthor"></param>
-        /// <param name="viewnewbook"></param>
-        /// <param name="viewnewclient"></param>
-        /// <param name="viewnewloan"></param>
+        /// <param name="viewbook">Vue principale pour les livres.</param>
+        /// <param name="model">Instance du modèle contenant la logique métier et les données.</param>
+        /// <param name="viewauthor">Vue principale pour les auteurs.</param>
+        /// <param name="viewloan">Vue principale pour les prêts.</param>
+        /// <param name="viewclient">Vue principale pour les clients.</param>
+        /// <param name="viewoneauthor">Vue détaillée pour un auteur spécifique.</param>
+        /// <param name="viewonebook">Vue détaillée pour un livre spécifique.</param>
+        /// <param name="viewoneclient">Vue détaillée pour un client spécifique.</param>
+        /// <param name="viewoneloan">Vue détaillée pour un prêt spécifique.</param>
+        /// <param name="viewnewauthor">Vue pour la création d'un nouvel auteur.</param>
+        /// <param name="viewnewbook">Vue pour la création d'un nouveau livre.</param>
+        /// <param name="viewnewclient">Vue pour la création d'un nouveau client.</param>
+        /// <param name="viewnewloan">Vue pour la création d'un nouveau prêt.</param>
         public Controller(Viewbook viewbook, Model.Model model, Viewauthor viewauthor, Viewloan viewloan, Viewclient viewclient, ViewoneAuthor viewoneauthor, ViewoneBook viewonebook,
             ViewoneClient viewoneclient, ViewoneLoan viewoneloan, ViewnewAuthor viewnewauthor, ViewnewBook viewnewbook, ViewnewClient viewnewclient, ViewnewLoan viewnewloan)
         {

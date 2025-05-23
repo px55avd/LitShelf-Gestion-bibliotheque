@@ -50,31 +50,60 @@ namespace LitShelf.Views
         /// </summary>
         public Controller.Controller Controller { get; set; }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Livre".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewbook" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBookmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewbook", FindForm());
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Client".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewclient" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewclient", FindForm());
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Auteur".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "Viewauthor" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnAuthormenu_Click(object sender, EventArgs e)
         {
             Controller.changeView("Viewauthor", FindForm());
         }
 
+        /// <summary>
+        /// Gère l'événement de clic sur le bouton "Nouvel emprunt".
+        /// Lorsque l'utilisateur clique sur ce bouton, la vue actuelle est remplacée
+        /// par la vue "ViewnewLoan" en appelant la méthode `changeView` du contrôleur.
+        /// </summary>
+        /// <param name="sender">L'objet source de l'événement (le bouton cliqué).</param>
+        /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnNewloan_Click(object sender, EventArgs e)
         {
             Controller.changeView("ViewnewLoan", FindForm());
         }
 
         /// <summary>
-        /// 
+        /// Événement déclenché lorsque le formulaire `Viewloan` devient actif (fenêtre ouverte ou remise au premier plan).
+        /// Réinitialise la pagination et met à jour l'affichage des emprunts.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Objet source de l'événement (le formulaire).</param>
+        /// <param name="e">Arguments vides.</param>
         private void Viewloan_Activated(object sender, EventArgs e)
         {
             // Charge les données des clients depuis le modèle via le contrôleur
@@ -121,10 +150,11 @@ namespace LitShelf.Views
         }
 
         /// <summary>
-        /// 
+        /// Gère le clic sur le bouton de navigation "précédent" (btnMinus).
+        /// Décrémente le numéro de page si possible, met à jour l'affichage et les boutons.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Objet source de l’événement (le bouton lui-même).</param>
+        /// <param name="e">Arguments de l’événement (clique souris ici).</param>
         private void btnMinus_Click(object sender, EventArgs e)
         {
             // Récupère le numéro page 
@@ -155,10 +185,11 @@ namespace LitShelf.Views
         }
 
         /// <summary>
-        /// 
+        /// Gère le clic sur le bouton de navigation "suivant" (btnUp).
+        /// Incrémente le numéro de page si possible, met à jour l'affichage et les boutons.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Objet source de l’événement (le bouton lui-même).</param>
+        /// <param name="e">Arguments de l’événement (clique souris ici).</param>
         private void btnUp_Click(object sender, EventArgs e)
         {
             // Récupère le numéro page 
@@ -188,6 +219,12 @@ namespace LitShelf.Views
             Btnnavigationlogic();
         }
 
+        /// <summary>
+        /// Gère le clic sur le bouton de recherche.
+        /// Filtre les emprunt par client.
+        /// </summary>
+        /// <param name="sender">Objet source de l’événement (le bouton lui-même).</param>
+        /// <param name="e">Arguments de l’événement (clique souris ici).</param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             //Vérifie que le champs selectionné ne soit pas "Tous les auteurs"
