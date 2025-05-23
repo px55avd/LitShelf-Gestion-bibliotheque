@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSearch = new System.Windows.Forms.Button();
             this.lblNumberpages = new System.Windows.Forms.Label();
             this.btnMinus = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
@@ -42,18 +41,7 @@
             this.lblMenu = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtboxSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearch.Location = new System.Drawing.Point(416, 77);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(61, 23);
-            this.btnSearch.TabIndex = 79;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // lblNumberpages
             // 
@@ -81,17 +69,17 @@
             this.btnUp.Location = new System.Drawing.Point(709, 415);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(20, 23);
-            this.btnUp.TabIndex = 76;
+            this.btnUp.TabIndex = 79;
             this.btnUp.Text = "+";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnNewauthor
             // 
-            this.btnNewauthor.Location = new System.Drawing.Point(624, 77);
+            this.btnNewauthor.Location = new System.Drawing.Point(683, 73);
             this.btnNewauthor.Name = "btnNewauthor";
-            this.btnNewauthor.Size = new System.Drawing.Size(105, 23);
-            this.btnNewauthor.TabIndex = 75;
+            this.btnNewauthor.Size = new System.Drawing.Size(105, 27);
+            this.btnNewauthor.TabIndex = 74;
             this.btnNewauthor.Text = "Nouvel auteur";
             this.btnNewauthor.UseVisualStyleBackColor = true;
             this.btnNewauthor.Click += new System.EventHandler(this.btnNewauthor_Click);
@@ -185,21 +173,11 @@
             this.label1.Size = new System.Drawing.Size(801, 5);
             this.label1.TabIndex = 66;
             // 
-            // txtboxSearch
-            // 
-            this.txtboxSearch.Location = new System.Drawing.Point(220, 77);
-            this.txtboxSearch.Name = "txtboxSearch";
-            this.txtboxSearch.Size = new System.Drawing.Size(190, 23);
-            this.txtboxSearch.TabIndex = 80;
-            this.txtboxSearch.Text = "Zone de recherche...";
-            // 
             // Viewauthor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtboxSearch);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblNumberpages);
             this.Controls.Add(this.btnMinus);
             this.Controls.Add(this.btnUp);
@@ -223,7 +201,6 @@
         }
 
         #endregion
-        private Button btnSearch;
         private Label lblNumberpages;
         private Button btnMinus;
         private Button btnUp;
@@ -237,6 +214,5 @@
         private Label lblMenu;
         private Label label2;
         private Label label1;
-        private TextBox txtboxSearch;
     }
 }

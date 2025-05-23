@@ -51,7 +51,7 @@
             this.cmboxClient.Location = new System.Drawing.Point(220, 73);
             this.cmboxClient.Name = "cmboxClient";
             this.cmboxClient.Size = new System.Drawing.Size(169, 23);
-            this.cmboxClient.TabIndex = 95;
+            this.cmboxClient.TabIndex = 89;
             this.cmboxClient.Text = "Client";
             // 
             // btnSearch
@@ -60,7 +60,7 @@
             this.btnSearch.Location = new System.Drawing.Point(395, 73);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(61, 23);
-            this.btnSearch.TabIndex = 94;
+            this.btnSearch.TabIndex = 90;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -91,17 +91,17 @@
             this.btnUp.Location = new System.Drawing.Point(709, 415);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(20, 23);
-            this.btnUp.TabIndex = 91;
+            this.btnUp.TabIndex = 94;
             this.btnUp.Text = "+";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnNewloan
             // 
-            this.btnNewloan.Location = new System.Drawing.Point(622, 73);
+            this.btnNewloan.Location = new System.Drawing.Point(624, 72);
             this.btnNewloan.Name = "btnNewloan";
             this.btnNewloan.Size = new System.Drawing.Size(105, 23);
-            this.btnNewloan.TabIndex = 90;
+            this.btnNewloan.TabIndex = 91;
             this.btnNewloan.Text = "Nouvel emprunt";
             this.btnNewloan.UseVisualStyleBackColor = true;
             this.btnNewloan.Click += new System.EventHandler(this.btnNewloan_Click);

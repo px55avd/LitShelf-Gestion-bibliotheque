@@ -51,7 +51,7 @@
             this.cmboxAuthor.Location = new System.Drawing.Point(220, 73);
             this.cmboxAuthor.Name = "cmboxAuthor";
             this.cmboxAuthor.Size = new System.Drawing.Size(169, 23);
-            this.cmboxAuthor.TabIndex = 65;
+            this.cmboxAuthor.TabIndex = 58;
             this.cmboxAuthor.Text = "Auteur";
             // 
             // btnSearch
@@ -60,7 +60,7 @@
             this.btnSearch.Location = new System.Drawing.Point(395, 73);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(61, 23);
-            this.btnSearch.TabIndex = 64;
+            this.btnSearch.TabIndex = 59;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -80,7 +80,7 @@
             this.btnMinus.Location = new System.Drawing.Point(664, 415);
             this.btnMinus.Name = "btnMinus";
             this.btnMinus.Size = new System.Drawing.Size(20, 23);
-            this.btnMinus.TabIndex = 62;
+            this.btnMinus.TabIndex = 61;
             this.btnMinus.Text = "-";
             this.btnMinus.UseVisualStyleBackColor = true;
             this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
@@ -91,14 +91,14 @@
             this.btnUp.Location = new System.Drawing.Point(709, 415);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(20, 23);
-            this.btnUp.TabIndex = 61;
+            this.btnUp.TabIndex = 62;
             this.btnUp.Text = "+";
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // btnNewbook
             // 
-            this.btnNewbook.Location = new System.Drawing.Point(622, 73);
+            this.btnNewbook.Location = new System.Drawing.Point(622, 72);
             this.btnNewbook.Name = "btnNewbook";
             this.btnNewbook.Size = new System.Drawing.Size(105, 23);
             this.btnNewbook.TabIndex = 60;

@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtboxSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.lblNumberpages = new System.Windows.Forms.Label();
             this.btnMinus = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
@@ -44,24 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // txtboxSearch
-            // 
-            this.txtboxSearch.Location = new System.Drawing.Point(220, 77);
-            this.txtboxSearch.Name = "txtboxSearch";
-            this.txtboxSearch.Size = new System.Drawing.Size(190, 23);
-            this.txtboxSearch.TabIndex = 95;
-            this.txtboxSearch.Text = "Zone de recherche...";
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSearch.Location = new System.Drawing.Point(416, 77);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(61, 23);
-            this.btnSearch.TabIndex = 94;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // lblNumberpages
             // 
@@ -96,9 +76,9 @@
             // 
             // btnNewclient
             // 
-            this.btnNewclient.Location = new System.Drawing.Point(624, 77);
+            this.btnNewclient.Location = new System.Drawing.Point(683, 73);
             this.btnNewclient.Name = "btnNewclient";
-            this.btnNewclient.Size = new System.Drawing.Size(105, 23);
+            this.btnNewclient.Size = new System.Drawing.Size(105, 27);
             this.btnNewclient.TabIndex = 90;
             this.btnNewclient.Text = "Nouveau client";
             this.btnNewclient.UseVisualStyleBackColor = true;
@@ -150,7 +130,7 @@
             this.btnBookmenu.Location = new System.Drawing.Point(26, 73);
             this.btnBookmenu.Name = "btnBookmenu";
             this.btnBookmenu.Size = new System.Drawing.Size(107, 52);
-            this.btnBookmenu.TabIndex = 85;
+            this.btnBookmenu.TabIndex = 84;
             this.btnBookmenu.Text = "Livre";
             this.btnBookmenu.UseVisualStyleBackColor = true;
             this.btnBookmenu.Click += new System.EventHandler(this.btnBookmenu_Click);
@@ -198,8 +178,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtboxSearch);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblNumberpages);
             this.Controls.Add(this.btnMinus);
             this.Controls.Add(this.btnUp);
@@ -223,9 +201,6 @@
         }
 
         #endregion
-
-        private TextBox txtboxSearch;
-        private Button btnSearch;
         private Label lblNumberpages;
         private Button btnMinus;
         private Button btnUp;
