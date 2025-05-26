@@ -166,7 +166,7 @@
             // 
             this.lblNamebook.AutoSize = true;
             this.lblNamebook.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblNamebook.Location = new System.Drawing.Point(416, 7);
+            this.lblNamebook.Location = new System.Drawing.Point(392, 7);
             this.lblNamebook.Name = "lblNamebook";
             this.lblNamebook.Size = new System.Drawing.Size(126, 28);
             this.lblNamebook.TabIndex = 96;

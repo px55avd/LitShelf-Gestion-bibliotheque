@@ -4,50 +4,154 @@ namespace LitShelf.Controller
 {
     public class Controller
     {
-        // Déclarations des différentes vues utilisées par le contrôleur.
+        /// <summary>
+        /// Vue affichant la liste des livres.
+        /// </summary>
         private Viewbook _viewbook;
+
+        /// <summary>
+        /// Vue affichant la liste des auteurs.
+        /// </summary>
         private Viewauthor _viewauthor;
+
+        /// <summary>
+        /// Vue affichant la liste des emprunts.
+        /// </summary>
         private Viewloan _viewloan;
+
+        /// <summary>
+        /// Vue affichant la liste des clients.
+        /// </summary>
         private Viewclient _viewclient;
+
+        /// <summary>
+        /// Vue détaillée pour un auteur spécifique.
+        /// </summary>
         private ViewoneAuthor _viewoneauthor;
+
+        /// <summary>
+        /// Vue détaillée pour un livre spécifique.
+        /// </summary>
         private ViewoneBook _viewonebook;
+
+        /// <summary>
+        /// Vue détaillée pour un client spécifique.
+        /// </summary>
         private ViewoneClient _viewoneclient;
+
+        /// <summary>
+        /// Vue détaillée pour un emprunt spécifique.
+        /// </summary>
         private ViewoneLoan _viewoneloan;
+
+        /// <summary>
+        /// Vue permettant d’ajouter un nouvel auteur.
+        /// </summary>
         private ViewnewAuthor _viewnewauthor;
+
+        /// <summary>
+        /// Vue permettant d’ajouter un nouveau livre.
+        /// </summary>
         private ViewnewBook _viewnewbook;
+
+        /// <summary>
+        /// Vue permettant d’ajouter un nouveau client.
+        /// </summary>
         private ViewnewClient _viewnewclient;
+
+        /// <summary>
+        /// Vue permettant d’ajouter un nouvel emprunt.
+        /// </summary>
         private ViewnewLoan _viewnewloan;
 
-        // Variables globales pour la pagination
-        private const int _elementBypage = 10; // Nombre total d’éléments par page
-        private const int _columns = 2; // Nombres de colonnes
-        private const int _spaceX = 210, _spaceY = 50; // Espacement des boutons
+        /// <summary>
+        /// Nombre total d’éléments par page
+        /// </summary>
+        private const int _elementBypage = 10;
 
-        
-        private int _currentPage = 0; // numéro de page
+        /// <summary>
+        /// Nombres de colonnes
+        /// </summary>
+        private const int _columns = 2;
 
-        //Nobre d'élement par page
+        /// <summary>
+        /// Espacement des boutons
+        /// </summary>
+        private const int _spaceX = 210, _spaceY = 50; 
+
+        /// <summary>
+        /// numéro de page
+        /// </summary>
+        private int _currentPage = 0;
+
+        /// <summary>
+        /// Nombre de clients par page
+        /// </summary>
         private int _clientsBypage = 10;
+
+        /// <summary>
+        /// Nombre d'auteurs par page
+        /// </summary>
         private int _authorsBypage = 10;
+
+        /// <summary>
+        /// Nombre de livres par page
+        /// </summary>
         private int _booksBypage = 10;
+
+        /// <summary>
+        /// Nombre d'emprunts par page
+        /// </summary>
         private int _loansBypage = 10;
 
+        /// <summary>
+        /// Stocke les clients
+        /// </summary>
+        private string[,] _clients;
 
-        private string[,] _clients; // Stocke les clients
-        private string[,] _authors; // Stocke les auteurs
-        private string[,] _books; // Stocke les livres
-        private string[,] _loans; // Stocke les emprunts
-        private string[,] _booksBorrowable; // Stocke les livre empruntable
+        /// <summary>
+        ///  Stocke les auteurs
+        /// </summary>
+        private string[,] _authors; 
 
+        /// <summary>
+        /// Stocke les livres
+        /// </summary>
+        private string[,] _books; 
 
-        private string[] _currentClient = new string[3]; // Stocke le client sélectionné
-        private string[] _currentAuthor = new string[3]; //Stocke le auteur sélectionné
-        private string[] _currentBook = new string[7]; // Stocke le livres sélectionné
-        private string[] _currentLoan = new string[8]; // Strocke l'emprunt sélectioné
+        /// <summary>
+        /// Stocke les emprunts
+        /// </summary>
+        private string[,] _loans;
 
+        /// <summary>
+        /// Stocke les livre empruntable
+        /// </summary>
+        private string[,] _booksBorrowable; 
 
+        /// <summary>
+        /// //Stocke le client sélectionné
+        /// </summary>
+        private string[] _currentClient = new string[3];
+        
+        /// <summary>
+        /// Stocke l'auteur sélectionné
+        /// </summary>
+        private string[] _currentAuthor = new string[3];
 
-        // Référence au modèle utilisé par le contrôleur.
+        /// <summary>
+        /// Stocke le livres sélectionné
+        /// </summary>
+        private string[] _currentBook = new string[7];
+
+        /// <summary>
+        /// Strocke l'emprunt sélectioné
+        /// </summary>
+        private string[] _currentLoan = new string[8];
+
+        /// <summary>
+        /// Référence au modèle utilisé par le contrôleur.
+        /// </summary>
         private Model.Model _model;
 
         /// <summary>

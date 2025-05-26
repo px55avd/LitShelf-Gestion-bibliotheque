@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="LitShelf.Controller.Controller">
+    <Position X="3.5" Y="0.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAESRaDZDVIUQSAArkCwkkAKgoFAUIVEgKj4BA8QVAA=</HashCode>
+      <FileName>Controller\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Model.Model">
+    <Position X="0.5" Y="0.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAQCIIADQCQAAAQCQEAkBAAIJEAgAEAADRoBA4SAAQ=</HashCode>
+      <FileName>Model\Model.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.Viewauthor">
+    <Position X="6.5" Y="0.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABABBACATgAABAAAAKBQAACABAAAAFAIACACgKAAAA=</HashCode>
+      <FileName>Views\Viewauthor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.Viewclient">
+    <Position X="6.5" Y="5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABAABACgSkAABAQAAKBYgACADAAAAEAIAAACgAAAAA=</HashCode>
+      <FileName>Views\Viewclient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.Viewloan">
+    <Position X="9" Y="5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AJBIABACgSoAABAAAAKAQAACABAAAAFgIAAACgAgBAI=</HashCode>
+      <FileName>Views\Viewloan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewnewAuthor">
+    <Position X="11.75" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BYAAAAAAASAAABAAAAKBQICCAAAAAgBAIAAACkEAAAA=</HashCode>
+      <FileName>Views\ViewnewAuthor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewnewBook">
+    <Position X="14.5" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQACgBIAgSAAABAAAAKDAIFGAAAIQABCAAAACoCBAAA=</HashCode>
+      <FileName>Views\ViewnewBook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewnewClient">
+    <Position X="11.75" Y="4.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAABAAgSAAABAAAAKBQICCAAAAAgFAIAAAiAAIAAA=</HashCode>
+      <FileName>Views\ViewnewClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewnewLoan">
+    <Position X="14.5" Y="4.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAASEAARAAEACAQIBCAIAEQABQIAAADgAAAAA=</HashCode>
+      <FileName>Views\ViewnewLoan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewoneAuthor">
+    <Position X="17.5" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQACCAAAASAAABAAAIKBQICCAAAAAgBIIAIgCgAAAAA=</HashCode>
+      <FileName>Views\ViewoneAuthor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewoneBook">
+    <Position X="20.25" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAgBIAgSEAABAEgAKDAKAGAAAJQABAAAAQGoCBAAA=</HashCode>
+      <FileName>Views\ViewoneBook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewoneClient">
+    <Position X="17.5" Y="4.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAABgAgSAAABAAAAKBQICCQAAAAkBAIQAAiAAAAAE=</HashCode>
+      <FileName>Views\ViewoneClient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Views.ViewoneLoan">
+    <Position X="20.25" Y="4.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABKIAADAASEAARAAABCAQICCAIAAQABQIQAQCgAAAgA=</HashCode>
+      <FileName>Views\ViewoneLoan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Viewbook">
+    <Position X="9" Y="0.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQBAgJADgSgAARAAAQKBQAACABAAAAFgAAAACgAAAAI=</HashCode>
+      <FileName>Views\Viewbook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LitShelf.Program">
+    <Position X="23.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

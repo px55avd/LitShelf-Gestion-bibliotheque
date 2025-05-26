@@ -18,15 +18,42 @@ namespace LitShelf.Model
         public Controller.Controller Controller { get; set; }
 
         // Préparation de la connexion.
-        private string myConnectionString = "datasource=localhost;port=6033;username=root;password=root;database=db_LitShelf;";
+
+        /// <summary>
+        /// Chaîne de connexion à la base de données MySQL, incluant l'hôte, le port, les identifiants et le nom de la base.
+        /// </summary>
+        private string myConnectionString = "datasource=localhost;port=6033;username=root;password=root;database=db_litshelf;";
+
+        /// <summary>
+        /// Objet représentant la connexion à la base de données MySQL.
+        /// </summary>
         private MySqlConnection myConnection;
 
-        //variables privées
+        /// <summary>
+        /// Nombre de lignes client.
+        /// </summary>
         private int _lineClient;
+
+        /// <summary>
+        /// Nombre de lignes auteur .
+        /// </summary>
         private int _lineAuthor;
+
+        /// <summary>
+        /// Nombre de lignes livre.
+        /// </summary>
         private int _lineBook;
+
+        /// <summary>
+        /// Nombre de lignes emprunt.
+        /// </summary>
         private int _lineLoan;
+
+        /// <summary>
+        ///Nombre de lignes de livre empruntable.
+        /// </summary>
         private int _lineBookborrowable;
+
 
         /// <summary>
         /// Constructeur par défaut
@@ -273,6 +300,16 @@ namespace LitShelf.Model
             {
                 // Affiche Toutes erreurs éventuelles
                 MessageBox.Show($"Échec de la connexion : {ex.Message}");
+
+                // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+                DialogResult result = MessageBox.Show("Voulez-vous quitter l'application ?", "Attention, Arrêt", MessageBoxButtons.YesNo);
+
+                // Vérifie si l'utilisateur a cliqué sur "Yes"
+                if (result == DialogResult.Yes)
+                {
+                    // Arrete l'application.
+                    Application.Exit();
+                }
             }
 
             // Attribue le compte à la variable privée.
@@ -553,7 +590,18 @@ namespace LitShelf.Model
             catch (Exception ex)
             {
                 // Affiche un message en cas d'erreur
-                MessageBox.Show($"Échec de la connexion 2: {ex.Message}");
+                MessageBox.Show($"Échec de la connexion : {ex.Message}");
+
+                // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
+                DialogResult result = MessageBox.Show("Voulez-vous quitter l'application ?", "Attention, Arrêt", MessageBoxButtons.YesNo);
+
+                // Vérifie si l'utilisateur a cliqué sur "Yes"
+                if (result == DialogResult.Yes)
+                {
+                    // Arrete l'application.
+                    Application.Exit();
+                }
+
             }
 
             return data; // Retourne le tableau rempli (ou vide en cas d’échec)

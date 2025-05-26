@@ -106,7 +106,7 @@ namespace LitShelf.Views
             txtboxName.Text = name;
 
             // Affiche un message d'avertissement et récupère la réponse de l'utilisateur
-            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier cette auteur ?", "Attention, Modification", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier cet auteur ?", "Attention, Modification", MessageBoxButtons.YesNo);
 
             // Vérifie si l'utilisateur a cliqué sur "Yes"
             if (result == DialogResult.Yes)

@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "E:\\FIN2\\TPI\\TPI\\LitShelf\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|E:\\FIN2\\TPI\\TPI\\LitShelf\\litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\controller\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\controller\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\model\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|e:\\fin2\\tpi\\tpi\\litshelf\\litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|E:\\FIN2\\TPI\\TPI\\LitShelf\\litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F368324-802A-44A1-80E6-DF11F39C4268}|LitShelf\\LitShelf.csproj|solutionrelative:litshelf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,26 +42,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Controller.cs",
               "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Controller\\Controller.cs",
               "RelativeDocumentMoniker": "LitShelf\\Controller\\Controller.cs",
-              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Controller\\Controller.cs*",
-              "RelativeToolTip": "LitShelf\\Controller\\Controller.cs*",
-              "ViewState": "AQIAAJgBAAAAAAAAAAAQwK8BAABFAAAA",
+              "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Controller\\Controller.cs",
+              "RelativeToolTip": "LitShelf\\Controller\\Controller.cs",
+              "ViewState": "AQIAALEBAAAAAAAAAAAgwK8BAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T14:37:17.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Model.cs",
               "DocumentMoniker": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Model\\Model.cs",
               "RelativeDocumentMoniker": "LitShelf\\Model\\Model.cs",
               "ToolTip": "E:\\FIN2\\TPI\\TPI\\LitShelf\\LitShelf\\Model\\Model.cs",
               "RelativeToolTip": "LitShelf\\Model\\Model.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAB4AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T14:37:17.576Z",
               "EditorCaption": ""
