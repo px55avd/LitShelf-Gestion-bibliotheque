@@ -568,7 +568,7 @@ namespace LitShelf.Controller
                     // Calcule la position du bouton dans la grille (colonnes/espacement)
                     int col = (i - start) % _columns;
                     int row = (i - start) / _columns;
-                    btn.Location = new Point(10 + col * _spaceX, 10 + row * _spaceY);
+                    btn.Location = new Point(10 + col * _spaceX,10 + row * _spaceY);
 
                     int index = i; // Capture l’index actuel pour l’utiliser dans le gestionnaire d’événements
 

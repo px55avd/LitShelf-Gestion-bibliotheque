@@ -86,7 +86,7 @@
             // 
             // pnlAuthorbutton
             // 
-            this.pnlAuthorbutton.Location = new System.Drawing.Point(220, 106);
+            this.pnlAuthorbutton.Location = new System.Drawing.Point(222, 106);
             this.pnlAuthorbutton.Name = "pnlAuthorbutton";
             this.pnlAuthorbutton.Size = new System.Drawing.Size(507, 299);
             this.pnlAuthorbutton.TabIndex = 74;
@@ -191,6 +191,8 @@
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Viewauthor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LitShelf";
