@@ -49,7 +49,7 @@ namespace LitShelf
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnAuthormenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewauthor", FindForm());
+            Controller.Changeview("Viewauthor", FindForm());
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace LitShelf
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnLoanmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewloan", FindForm());
+            Controller.Changeview("Viewloan", FindForm());
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace LitShelf
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewclient", FindForm());
+            Controller.Changeview("Viewclient", FindForm());
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace LitShelf
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnNewbook_Click(object sender, EventArgs e)
         {
-            Controller.changeView("ViewnewBook", FindForm());
+            Controller.Changeview("ViewnewBook", FindForm());
         }
 
         /// <summary>

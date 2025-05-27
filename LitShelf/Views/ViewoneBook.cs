@@ -31,7 +31,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewbook", FindForm());
+            Controller.Changeview("Viewbook", FindForm());
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnAuthormenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewauthor", FindForm());
+            Controller.Changeview("Viewauthor", FindForm());
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnLoanmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewloan", FindForm());
+            Controller.Changeview("Viewloan", FindForm());
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewclient", FindForm());
+            Controller.Changeview("Viewclient", FindForm());
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace LitShelf.Views
                     // Modifie un nouveau livre avec les information nécessaire
                     Controller.Updatebook(ISBN, title, yearOfpublication, quantity, idAuthor, oldISBN, id_auteur_old);
 
-                    Controller.changeView("Viewbook", FindForm());
+                    Controller.Changeview("Viewbook", FindForm());
                 }
             }
         }
@@ -184,7 +184,7 @@ namespace LitShelf.Views
                 Controller.Deletebook();
 
                 // Affiche la vue client  
-                Controller.changeView("Viewbook", FindForm());
+                Controller.Changeview("Viewbook", FindForm());
             }
         }
     }

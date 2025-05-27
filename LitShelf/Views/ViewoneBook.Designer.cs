@@ -76,7 +76,7 @@
             this.cmboxAuthor.Location = new System.Drawing.Point(333, 264);
             this.cmboxAuthor.Name = "cmboxAuthor";
             this.cmboxAuthor.Size = new System.Drawing.Size(274, 23);
-            this.cmboxAuthor.TabIndex = 111;
+            this.cmboxAuthor.TabIndex = 110;
             // 
             // lblQuantity
             // 
@@ -92,7 +92,7 @@
             this.txtboxQuantity.Location = new System.Drawing.Point(333, 321);
             this.txtboxQuantity.Name = "txtboxQuantity";
             this.txtboxQuantity.Size = new System.Drawing.Size(274, 23);
-            this.txtboxQuantity.TabIndex = 109;
+            this.txtboxQuantity.TabIndex = 111;
             // 
             // LblISBN
             // 
@@ -142,14 +142,14 @@
             this.txtboxYearofPublication.Location = new System.Drawing.Point(333, 204);
             this.txtboxYearofPublication.Name = "txtboxYearofPublication";
             this.txtboxYearofPublication.Size = new System.Drawing.Size(274, 23);
-            this.txtboxYearofPublication.TabIndex = 103;
+            this.txtboxYearofPublication.TabIndex = 109;
             // 
             // txtboxTitle
             // 
             this.txtboxTitle.Location = new System.Drawing.Point(333, 149);
             this.txtboxTitle.Name = "txtboxTitle";
             this.txtboxTitle.Size = new System.Drawing.Size(274, 23);
-            this.txtboxTitle.TabIndex = 102;
+            this.txtboxTitle.TabIndex = 108;
             // 
             // btnAuthormenu
             // 

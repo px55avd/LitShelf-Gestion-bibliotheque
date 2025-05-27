@@ -48,7 +48,7 @@
             this.btnValidnewAuthor.Location = new System.Drawing.Point(479, 205);
             this.btnValidnewAuthor.Name = "btnValidnewAuthor";
             this.btnValidnewAuthor.Size = new System.Drawing.Size(128, 41);
-            this.btnValidnewAuthor.TabIndex = 147;
+            this.btnValidnewAuthor.TabIndex = 144;
             this.btnValidnewAuthor.Text = "Valider";
             this.btnValidnewAuthor.UseVisualStyleBackColor = true;
             this.btnValidnewAuthor.Click += new System.EventHandler(this.btnValidnewAuthor_Click);
@@ -67,7 +67,7 @@
             this.txtboxFirstname.Location = new System.Drawing.Point(333, 91);
             this.txtboxFirstname.Name = "txtboxFirstname";
             this.txtboxFirstname.Size = new System.Drawing.Size(274, 23);
-            this.txtboxFirstname.TabIndex = 144;
+            this.txtboxFirstname.TabIndex = 142;
             // 
             // lblName
             // 
@@ -83,7 +83,7 @@
             this.txtboxName.Location = new System.Drawing.Point(333, 149);
             this.txtboxName.Name = "txtboxName";
             this.txtboxName.Size = new System.Drawing.Size(274, 23);
-            this.txtboxName.TabIndex = 142;
+            this.txtboxName.TabIndex = 143;
             // 
             // btnClientmenu
             // 

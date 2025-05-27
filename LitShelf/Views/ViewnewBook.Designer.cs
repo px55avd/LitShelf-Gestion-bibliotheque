@@ -54,7 +54,7 @@
             this.btnValidnewBook.Location = new System.Drawing.Point(479, 368);
             this.btnValidnewBook.Name = "btnValidnewBook";
             this.btnValidnewBook.Size = new System.Drawing.Size(128, 41);
-            this.btnValidnewBook.TabIndex = 133;
+            this.btnValidnewBook.TabIndex = 127;
             this.btnValidnewBook.Text = "Valider";
             this.btnValidnewBook.UseVisualStyleBackColor = true;
             this.btnValidnewBook.Click += new System.EventHandler(this.btnValidnewBook_Click);
@@ -65,7 +65,7 @@
             this.cmboxAuthor.Location = new System.Drawing.Point(333, 264);
             this.cmboxAuthor.Name = "cmboxAuthor";
             this.cmboxAuthor.Size = new System.Drawing.Size(274, 23);
-            this.cmboxAuthor.TabIndex = 131;
+            this.cmboxAuthor.TabIndex = 125;
             // 
             // lblQuantity
             // 
@@ -81,7 +81,7 @@
             this.txtboxQuantity.Location = new System.Drawing.Point(333, 321);
             this.txtboxQuantity.Name = "txtboxQuantity";
             this.txtboxQuantity.Size = new System.Drawing.Size(274, 23);
-            this.txtboxQuantity.TabIndex = 129;
+            this.txtboxQuantity.TabIndex = 126;
             // 
             // LblISBN
             // 
@@ -97,7 +97,7 @@
             this.txtboxISBN.Location = new System.Drawing.Point(333, 91);
             this.txtboxISBN.Name = "txtboxISBN";
             this.txtboxISBN.Size = new System.Drawing.Size(274, 23);
-            this.txtboxISBN.TabIndex = 127;
+            this.txtboxISBN.TabIndex = 122;
             // 
             // lblAuthor
             // 
@@ -131,14 +131,14 @@
             this.txtboxYearofpublication.Location = new System.Drawing.Point(333, 204);
             this.txtboxYearofpublication.Name = "txtboxYearofpublication";
             this.txtboxYearofpublication.Size = new System.Drawing.Size(274, 23);
-            this.txtboxYearofpublication.TabIndex = 123;
+            this.txtboxYearofpublication.TabIndex = 124;
             // 
             // txtboxTitle
             // 
             this.txtboxTitle.Location = new System.Drawing.Point(333, 149);
             this.txtboxTitle.Name = "txtboxTitle";
             this.txtboxTitle.Size = new System.Drawing.Size(274, 23);
-            this.txtboxTitle.TabIndex = 122;
+            this.txtboxTitle.TabIndex = 123;
             // 
             // btnClientmenu
             // 

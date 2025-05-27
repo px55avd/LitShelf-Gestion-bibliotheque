@@ -53,7 +53,7 @@
             this.btnUpdateloan.Location = new System.Drawing.Point(479, 301);
             this.btnUpdateloan.Name = "btnUpdateloan";
             this.btnUpdateloan.Size = new System.Drawing.Size(128, 41);
-            this.btnUpdateloan.TabIndex = 133;
+            this.btnUpdateloan.TabIndex = 139;
             this.btnUpdateloan.Text = "Modifier";
             this.btnUpdateloan.UseVisualStyleBackColor = true;
             this.btnUpdateloan.Click += new System.EventHandler(this.btnUpdateloan_Click);
@@ -63,7 +63,7 @@
             this.btnDeleteloan.Location = new System.Drawing.Point(333, 301);
             this.btnDeleteloan.Name = "btnDeleteloan";
             this.btnDeleteloan.Size = new System.Drawing.Size(128, 41);
-            this.btnDeleteloan.TabIndex = 132;
+            this.btnDeleteloan.TabIndex = 138;
             this.btnDeleteloan.Text = "Retouner";
             this.btnDeleteloan.UseVisualStyleBackColor = true;
             this.btnDeleteloan.Click += new System.EventHandler(this.btnDeleteloan_Click);
@@ -214,7 +214,7 @@
             this.cmboxBook.Location = new System.Drawing.Point(333, 253);
             this.cmboxBook.Name = "cmboxBook";
             this.cmboxBook.Size = new System.Drawing.Size(274, 23);
-            this.cmboxBook.TabIndex = 131;
+            this.cmboxBook.TabIndex = 137;
             // 
             // ViewoneLoan
             // 

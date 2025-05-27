@@ -31,7 +31,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBookmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewbook", FindForm());
+            Controller.Changeview("Viewbook", FindForm());
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewauthor", FindForm());
+            Controller.Changeview("Viewauthor", FindForm());
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnLoanmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewloan", FindForm());
+            Controller.Changeview("Viewloan", FindForm());
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewclient", FindForm());
+            Controller.Changeview("Viewclient", FindForm());
         }
 
         /// <summary>
@@ -88,21 +88,21 @@ namespace LitShelf.Views
             if (txtboxFirstname.Text == string.Empty && txtboxName.Text != string.Empty)
             {
                 Controller.CreatenewAuthor(null, txtboxName.Text); // Créer un nouvel auteur sans prénom
-                Controller.changeView("Viewauthor", FindForm());
+                Controller.Changeview("Viewauthor", FindForm());
             }
 
             // vérifie que l'un des deux champs est vides
             if (txtboxFirstname.Text != string.Empty && txtboxName.Text == string.Empty)
             {
                 Controller.CreatenewAuthor(txtboxFirstname.Text, null); // Créer un nouvel auteur sans nom
-                Controller.changeView("Viewauthor", FindForm());
+                Controller.Changeview("Viewauthor", FindForm());
             }
 
             // vérifie que lees deux champs sont remplies
             if (txtboxFirstname.Text != string.Empty && txtboxName.Text != string.Empty)
             {
                 Controller.CreatenewAuthor(txtboxFirstname.Text, txtboxName.Text); // Créer un nouvel auteur avec nom et prénom
-                Controller.changeView("Viewauthor", FindForm());
+                Controller.Changeview("Viewauthor", FindForm());
             }
         }
 

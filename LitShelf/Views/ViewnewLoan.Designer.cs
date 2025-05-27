@@ -49,14 +49,14 @@
             this.cmboxClient.Location = new System.Drawing.Point(321, 91);
             this.cmboxClient.Name = "cmboxClient";
             this.cmboxClient.Size = new System.Drawing.Size(274, 23);
-            this.cmboxClient.TabIndex = 154;
+            this.cmboxClient.TabIndex = 145;
             // 
             // btnValidnewLoan
             // 
             this.btnValidnewLoan.Location = new System.Drawing.Point(467, 193);
             this.btnValidnewLoan.Name = "btnValidnewLoan";
             this.btnValidnewLoan.Size = new System.Drawing.Size(128, 41);
-            this.btnValidnewLoan.TabIndex = 151;
+            this.btnValidnewLoan.TabIndex = 147;
             this.btnValidnewLoan.Text = "Valider";
             this.btnValidnewLoan.UseVisualStyleBackColor = true;
             this.btnValidnewLoan.Click += new System.EventHandler(this.btnValidnewLoan_Click);
@@ -67,7 +67,7 @@
             this.cmboxBook.Location = new System.Drawing.Point(321, 145);
             this.cmboxBook.Name = "cmboxBook";
             this.cmboxBook.Size = new System.Drawing.Size(274, 23);
-            this.cmboxBook.TabIndex = 149;
+            this.cmboxBook.TabIndex = 146;
             // 
             // lblBook
             // 

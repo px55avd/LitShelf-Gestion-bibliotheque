@@ -48,7 +48,7 @@
             this.btnValidnewClient.Location = new System.Drawing.Point(479, 205);
             this.btnValidnewClient.Name = "btnValidnewClient";
             this.btnValidnewClient.Size = new System.Drawing.Size(128, 41);
-            this.btnValidnewClient.TabIndex = 161;
+            this.btnValidnewClient.TabIndex = 158;
             this.btnValidnewClient.Text = "Valider";
             this.btnValidnewClient.UseVisualStyleBackColor = true;
             this.btnValidnewClient.Click += new System.EventHandler(this.btnValidnewClient_Click);
@@ -67,7 +67,7 @@
             this.txtboxFirstname.Location = new System.Drawing.Point(333, 91);
             this.txtboxFirstname.Name = "txtboxFirstname";
             this.txtboxFirstname.Size = new System.Drawing.Size(274, 23);
-            this.txtboxFirstname.TabIndex = 158;
+            this.txtboxFirstname.TabIndex = 156;
             // 
             // lblName
             // 
@@ -83,7 +83,7 @@
             this.txtboxName.Location = new System.Drawing.Point(333, 149);
             this.txtboxName.Name = "txtboxName";
             this.txtboxName.Size = new System.Drawing.Size(274, 23);
-            this.txtboxName.TabIndex = 156;
+            this.txtboxName.TabIndex = 157;
             // 
             // btnBack
             // 

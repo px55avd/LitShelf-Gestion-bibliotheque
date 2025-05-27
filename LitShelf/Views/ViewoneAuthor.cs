@@ -31,7 +31,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBookmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewbook", FindForm());
+            Controller.Changeview("Viewbook", FindForm());
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewauthor", FindForm());
+            Controller.Changeview("Viewauthor", FindForm());
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnLoanmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewloan", FindForm());
+            Controller.Changeview("Viewloan", FindForm());
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewclient", FindForm());
+            Controller.Changeview("Viewclient", FindForm());
         }
 
         /// <summary>
@@ -121,21 +121,21 @@ namespace LitShelf.Views
                 if (firstname == string.Empty && name != string.Empty)
                 {
                     Controller.Updateauthor(null, name); // Appelle la méthode dans le contrôleur pour modifier un auteur avec uniquement un nom
-                    Controller.changeView("Viewauthor", FindForm());
+                    Controller.Changeview("Viewauthor", FindForm());
                 }
 
                 // vérifie que l'un des deux champs est vides
                 if (firstname != string.Empty && name == string.Empty)
                 {
                     Controller.Updateauthor(firstname, null); // Appelle la méthode dans le contrôleur pour modifier un auteur avec uniquement un prénom
-                    Controller.changeView("Viewauthor", FindForm());
+                    Controller.Changeview("Viewauthor", FindForm());
                 }
 
                 // vérifie que les deux champs sont remplies
                 if (firstname != string.Empty && name != string.Empty)
                 {
                     Controller.Updateauthor(firstname, name); // Appelle la méthode dans le contrôleur pour modifier un auteur
-                    Controller.changeView("Viewauthor", FindForm());
+                    Controller.Changeview("Viewauthor", FindForm());
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace LitShelf.Views
                 Controller.Deleteauthor();
 
                 // Affiche la vue client  
-                Controller.changeView("Viewauthor", FindForm());
+                Controller.Changeview("Viewauthor", FindForm());
             }
         }
     }

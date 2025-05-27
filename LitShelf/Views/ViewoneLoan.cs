@@ -31,7 +31,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBookmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewbook", FindForm());
+            Controller.Changeview("Viewbook", FindForm());
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnAuhormenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewauthor", FindForm());
+            Controller.Changeview("Viewauthor", FindForm());
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewloan", FindForm());
+            Controller.Changeview("Viewloan", FindForm());
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LitShelf.Views
         /// <param name="e">Les arguments de l'événement de clic.</param>
         private void btnClientmenu_Click(object sender, EventArgs e)
         {
-            Controller.changeView("Viewclient", FindForm());
+            Controller.Changeview("Viewclient", FindForm());
         }
 
         /// <summary>
@@ -87,6 +87,9 @@ namespace LitShelf.Views
             //Nettoye les combobox
             cmboxClient.Items.Clear();
             cmboxBook.Items.Clear();
+
+            //Titre du formalulaire
+            lblNameloan.Text = $"{Controller.GetcurrentLoan()[5]} - {Controller.GetcurrentLoan()[7]} {Controller.GetcurrentLoan()[6]}";
 
             // Attribue les bonne valeurs aux datetimepickers.
             dtmpLoandate.Value = Convert.ToDateTime(Controller.GetcurrentLoan()[1]);
@@ -209,7 +212,7 @@ namespace LitShelf.Views
                     // Créer un nouvel emprunt avec les information nécessaire
                     Controller.Updateloan(Controller.GetcurrentLoan()[0], dateTime.ToString("yyyy.MM.dd"), idClient, idBook);
 
-                    Controller.changeView("Viewloan", FindForm());
+                    Controller.Changeview("Viewloan", FindForm());
                 }
             }
         }
@@ -232,7 +235,7 @@ namespace LitShelf.Views
                 Controller.Deleteloan();
 
                 // Affiche la vue client  
-                Controller.changeView("Viewloan", FindForm());
+                Controller.Changeview("Viewloan", FindForm());
             }
         }
     }

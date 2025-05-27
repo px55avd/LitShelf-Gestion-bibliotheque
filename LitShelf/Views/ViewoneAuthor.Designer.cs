@@ -94,7 +94,7 @@
             this.txtboxName.Location = new System.Drawing.Point(333, 149);
             this.txtboxName.Name = "txtboxName";
             this.txtboxName.Size = new System.Drawing.Size(274, 23);
-            this.txtboxName.TabIndex = 156;
+            this.txtboxName.TabIndex = 159;
             // 
             // btnClientmenu
             // 

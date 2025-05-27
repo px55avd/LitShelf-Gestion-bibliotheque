@@ -229,67 +229,52 @@ namespace LitShelf.Controller
         /// </summary>
         /// <param name="nameview">Nom de la vue</param>
         /// <param name="form">Formulaire en cours d'utilisation</param>
-        public void changeView(string nameview, Form form)
+        public void Changeview(string nameview, Form form)
         {
-            if (nameview == "Viewauthor")
+            form.Hide();  // Un seul appel à Hide()
+
+            // Change de vue selon le nom
+            switch (nameview)
             {
-                form.Hide();
-                _viewauthor.Show();
-            }
-            else if (nameview == "Viewbook")
-            {
-                form.Hide();
-                _viewbook.Show();
-            }
-            else if (nameview == "Viewclient")
-            {
-                form.Hide();
-                _viewclient.Show();
-            }
-            else if (nameview == "Viewloan")
-            {
-                form.Hide();
-                _viewloan.Show();
-            }
-            else if (nameview == "ViewnewAuthor")
-            {
-                form.Hide();
-                _viewnewauthor.Show();
-            }
-            else if (nameview == "ViewnewBook")
-            {
-                form.Hide();
-                _viewnewbook.Show();
-            }
-            else if (nameview == "ViewnewClient")
-            {
-                form.Hide();
-                _viewnewclient.Show();
-            }
-            else if (nameview == "ViewnewLoan")
-            {
-                form.Hide();
-                _viewnewloan.Show();
-            }
-            else if (nameview == "ViewoneAuthor")
-            {
-                form.Hide();
-                _viewoneauthor.Show();
-            }
-            else if (nameview == "ViewoneBook")
-            {
-                form.Hide();
-                _viewonebook.Show();
-            }
-            else if (nameview == "ViewoneClient")
-            {
-                form.Hide();
-                _viewoneclient.Show();
-            }
-            else if (nameview == "ViewoneLoan")
-            {
-                form.Hide();
-                _viewoneloan.Show();
+                case "Viewauthor":
+                    _viewauthor.Show();
+                    break;
+                case "Viewbook":
+                    _viewbook.Show();
+                    break;
+                case "Viewclient":
+                    _viewclient.Show();
+                    break;
+                case "Viewloan":
+                    _viewloan.Show();
+                    break;
+                case "ViewnewAuthor":
+                    _viewnewauthor.Show();
+                    break;
+                case "ViewnewBook":
+                    _viewnewbook.Show();
+                    break;
+                case "ViewnewClient":
+                    _viewnewclient.Show();
+                    break;
+                case "ViewnewLoan":
+                    _viewnewloan.Show();
+                    break;
+                case "ViewoneAuthor":
+                    _viewoneauthor.Show();
+                    break;
+                case "ViewoneBook":
+                    _viewonebook.Show();
+                    break;
+                case "ViewoneClient":
+                    _viewoneclient.Show();
+                    break;
+                case "ViewoneLoan":
+                    _viewoneloan.Show();
+                    break;
+                default:
+                    _viewbook.Show();
+                    break;
             }
         }
 
@@ -549,6 +534,27 @@ namespace LitShelf.Controller
             int total = data.GetLength(0); // Nombre total d'éléments à afficher (lignes du tableau `data`)
             int start = page * _elementBypage; // Index de départ pour la page actuelle
             int end = Math.Min(start + _elementBypage, total); // Index de fin (ne pas dépasser le total d'éléments)
+            int itemsOnPage = end - start; // Nombre d'items sur une page
+
+            // Taille du panel
+            int panelWidth = pnl.Width;
+            int panelHeight = pnl.Height;
+
+            // Configuration de la grille
+            int columns = _columns;
+
+            // Toujours calculer le nombre de lignes comme si on avait _elementBypage éléments
+            int rows = (int)Math.Ceiling(_elementBypage / (double)columns);
+
+            // Espacement 
+            int spacingX = 10;
+            int spacingY = 10;
+            int totalSpacingX = spacingX * (columns + 1);
+            int totalSpacingY = spacingY * (rows + 1);
+
+            // Taille des boutons
+            int buttonWidth = (panelWidth - totalSpacingX) / columns;
+            int buttonHeight = (panelHeight - totalSpacingY) / rows;
 
             // Boucle sur chaque élément de la page actuelle
             for (int i = start; i < end; i++)
@@ -558,17 +564,21 @@ namespace LitShelf.Controller
                     // Construit le nom affiché : Prénom (colonne 2) + Nom (colonne 1)
                     string displayName = $"{data[i, 2]} {data[i, 1]}";
 
+                    // Calcule la position du bouton dans la grille (colonnes/espacement)
+                    int indexOnPage = i - start;
+                    int col = indexOnPage % columns;
+                    int row = indexOnPage / columns;
+
                     // Crée un nouveau bouton avec le nom de l'élément
                     Button btn = new Button
                     {
                         Text = displayName,
-                        Size = new Size(200, 40)
+                        Size = new Size(buttonWidth, buttonHeight),
+                        Location = new Point(
+                         spacingX + col * (buttonWidth + spacingX),
+                         spacingY + row * (buttonHeight + spacingY)
+                     ),
                     };
-
-                    // Calcule la position du bouton dans la grille (colonnes/espacement)
-                    int col = (i - start) % _columns;
-                    int row = (i - start) / _columns;
-                    btn.Location = new Point(10 + col * _spaceX,10 + row * _spaceY);
 
                     int index = i; // Capture l’index actuel pour l’utiliser dans le gestionnaire d’événements
 
@@ -596,7 +606,7 @@ namespace LitShelf.Controller
             ShowEntityTable(_clients, page, form, pnl, index =>
             {
                 SetcurrentClient(_clients[index, 0], _clients[index, 1], _clients[index, 2]);
-                changeView("ViewoneClient", form);
+                Changeview("ViewoneClient", form);
             });
         }
 
@@ -611,7 +621,7 @@ namespace LitShelf.Controller
             ShowEntityTable(_authors, page, form, pnl, index =>
             {
                 SetcurrentAuthor(_authors[index, 0], _authors[index, 1], _authors[index, 2]);
-                changeView("ViewoneAuthor", form);
+                Changeview("ViewoneAuthor", form);
             });
         }
 
@@ -627,25 +637,50 @@ namespace LitShelf.Controller
             pnl.Controls.Clear(); // Efface les anciens boutons du panneau
 
             int nbBooks = _books.GetLength(0); // Nombre total de clients
-            int debut = page * _elementBypage; // Index de départ des éléments pour cette page
-            int fin = Math.Min(debut + _elementBypage, nbBooks); // Ne pas dépasser le nombre total de clients
+            int start = page * _elementBypage; // Index de départ des éléments pour cette page
+            int end = Math.Min(start + _elementBypage, nbBooks); // Ne pas dépasser le nombre total de clients
+            int itemsOnPage = end - start; // Nombre d'items sur une page
 
-            for (int i = debut; i < fin; i++)
+            // Taille du panel
+            int panelWidth = pnl.Width;
+            int panelHeight = pnl.Height;
+
+            // Configuration de la grille
+            int columns = _columns;
+
+            // Toujours calculer le nombre de lignes comme si on avait _elementBypage éléments
+            int rows = (int)Math.Ceiling(_elementBypage / (double)columns);
+
+            // Espacement 
+            int spacingX = 10;
+            int spacingY = 10;
+            int totalSpacingX = spacingX * (columns + 1);
+            int totalSpacingY = spacingY * (rows + 1);
+
+            // Taille des boutons
+            int buttonWidth = (panelWidth - totalSpacingX) / columns;
+            int buttonHeight = (panelHeight - totalSpacingY) / rows;
+
+            for (int i = start; i < end; i++)
             {
                 string bookName = $"{_books[i, 5]} {_books[i, 6]} - {_books[i, 1]}"; // Prénom + Nom de l'auteur et titre du livre
 
                 if (_books[i, 0] != null) // Vérifie que le client est valide (champ ID ou autre non null)
                 {
+                    // Calcule la position du bouton dans la grille (colonnes/espacement)
+                    int indexOnPage = i - start;
+                    int col = indexOnPage % columns;
+                    int row = indexOnPage / columns;
+
                     Button btn = new Button
                     {
                         Text = bookName,
-                        Size = new Size(200, 40)
+                        Size = new Size(buttonWidth, buttonHeight),
+                        Location = new Point(
+                         spacingX + col * (buttonWidth + spacingX),
+                         spacingY + row * (buttonHeight + spacingY)
+                         ),
                     };
-
-                    // Position du bouton dans la grille
-                    int colonne = (i - debut) % _columns;
-                    int ligne = (i - debut) / _columns;
-                    btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
 
                     int index = i; // Nécessaire pour capturer l'index correct dans l'événement
 
@@ -653,7 +688,7 @@ namespace LitShelf.Controller
                     btn.Click += (s, args) => SetcurrentBook(_books[index, 0], _books[index, 1], _books[index, 2], _books[index, 3], _books[index, 4], _books[index, 5],
                         _books[index, 6]);
                     btn.Click += (s, args) => form.Hide();
-                    btn.Click += (s, args) => changeView("ViewoneBook", form);
+                    btn.Click += (s, args) => Changeview("ViewoneBook", form);
 
                     pnl.Controls.Add(btn); // Ajoute le bouton au panneau
                 }
@@ -672,32 +707,58 @@ namespace LitShelf.Controller
             pnl.Controls.Clear(); // Efface les anciens boutons du panneau
 
             int nbLoans = _loans.GetLength(0); // Nombre total de clients
-            int debut = page * _elementBypage; // Index de départ des éléments pour cette page
-            int fin = Math.Min(debut + _elementBypage, nbLoans); // Ne pas dépasser le nombre total de clients
+            int start = page * _elementBypage; // Index de départ des éléments pour cette page
+            int end = Math.Min(start + _elementBypage, nbLoans); // Ne pas dépasser le nombre total de clients
+            int itemsOnPage = end - start; // Nombre d'items sur une page
 
-            for (int i = debut; i < fin; i++)
+            // Taille du panel
+            int panelWidth = pnl.Width;
+            int panelHeight = pnl.Height;
+
+            // Configuration de la grille
+            int columns = _columns;
+
+            // Toujours calculer le nombre de lignes comme si on avait _elementBypage éléments
+            int rows = (int)Math.Ceiling(_elementBypage / (double)columns);
+
+            // Espacement 
+            int spacingX = 10;
+            int spacingY = 10;
+            int totalSpacingX = spacingX * (columns + 1);
+            int totalSpacingY = spacingY * (rows + 1);
+
+
+            // Taille des boutons
+            int buttonWidth = (panelWidth - totalSpacingX) / columns;
+            int buttonHeight = (panelHeight - totalSpacingY) / rows;
+
+            for (int i = start; i < end; i++)
             {
                 string loanName = $"{_loans[i, 7]} {_loans[i, 6]} - {_loans[i, 5]} \nRetour: {Convert.ToDateTime(_loans[i, 2]).ToString("dd.MM.yyyy")}"; // Prénom + Nom de l'auteur et titre du livre  date de retour
 
                 if (_loans[i, 0] != null) // Vérifie que l'emprunt est valide (champ ID ou autre non null)
                 {
+                    // Calcule la position du bouton dans la grille (colonnes/espacement)
+                    int indexOnPage = i - start;
+                    int col = indexOnPage % columns;
+                    int row = indexOnPage / columns;
+
                     Button btn = new Button
                     {
                         Text = loanName,
-                        Size = new Size(200, 40)
+                        Size = new Size(buttonWidth, buttonHeight),
+                        Location = new Point(
+                         spacingX + col * (buttonWidth + spacingX),
+                         spacingY + row * (buttonHeight + spacingY)
+                         ),
                     };
-
-                    // Position du bouton dans la grille
-                    int colonne = (i - debut) % _columns;
-                    int ligne = (i - debut) / _columns;
-                    btn.Location = new Point(10 + colonne * _spaceX, 10 + ligne * _spaceY);
 
                     int index = i; // Nécessaire pour capturer l'index correct dans l'événement
 
                     // Ajoute les actions sur clic du bouton : sélectionne le client, masque le formulaire, change de vue
                     btn.Click += (s, args) => SetcurrentLoan(_loans[index, 0], _loans[index, 1], _loans[index, 2], _loans[index, 3], _loans[index, 4], _loans[index, 5], _loans[index, 6], _loans[index, 7]);
                     btn.Click += (s, args) => form.Hide();
-                    btn.Click += (s, args) => changeView("ViewoneLoan", form);
+                    btn.Click += (s, args) => Changeview("ViewoneLoan", form);
 
                     pnl.Controls.Add(btn); // Ajoute le bouton au panneau
                 }
