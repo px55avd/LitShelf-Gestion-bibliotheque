@@ -32,51 +32,97 @@ CREATE DEFINER=`root`@`%` PROCEDURE `AjouterLivreAvecExemplaires` (IN `p_ISBN` V
     END WHILE;
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `ModifierLivreEtExemplaires` (IN `p_ISBN` VARCHAR(10), IN `p_titre` VARCHAR(255), IN `p_annee` VARCHAR(4), IN `p_nouvelle_quantite` INT, OUT `p_message` VARCHAR(255), IN `p_auteur_id` INT, IN `p_ISBN_original` VARCHAR(10), IN `p_auteur_id_old` INT)   BEGIN
+CREATE DEFINER=`root`@`%` PROCEDURE `ModifierLivreEtExemplaires` (IN `p_ISBN_original` VARCHAR(13), IN `p_ISBN` VARCHAR(13), IN `p_titre` VARCHAR(255), IN `p_annee` INT, IN `p_auteur_id` INT, IN `p_auteur_id_old` INT, IN `p_nouvelle_quantite` INT, OUT `p_message` VARCHAR(255))   BEGIN
     DECLARE qte_actuelle INT DEFAULT 0;
     DECLARE diff INT DEFAULT 0;
-    DECLARE i INT;
+    DECLARE i INT DEFAULT 1;
 
-    -- Vérifier si le nouvel ISBN existe déjà (pour éviter conflit)
-    IF EXISTS (SELECT 1 FROM t_livre WHERE ISBN = p_ISBN AND ISBN <> p_ISBN_original) THEN
-        SET p_message = 'Erreur : le nouvel ISBN existe déjà.';
-    END IF;
+    -- Début du bloc pour pouvoir utiliser LEAVE
+    main_block: BEGIN
 
-    -- Récupérer la quantité actuelle
-    SELECT quantité INTO qte_actuelle FROM t_livre WHERE ISBN = p_ISBN_original;
+        -- Récupérer la quantité actuelle
+        SELECT quantité INTO qte_actuelle
+        FROM t_livre
+        WHERE ISBN = p_ISBN_original;
 
-    -- Insérer le nouveau livre
-    INSERT INTO t_livre (ISBN, titre, année_de_publication, quantité)
-    VALUES (p_ISBN, p_titre, p_annee, qte_actuelle);
+        -- CAS 1 : L'ISBN ne change pas
+        IF p_ISBN = p_ISBN_original THEN
+            -- Mise à jour du livre
+            UPDATE t_livre
+            SET titre = p_titre,
+                année_de_publication = p_annee
+            WHERE ISBN = p_ISBN;
 
-    -- Mettre à jour la table écrire
-    UPDATE écrire
-    SET ISBN = p_ISBN, auteur_id = p_auteur_id
-    WHERE ISBN = p_ISBN_original AND auteur_id = p_auteur_id_old;
+            -- Mise à jour de l'auteur si besoin
+            UPDATE écrire
+            SET auteur_id = p_auteur_id
+            WHERE ISBN = p_ISBN AND auteur_id = p_auteur_id_old;
 
-    -- Mettre à jour les exemplaires
-    UPDATE t_exemplaire
-    SET ISBN = p_ISBN
-    WHERE ISBN = p_ISBN_original;
+            -- Ajouter des exemplaires si besoin
+            IF p_nouvelle_quantite > qte_actuelle THEN
+                SET diff = p_nouvelle_quantite - qte_actuelle;
+                WHILE i <= diff DO
+                    INSERT INTO t_exemplaire (commentaire, ISBN)
+                    VALUES (CONCAT('Exemplaire ajouté ', qte_actuelle + i), p_ISBN);
+                    SET i = i + 1;
+                END WHILE;
 
-    -- Supprimer l'ancien livre
-    DELETE FROM t_livre WHERE ISBN = p_ISBN_original;
+                UPDATE t_livre
+                SET quantité = p_nouvelle_quantite
+                WHERE ISBN = p_ISBN;
 
-    -- Ajouter les exemplaires supplémentaires si besoin
-    IF p_nouvelle_quantite > qte_actuelle THEN
-        SET diff = p_nouvelle_quantite - qte_actuelle;
-        SET i = 1;
-        WHILE i <= diff DO
-            INSERT INTO t_exemplaire (commentaire, ISBN)
-            VALUES (CONCAT('Exemplaire ajouté ', qte_actuelle + i), p_ISBN);
-            SET i = i + 1;
-        END WHILE;
-        -- Mettre à jour la nouvelle quantité
-        UPDATE t_livre SET quantité = p_nouvelle_quantite WHERE ISBN = p_ISBN;
-        SET p_message = CONCAT('Quantité mise à jour à ', p_nouvelle_quantite, ' et ', diff, ' exemplaires ajoutés.');
-    ELSE
-        SET p_message = 'Quantité inchangée. Aucun exemplaire ajouté. La quantité ne peut diminuer.';
-    END IF;
+                SET p_message = CONCAT('Livre mis à jour. ', diff, ' exemplaires ajoutés.');
+            ELSE
+                SET p_message = 'Livre mis à jour. Quantité inchangée.';
+            END IF;
+
+        -- CAS 2 : L'ISBN change
+        ELSE
+            -- Vérifier si le nouvel ISBN existe déjà
+            IF EXISTS (
+                SELECT 1 FROM t_livre WHERE ISBN = p_ISBN
+            ) THEN
+                SET p_message = 'Erreur : le nouvel ISBN existe déjà.';
+                LEAVE main_block;
+            END IF;
+
+            -- Insérer le nouveau livre avec l'ancienne quantité
+            INSERT INTO t_livre (ISBN, titre, année_de_publication, quantité)
+            VALUES (p_ISBN, p_titre, p_annee, qte_actuelle);
+
+            -- Mettre à jour écrire
+            UPDATE écrire
+            SET ISBN = p_ISBN, auteur_id = p_auteur_id
+            WHERE ISBN = p_ISBN_original AND auteur_id = p_auteur_id_old;
+
+            -- Mettre à jour les exemplaires
+            UPDATE t_exemplaire
+            SET ISBN = p_ISBN
+            WHERE ISBN = p_ISBN_original;
+
+            -- Supprimer l'ancien livre
+            DELETE FROM t_livre WHERE ISBN = p_ISBN_original;
+
+            -- Ajouter des exemplaires si besoin
+            IF p_nouvelle_quantite > qte_actuelle THEN
+                SET diff = p_nouvelle_quantite - qte_actuelle;
+                WHILE i <= diff DO
+                    INSERT INTO t_exemplaire (commentaire, ISBN)
+                    VALUES (CONCAT('Exemplaire ajouté ', qte_actuelle + i), p_ISBN);
+                    SET i = i + 1;
+                END WHILE;
+
+                UPDATE t_livre
+                SET quantité = p_nouvelle_quantite
+                WHERE ISBN = p_ISBN;
+
+                SET p_message = CONCAT('ISBN modifié. Quantité mise à jour à ', p_nouvelle_quantite, ' avec ', diff, ' exemplaires ajoutés.');
+            ELSE
+                SET p_message = 'ISBN modifié. Quantité inchangée.';
+            END IF;
+
+        END IF;
+    END main_block;
 END$$
 
 CREATE DEFINER=`root`@`%` PROCEDURE `SupprimerLivre` (IN `p_ISBN` VARCHAR(10), OUT `p_message` VARCHAR(255))   BEGIN

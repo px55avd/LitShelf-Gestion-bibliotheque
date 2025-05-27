@@ -133,7 +133,6 @@ namespace LitShelf.Views
                     //Charge le combobox avec les données livre empruntable
                     cmboxBook.Items.Add(Controller.GetbookBorrowabledata()[i, 1]);
                 }
-                
             }
 
             // Hauteur en pixels
@@ -181,7 +180,7 @@ namespace LitShelf.Views
                 for (int i = 0; i < Controller.GetbookBorrowabledata().GetLength(0); i++)
                 {
                     //Vérifie si le champs texte conrrespond au titre des livre disponible.
-                    if (Controller.GetbookBorrowabledata()[i, 1] == cmboxBook.Text)
+                    if (cmboxBook.Text == Controller.GetbookBorrowabledata()[i, 1])
                     {
                         // Charge la valeur de la clé dans "idBook"
                         idBook = Controller.GetbookBorrowabledata()[i, 3];
@@ -192,13 +191,13 @@ namespace LitShelf.Views
                 if (cmboxClient.Text == $"{Controller.GetcurrentLoan()[7]} {Controller.GetcurrentLoan()[6]}")
                 {
                     // Charge la valeur de la clé dans "idClient"
-                    idClient = Controller.GetcurrentLoan()[3];
+                    idClient = Controller.GetcurrentLoan()[4];
                 }
-                // Vérifie si le client est le même
+                // Vérifie si le livre est le même
                 if (cmboxBook.Text == $"{Controller.GetcurrentLoan()[5]}")
                 {
                     // Charge la valeur de la clé dans "idBook"
-                    idBook = Controller.GetcurrentLoan()[4];
+                    idBook = Controller.GetcurrentLoan()[3];
                 }
 
                 DateTime dateTime = dtmpBackdate.Value.Date;

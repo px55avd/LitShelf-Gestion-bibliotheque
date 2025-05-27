@@ -1299,7 +1299,7 @@ namespace LitShelf.Model
             // Création de la connexion à la base de données
             MySqlConnection databaseConnection = new MySqlConnection(myConnectionString);
 
-            // Requête SQL : insère l'auteur seulement s'il n'existe pas déjà
+            // Requête SQL
             string query = @"UPDATE `t_emprunt` 
                             SET `date_retour` = @date_retour, `client_id` = @Idclient, `exemplaire_id` = @Idexemplaire 
                             WHERE `t_emprunt`.`emprunt_id` = @Idloan ;";
