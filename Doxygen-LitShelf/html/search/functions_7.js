@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['setauthordata_0',['SetauthorData',['../class_lit_shelf_1_1_controller_1_1_controller.html#a5bddf9d351f96f901052ccc99ac7dc40',1,'LitShelf::Controller::Controller']]],
+  ['setbookborrowabledata_1',['SetbookBorrowabledata',['../class_lit_shelf_1_1_controller_1_1_controller.html#a2258498d78e2a808d5296d0211a20009',1,'LitShelf::Controller::Controller']]],
+  ['setbookdata_2',['SetbookData',['../class_lit_shelf_1_1_controller_1_1_controller.html#af8a56830665bf420844983fbc280cd25',1,'LitShelf::Controller::Controller']]],
+  ['setbookdatafilter_3',['SetbookDataFilter',['../class_lit_shelf_1_1_controller_1_1_controller.html#a5768f6a1d0e6a3f32544206238234e7e',1,'LitShelf::Controller::Controller']]],
+  ['setclientdata_4',['SetclientData',['../class_lit_shelf_1_1_controller_1_1_controller.html#a6498874130f1269bbf9651d0dfd1740c',1,'LitShelf::Controller::Controller']]],
+  ['setcurrentauthor_5',['SetcurrentAuthor',['../class_lit_shelf_1_1_controller_1_1_controller.html#ad6a2495668541751fab553720db9f67f',1,'LitShelf::Controller::Controller']]],
+  ['setcurrentbook_6',['SetcurrentBook',['../class_lit_shelf_1_1_controller_1_1_controller.html#a2fb94e0c1cffde36d5d48b75e2c6a82f',1,'LitShelf::Controller::Controller']]],
+  ['setcurrentclient_7',['SetcurrentClient',['../class_lit_shelf_1_1_controller_1_1_controller.html#aa4c04a8f5cb38e99f52b87194e67fa29',1,'LitShelf::Controller::Controller']]],
+  ['setcurrentloan_8',['SetcurrentLoan',['../class_lit_shelf_1_1_controller_1_1_controller.html#acfa9714d48ce3a1955524e6176db7330',1,'LitShelf::Controller::Controller']]],
+  ['setloandata_9',['SetloanData',['../class_lit_shelf_1_1_controller_1_1_controller.html#a4f54cd63b650564c3653845629a8f9ef',1,'LitShelf::Controller::Controller']]],
+  ['setloandatafiler_10',['SetloanDataFiler',['../class_lit_shelf_1_1_controller_1_1_controller.html#a141e607e79dda13611dec3e799ebbbf6',1,'LitShelf::Controller::Controller']]],
+  ['showauthortable_11',['ShowAuthorTable',['../class_lit_shelf_1_1_controller_1_1_controller.html#a7916142e129f7c6162cd2fd496db9c52',1,'LitShelf::Controller::Controller']]],
+  ['showbooktable_12',['ShowBookTable',['../class_lit_shelf_1_1_controller_1_1_controller.html#abf9a0b2f2ba57a7a90b6836710bea4fc',1,'LitShelf::Controller::Controller']]],
+  ['showclienttable_13',['ShowClientTable',['../class_lit_shelf_1_1_controller_1_1_controller.html#a2c726701b6d585e58699ebce4334e05c',1,'LitShelf::Controller::Controller']]],
+  ['showentitytable_14',['ShowEntityTable',['../class_lit_shelf_1_1_controller_1_1_controller.html#ab0f9d061424a89d6563c2ed5580e1464',1,'LitShelf::Controller::Controller']]],
+  ['showloantable_15',['ShowLoanTable',['../class_lit_shelf_1_1_controller_1_1_controller.html#ada29ba58e1228e85ab1ea2237666f48a',1,'LitShelf::Controller::Controller']]]
+];
